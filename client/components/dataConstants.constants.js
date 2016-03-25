@@ -151,28 +151,28 @@ angular.module('calypsoClientApp')
       },
       'age': {
         'name': 'Age',
-        'description': 'Patient age in years',
+        'description': 'Patient age in years (enter 90 for >90)',
         'type': 'int',
         'min': 15,
         'max': 90
       },
       'smoker': {
-        'name': 'Smoker',
+        'name': 'Smoking History',
         'description': 'Current smoker within 1 year',
         'type': 'boolean'
       },
       'alcohol': {
-        'name': 'Alcohol',
-        'description': 'Significant drinker',
+        'name': 'Alcohol History',
+        'description': 'Significant alcoholic history',
         'type': 'boolean'
       },
       'dnr': {
         'name': 'DNR',
-        'description': 'Do not resuscitate status',
+        'description': 'Do Not Resuscitate status',
         'type': 'boolean'
       },
       'ventilat': {
-        'name': 'Ventilator',
+        'name': 'Ventilator Dependence',
         'description': 'Ventilator dependent within 48hrs before surgery',
         'type': 'boolean'
       },
@@ -183,16 +183,16 @@ angular.module('calypsoClientApp')
       },
       'cpneumon': {
         'name': 'Pneumonia',
-        'description': 'Patient currently has pneumonia',
+        'description': 'Currently has pneumonia',
         'type': 'boolean'
       },
       'hxchf': {
-        'name': 'CHF',
+        'name': 'CHF History',
         'description': 'History of Congestive Heart Failure',
         'type': 'boolean'
       },
       'cardiac_surgery': {
-        'name': 'Cardiac Surgery',
+        'name': 'History of Cardiac Surgery',
         'description': 'Patient previously had a cardiac surgery',
         'type': 'boolean'
       },
@@ -202,7 +202,7 @@ angular.module('calypsoClientApp')
         'type': 'boolean',
       },
       'dialysis': {
-        'name': 'Dialysis',
+        'name': 'Dialysis Dependent',
         'description': 'Patient currently on dialysis',
         'type': 'boolean'
       },
@@ -212,17 +212,17 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'preop_wndinf': {
-        'name': 'Wound Infection',
+        'name': 'Preoperative Wound Infection',
         'description': 'Preoperative open wound or wound infection',
         'type': 'boolean'
       },
       'steroid_immunosup': {
-        'name': 'Steroid',
+        'name': 'Steroid or immunosuppression use',
         'description': 'History of using steroid or any other immunosuppressant',
         'type': 'boolean'
       },
       'wtloss': {
-        'name': 'Weight Loss',
+        'name': 'Recenet weight Loss',
         'description': '> 10% weight loss in last 6 months',
         'type': 'boolean'
       },
@@ -232,7 +232,7 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'preop_transfus': {
-        'name': 'Transfusion',
+        'name': 'Recent Transfusion',
         'description': 'Preop transfusion of >=1 unit of red blood cells within 72 hours before surgery',
         'type': 'boolean'
       },
@@ -260,20 +260,20 @@ angular.module('calypsoClientApp')
         'max': 100
       },
       'asa': {
-        'name': 'ASA',
+        'name': 'ASA Class',
         'description': 'American society of anesthesiology physical status classification',
         'type': 'int',
         'min': 1,
         'max': 5
       },
       'diabetes': {
-        'name': 'Diabetes',
+        'name': 'Diabetes History',
         'description': 'Diabetes mellitus with oral agents or insulin',
         'type': 'string',
         'category': ['non-insulin', 'insulin', 'no']
       },
       'dyspnea': {
-        'name': 'Dyspnea',
+        'name': 'Dyspnea at rest',
         'description': 'Dyspnea',
         'type': 'string',
         'category': ['at rest', 'moderate exertion', 'no']
@@ -295,7 +295,7 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'pvd': {
-        'name': 'PVD',
+        'name': 'Peripheral vascular disease',
         'description': 'History of revascularization / amputation for peripheral vascular disease, or rest pain',
         'type': 'boolean'
       },
@@ -305,108 +305,108 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'plegia': {
-        'name': 'Plegia',
+        'name': 'Paralysis',
         'description': 'History of hemi, para, or qudraiplegia',
         'type': 'boolean'
       },
       'chemo_radio': {
-        'name': 'Chemotherapy',
+        'name': 'Recent chemotherapy',
         'description': 'Chemotherapy <= 30 days before surgery, OR radiotherapy <= 90 days',
         'type': 'boolean'
       },
       'infx': {
-        'name': 'Infection',
+        'name': 'Septic status',
         'description': 'Infection Level',
         'type': 'string',
         'category': ['SIRS', 'sepsis', 'septic shock', 'no']
       },
       'lab_sodium': {
-        'name': 'Lab Sodium',
-        'description': 'Lab Sodium',
+        'name': 'Sodium',
+        'description': 'Serum sodium level',
         'type': 'real',
-        'min': 0,
-        'max': 100
+        'min': 100,
+        'max': 170
       },
       'lab_bun': {
-        'name': 'Lab Bun',
-        'description': 'Lab Bun',
+        'name': 'BUN',
+        'description': 'Blood urea nitrogen level',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'lab_creatine': {
-        'name': 'Lab Creatine',
-        'description': 'Lab Creatine',
+        'name': 'Creatinine',
+        'description': 'Serum creatinine level',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'lab_albumin': {
-        'name': 'Lab Albumin',
-        'description': 'Lab Albumin',
+        'name': 'Albumin',
+        'description': 'Serum albumin level',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 7
       },
       'lab_bili': {
-        'name': 'Lab Bili',
-        'description': 'Lab Bili',
+        'name': 'Bilirubin',
+        'description': 'Serum bilirubin level',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'lab_ast': {
-        'name': 'Lab Ast',
-        'description': 'Lab Ast',
+        'name': 'AST',
+        'description': 'Serum AST level',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 10000
       },
       'lab_alkphos': {
-        'name': 'Lab Alkphos',
-        'description': 'Lab Alkphos',
+        'name': 'ALP',
+        'description': 'Serum alkaline phosphatase',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 10000
       },
       'lab_wbc': {
-        'name': 'Lab WBC',
-        'description': 'Lab WBC',
+        'name': 'WBC',
+        'description': 'Serum white blood cell count (in thousands)',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'lab_hct': {
-        'name': 'Lab HCT',
-        'description': 'Lab HCT',
+        'name': 'Hematocrit',
+        'description': 'Serum hematocrit',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'lab_plt': {
-        'name': 'Lab PLT',
-        'description': 'Lab PLT',
+        'name': 'Platelet',
+        'description': 'Serum platetlet level',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 2000
       },
       'lab_ptt': {
-        'name': 'Lab PTT',
-        'description': 'Lab PTT',
+        'name': 'PTT',
+        'description': 'Partial thromboplastin time ',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 1000
       },
       'lab_inr': {
-        'name': 'Lab INR',
-        'description': 'Lab INR',
+        'name': 'INR',
+        'description': 'International normalized ratio/Prothrombin time',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 50
       },
       'podiag': {
-        'name': 'Post Diagnosis',
-        'description': 'Post Diagnosis',
+        'name': 'Surgical Indication Type',
+        'description': 'Categories of the indications for surgery',
         'type': 'string',
         'category': ['neoplasm', 'infection', 'no']
       },
@@ -415,26 +415,26 @@ angular.module('calypsoClientApp')
         'description': 'Work Relative Value Unit',
         'type': 'real',
         'min': 0,
-        'max': 100
+        'max': 1000
       },
       'pgy': {
-        'name': 'Post Graduate Year',
+        'name': 'Resident PGY level',
         'description': 'Post Graduate Year of Resident',
         'type': 'int',
         'min': 0,
         'max': 20,
       },
       'emergency': {
-        'name': 'Emergency',
+        'name': 'Emergency Surgery Status',
         'description': 'Designate if emergent case (note: urgent cases do not count)',
         'type': 'boolean'
       },
       'optime': {
-        'name': 'Operation Time',
+        'name': 'Operation Time (min)',
         'description': 'Surgical Operation Time in ',
         'type': 'int',
         'min': 0,
-        'max': 1000
+        'max': 10000
       },
       'general_anes': {
         'name': 'General Anesthesia',
@@ -442,23 +442,23 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'other_proc': {
-        'name': 'Other Procedure',
+        'name': 'Other Procedure (Same team)',
         'description': 'There were additional procedures performed by the same surgical team',
         'type': 'boolean'
       },
       'concurrent_proc': {
-        'name': 'Concurrent Procedure',
+        'name': 'Concurrent Procedure (Different team)',
         'description': 'There were additional procedures while the principle procedure was performed',
         'type': 'boolean'
       },
       'wound': {
-        'name': 'Wound',
+        'name': 'Wound Classification',
         'description': 'Wound class',
         'type': 'string',
         'category': ['contaminated', 'dirty', 'clean contaminated', 'clean']
       },
       'cpt': {
-        'name': 'CPT',
+        'name': 'CPT Code of Primary Procedure',
         'description': 'Common Procedure Code',
         'type': 'string'
       },
@@ -469,8 +469,8 @@ angular.module('calypsoClientApp')
         'category': ['OFFICIAL1', 'OFFICIAL2', 'OFFICIAL3', 'OFFICIAL4', 'OFFICIAL5', 'OFFICIAL6', 'OFFICIAL7', 'OFFICIAL8', 'OFFICIAL9', 'OFFICIAL11', 'OFFICIAL12', 'OFFICIAL13', 'OFFICIAL14', 'OFFICIAL16']
       },
       'cpt_mis': {
-        'name': 'Min. Invasive',
-        'description': 'Minimally Invasive Surgery',
+        'name': 'Minimally Invasive Surgery',
+        'description': 'Either laparoscopic or robotic surgery',
         'type': 'boolean'
       },
       'cpt_implant': {

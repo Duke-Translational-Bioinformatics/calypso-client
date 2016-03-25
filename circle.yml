@@ -28,6 +28,6 @@ deployment:
       - sudo pip install awscli
       - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
       - aws configure set aws_access_key_id $AWS_SECRET_ACCESS_KEY
-      - aws configure set default.region us-east-1
+      - aws configure set default.region us-west-2
       - aws configure set default.output json
       - aws s3 sync dist s3://calypso-client --delete --acl public-read

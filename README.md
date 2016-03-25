@@ -46,7 +46,9 @@ grunt
 Will test and run a production envionrment locally on localhost:8080
 
 ## Master
-When commiting to master, circle will run tests and auto deploy to http://calypso-client.s3-website-us-west-2.amazonaws.com/#/
+When commiting to master, circle will run tests and auto deploy to: http://calypso-client.s3-website-us-west-2.amazonaws.com/#/
+
+Shortened url: http://tiny.cc/dukecalypso
 
 ## Tests
 When creating a new view be sure to make an e2e test of the page. This will run a phantomjs browser for an end-to-end test.

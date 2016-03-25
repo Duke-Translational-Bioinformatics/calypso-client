@@ -1,0 +1,61 @@
+// FarmShots orange: #ef6c00
+@import "compass";
+@import 'font-awesome/scss/font-awesome';
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+img.cover {
+  @include filter(brightness(60%));
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+.unselectable {
+  @include user-select(none);
+}
+.transparent-background {
+  background-color: rgba(0, 0, 0, 0);
+}
+.translucent-background {
+  background-color: rgba(255, 255, 255, .75);
+}
+.transparent-opacity {
+  opacity: 0.0
+}
+.translucent-opacity {
+  opacity: 0.8
+}
+.fill {
+  height: 100vh;
+}
+.center-align-text {
+  text-align: center;
+}
+html, body {
+  font-family: 'Raleway';
+}
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffffff;
+}
+body {
+  height: 100%;
+  margin: 0;
+}
+body > div {
+  height: 100%;
+}
+// Component styles are injected through grunt
+// injector
+@import 'd3Distribution/d3Distribution.scss';
+@import 'enhancedDialog/enhancedDialog.scss';
+@import 'main/main.scss';
+@import 'sideNavPushIn/sideNavPushIn.scss';
+// endinjector

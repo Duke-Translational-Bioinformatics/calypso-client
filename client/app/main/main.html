@@ -1,0 +1,138 @@
+<section layout-fill layout="row">
+  <md-sidenav flex sidenav-push-in class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <div layout="column" class="unselectable main-body">
+      <md-toolbar class="md-accent unselectable" flex="initial">
+        <div class="md-toolbar-tools">
+          <md-icon class="transparent" md-svg-icon="http://ouwen.github.io/calypso-dist/assets/images/dumc_shield.svg"></md-icon>
+          <h1 class="md-toolbar-tools">{{ENV.label.name.toUpperCase()}}</h1>
+        </div>
+        <md-divider></md-divider>
+      </md-toolbar>
+      <md-button ng-click="Patient.find_patient(Patient.values.caseid)">Find Patient
+        <strong>{{Patient.values.caseid}}</strong>
+      </md-button>
+      <md-divider></md-divider>
+      <md-button ngf-select ngf-change="Patient.load_patient($files)"> Load Patient</md-button>
+      <md-divider></md-divider>
+      <md-button ng-click="Patient.download_patient(Patient.values)">Download Patient</md-button>
+      <md-divider></md-divider>
+
+      <md-content flex="auto" style="overflow-y: auto;" layout-padding>
+        <md-list ng-cloak>
+          <md-subheader class="unselectable md-no-sticky">Patient Information</md-subheader>
+          <md-list-item ng-repeat="label in sections.patient_info">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <md-input-container flex ng-if="labels[label].type==='int' || labels[label].type==='real'">
+              <label>{{ labels[label].name }}</label>
+              <input type="number" ng-model="Patient.values[label]" min="{{labels[label].min}}" max="{{labels[label].max}}">
+            </md-input-container>
+            <md-autocomplete flex ng-if="labels[label].category" required md-min-length="0" md-selected-item="Patient.values[label]" md-search-text="ctrl.searchText" md-items="item in query(ctrl.searchText, labels[label].category)" md-floating-label="{{labels[label].name}}">
+              <md-item-template>
+                <span md-highlight-text="ctrl.searchText">{{item}}</span>
+              </md-item-template>
+            </md-autocomplete>
+          </md-list-item>
+          <md-divider></md-divider>
+        </md-list>
+        <md-list ng-cloak>
+          <md-subheader class="unselectable md-no-sticky">Patient History</md-subheader>
+          <md-list-item ng-repeat="label in sections.patient_history">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <p class="unselectable"> {{ labels[label].name }} </p>
+            <md-checkbox ng-show="labels[label].type==='boolean'" class="md-secondary" ng-model="Patient.values[label]"></md-checkbox>
+          </md-list-item>
+          <md-divider></md-divider>
+        </md-list>
+        <md-list ng-cloak>
+          <md-subheader class="unselectable md-no-sticky">Risk Factors</md-subheader>
+          <md-list-item ng-repeat="label in sections.risk_factors">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <md-input-container flex ng-if="labels[label].type==='int' || labels[label].type==='real'">
+              <label>{{ labels[label].name }}</label>
+              <input type="number" ng-model="Patient.values[label]" min="{{labels[label].min}}" max="{{labels[label].max}}">
+            </md-input-container>
+            <md-autocomplete flex ng-if="labels[label].category" required md-min-length="0" md-selected-item="Patient.values[label]" md-search-text="ctrl.searchText" md-items="item in query(ctrl.searchText, labels[label].category)" md-floating-label="{{labels[label].name}}">
+              <md-item-template>
+                <span md-highlight-text="ctrl.searchText">{{item}}</span>
+              </md-item-template>
+            </md-autocomplete>
+          </md-list-item>
+          <md-list-item ng-repeat="label in sections.risk_factors_boolean">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <p class="unselectable"> {{ labels[label].name }} </p>
+            <md-checkbox ng-show="labels[label].type==='boolean'" class="md-secondary" ng-model="Patient.values[label]"></md-checkbox>
+          </md-list-item>
+          <md-divider></md-divider>
+        </md-list>
+        <md-list ng-cloak>
+          <md-subheader class="unselectable md-no-sticky">Surgical Info: {{cpt_type_label[Patient.values.cpt_type]}}</md-subheader>
+
+          <md-list-item ng-repeat="label in sections.surgical_info">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <md-input-container flex ng-if="labels[label].type==='int' || labels[label].type==='real'">
+              <label>{{ labels[label].name }}</label>
+              <input type="number" ng-model="Patient.values[label]" min="{{labels[label].min}}" max="{{labels[label].max}}">
+            </md-input-container>
+            <md-autocomplete flex ng-if="labels[label].category" required md-min-length="0" md-selected-item="Patient.values[label]" md-search-text="ctrl.searchText" md-items="item in query(ctrl.searchText, labels[label].category)" md-floating-label="{{labels[label].name}}">
+              <md-item-template>
+                <span md-highlight-text="ctrl.searchText">{{item}}</span>
+              </md-item-template>
+            </md-autocomplete>
+            <md-input-container flex ng-if="!labels[label].category && labels[label].type==='string'">
+              <label>{{ labels[label].name }}</label>
+              <input type="text" ng-model="Patient.values[label]">
+            </md-input-container>
+          </md-list-item>
+          <md-list-item ng-repeat="label in sections.surgical_info_boolean">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <p class="unselectable"> {{ labels[label].name }} </p>
+            <md-checkbox ng-show="labels[label].type==='boolean'" class="md-secondary" ng-model="Patient.values[label]"></md-checkbox>
+          </md-list-item>
+          <md-divider></md-divider>
+        </md-list>
+        <md-list ng-cloak>
+          <md-subheader class="unselectable md-no-sticky">Labs</md-subheader>
+          <md-list-item ng-repeat="label in sections.labs">
+            <md-tooltip md-direction="right">
+              {{labels[label].description}}
+            </md-tooltip>
+            <md-input-container flex ng-if="labels[label].type==='int' || labels[label].type==='real'">
+              <label>{{ labels[label].name }}</label>
+              <input type="number" ng-model="Patient.values[label]" min="{{labels[label].min}}" max="{{labels[label].max}}">
+            </md-input-container>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
+  </md-sidenav>
+
+  <md-button aria-label="Sidebar FAB" hide-gt-md ng-click="toggle()" class="superfab md-fab md-mini md-primary">
+    <md-icon md-svg-src="http://ouwen.github.io/calypso-dist/assets/images/menu.svg"></md-icon>
+  </md-button>
+
+  <md-content layout="column" layout-padding layout-margin flex>
+    <md-card flex="80">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          Patient Overview
+        </div>
+      </md-toolbar>
+      <div class="md-whiteframe-5dp" d3-dualbars data="Patient.prediction.predict"></div>
+    </md-card>
+    <footer class="footer" flex>
+      <p>Calypso v2.0.0 | Ouwen Huang</p>
+    </footer class="footer">
+  </md-content>
+</section>

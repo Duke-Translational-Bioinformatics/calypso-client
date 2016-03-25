@@ -1,0 +1,83 @@
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.main {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+}
+.params {
+  height: 90vh;
+  overflow-y: scroll;
+}
+.bar {
+  fill: #5cb85c;
+  fill-opacity: 0.5;
+}
+.average {
+  fill: #4393B9;
+}
+.bar:hover {
+  opacity: 0.8;
+  fill-opacity: 0.8;
+}
+.bar.positive {
+  fill: #5cb85c;
+}
+.bar.negative {
+  fill: #d9534f;
+}
+.bar.primary {
+  fill: #4393B9;
+}
+.point {
+  fill: #4393B9;
+}
+.point.median {
+  fill: rgb(244, 81, 30);
+}
+.point:hover {
+  opacity: 0.9;
+  fill-opacity: 0.9;
+}
+.point.positive {
+  fill: #5cb85c;
+}
+.point.negative {
+  fill: #d9534f;
+}
+.bgPoint {
+  fill: #5cb85c;
+}
+.bgPoint:hover {
+  opacity: 0.8;
+  fill-opacity: 0.8;
+}
+.bgPoint.positive {
+  fill: #5cb85c;
+}
+.bgPoint.negative {
+  fill: #d9534f;
+}
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  opacity: .2
+}
+.axis.graph line {
+  opacity: 1
+}
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}

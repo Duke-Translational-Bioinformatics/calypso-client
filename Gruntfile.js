@@ -541,7 +541,7 @@ module.exports = function (grunt) {
       ]);
     } else grunt.task.run([
       'test:client',
-      'jsbeautifier:verify'
+      // 'jsbeautifier:verify'
       // 'test:e2e'
     ]);
   });

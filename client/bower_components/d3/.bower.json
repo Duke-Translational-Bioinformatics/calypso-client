@@ -22,16 +22,15 @@
     "src",
     "test"
   ],
-  "homepage": "https://github.com/mbostock/d3",
+  "homepage": "https://github.com/mbostock-bower/d3-bower",
   "version": "3.5.11",
   "_release": "3.5.11",
   "_resolution": {
     "type": "version",
     "tag": "v3.5.11",
-    "commit": "750fdfb8a57c763c9e3cb92d71d55d91b719c108"
+    "commit": "65c13b14eaf2e0799cffacf1d452b0d081f98592"
   },
-  "_source": "git://github.com/mbostock/d3.git",
-  "_target": "~3.5.11",
-  "_originalSource": "d3",
-  "_direct": true
+  "_source": "git://github.com/mbostock-bower/d3-bower.git",
+  "_target": "3.5.11",
+  "_originalSource": "d3"
 }

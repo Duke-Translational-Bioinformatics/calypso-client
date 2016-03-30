@@ -127,8 +127,8 @@ angular.module('calypsoClientApp')
           // center line
           group.append('g').attr('class', 'y axis')
             .append('line')
-            .attr('x1', xScale(50))
-            .attr('x2', xScale(50))
+            .attr('x1', xScale(0))
+            .attr('x2', xScale(0))
             .attr('y1', graphMargin)
             .attr('y2', height - barHeight - barPadding)
             .attr('stroke-width', 3);
@@ -148,13 +148,13 @@ angular.module('calypsoClientApp')
                 return d.value > 50 ? 'bar negative' : 'bar positive';
               })
               .attr('x', function (d) {
-                return xScale(Math.min(50, d.value));
+                return xScale(0);
               })
               .attr('y', function (d, i) {
                 return (i * (barHeight + barPadding)) + graphMargin + barMargin;
               })
               .attr('width', function (d) {
-                return Math.abs(xScale(d.value) - xScale(50));
+                return Math.abs(xScale(d.value));
               })
               .attr('height', barHeight)
               .attr('opacity', config.barOpacity)
@@ -172,7 +172,7 @@ angular.module('calypsoClientApp')
             .selectAll('line')
             .data(data).enter()
             .append('line')
-            .attr('x1', xScale(50))
+            .attr('x1', xScale(0))
             .attr('y1', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + barHeight / 2;
             })
@@ -265,7 +265,7 @@ angular.module('calypsoClientApp')
             .append('g').attr('class', 'text')
             .append('text')
             .attr('x', function () {
-              return xScale(50) + textMargin;
+              return textMargin;
             })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
@@ -275,6 +275,37 @@ angular.module('calypsoClientApp')
             })
             .attr('font-size', '.8em');
 
+          //risk value labels
+          var riskLabelGroup = group.append('g').attr('class', 'risk-labels')
+            .selectAll('text')
+            .data(data).enter()
+            .append('g').attr('class', 'risk-label-group');
+
+
+          riskLabelGroup.append('text')
+            .attr('x', function (d) {
+              return d.value > 50 ? xScale(d.value-25) : xScale(d.value+2);
+            })
+            .attr('y', function (d, i) {
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
+            })
+            .text(function (d) {
+              return 'Absolute Risk: ' + Math.round(d.original_value*10000)/100 + '%';
+            })
+            .attr('font-size', '.8em');
+
+          riskLabelGroup.append('text')
+            .attr('x', function (d) {
+              return d.value > 50 ? xScale(d.value-25) : xScale(d.value+2);
+            })
+            .attr('y', function (d, i) {
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
+            })
+            .text(function (d) {
+              return 'Relative Risk: ' + Math.round(d.value*100)/100 + '%';
+            })
+            .attr('font-size', '.8em');
+        
           // legend
           var legendY = (data.length * (barHeight + barPadding)) + graphMargin + barMargin + 15;
           var legendX = -55;

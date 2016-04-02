@@ -418,20 +418,21 @@ angular.module('calypsoClientApp')
     };
 
     var getInterventions = function (model, values) {
-      var list = [];
+      var listOutcomes = [];
+      var listPostop = [];
       var interventions = dataConstants.INTERVENTIONS;
 
       model = getOutcomeLink(model);
 
       Object.keys(interventions).map(function (label) {
         if (isTrigger(interventions[label].trigger, values[label])) {
-          list.push(interventions[label]);
+          listPostop.push(interventions[label]);
         }
         if (model === label) {
-          list.push(interventions[label]);
+          listOutcomes.push(interventions[label]);
         }
       });
-      return list;
+      return [listOutcomes,listPostop];
     };
 
     return {

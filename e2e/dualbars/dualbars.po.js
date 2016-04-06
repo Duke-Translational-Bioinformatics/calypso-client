@@ -10,6 +10,10 @@ var Dualbars = function () {
   this.svg = element(by.css('[aria-label="dualbarsSvg"]'));
   this.group = this.svg.element(by.css('g'));
   this.bar = this.group.element(by.css('.bar'));
+
+  this.legend = element(by.css('[aria-label="dualbarsLegend"]'));
+  this.svgLegend = element(by.css('[aria-label="dualbarsSvgLegend"]'));
+  this.groupLegend = this.svgLegend.element(by.css('g'));
 };
 
 module.exports = new Dualbars();

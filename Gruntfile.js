@@ -542,7 +542,7 @@ module.exports = function (grunt) {
     } else grunt.task.run([
       'test:client',
       // 'jsbeautifier:verify'
-      // 'test:e2e'
+      'test:e2e'
     ]);
   });
 

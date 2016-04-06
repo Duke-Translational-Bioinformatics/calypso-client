@@ -1,5 +1,5 @@
 <section layout-fill layout="row">
-  <md-sidenav flex sidenav-push-in class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+  <md-sidenav aria-label="sidebarSection" flex sidenav-push-in class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
     <div layout="column" class="unselectable main-body">
       <md-toolbar class="md-accent unselectable" flex="initial">
         <div class="md-toolbar-tools">
@@ -8,13 +8,13 @@
         </div>
         <md-divider></md-divider>
       </md-toolbar>
-      <md-button ng-click="Patient.find_patient(Patient.values.caseid)">Find Patient
+      <md-button aria-label="findButton" ng-click="Patient.find_patient(Patient.values.caseid)">Find Patient
         <strong>{{Patient.values.caseid}}</strong>
       </md-button>
       <md-divider></md-divider>
-      <md-button ngf-select ngf-change="Patient.load_patient($files)"> Load Patient</md-button>
+      <md-button aria-label="loadButton" ngf-select ngf-change="Patient.load_patient($files)"> Load Patient</md-button>
       <md-divider></md-divider>
-      <md-button ng-click="Patient.download_patient(Patient.values)">Download Patient</md-button>
+      <md-button aria-label="downloadButton" ng-click="Patient.download_patient(Patient.values)">Download Patient</md-button>
       <md-divider></md-divider>
 
       <md-content flex="auto" style="overflow-y: auto;" layout-padding>

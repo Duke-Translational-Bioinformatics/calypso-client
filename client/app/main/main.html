@@ -124,10 +124,11 @@
 
   <md-content layout="column" layout-padding layout-margin flex>
     <md-card flex="80">
-      <md-toolbar>
-        <div class="md-toolbar-tools">
+      <md-toolbar layout="row" class="md-tall md-border-bottom">
+        <div class="md-toolbar-tools title-style">
           Patient Overview
-        </div>
+          </div>
+          <div d3-dualbars-legend></div>
       </md-toolbar>
       <div class="md-whiteframe-5dp" aria-label="dualbarsSection" d3-dualbars data="Patient.prediction.predict"></div>
     </md-card>

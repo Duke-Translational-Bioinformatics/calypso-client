@@ -284,19 +284,21 @@ angular.module('calypsoClientApp')
 
           riskLabelGroup.append('text')
             .attr('x', function (d) {
-              return d.value > 50 ? xScale(d.value - 25) : xScale(d.value + 2);
+              return textMargin - 125;
+              //return d.value > 50 ? xScale(d.value-25) : xScale(d.value+2);
             })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
             })
             .text(function (d) {
-              return 'Absolute Risk: ' + Math.round(d.original_value * 10000) / 100 + '%';
+              return 'Absolute Risk: ' + Math.round(d.original_value*1000)/10 + '%';
             })
             .attr('font-size', '.8em');
 
           riskLabelGroup.append('text')
             .attr('x', function (d) {
-              return d.value > 50 ? xScale(d.value - 25) : xScale(d.value + 2);
+              return textMargin - 125;
+              //return d.value > 50 ? xScale(d.value-25) : xScale(d.value+2);
             })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
@@ -305,141 +307,6 @@ angular.module('calypsoClientApp')
               return 'Relative Risk: ' + Math.round(d.value * 100) / 100 + '%';
             })
             .attr('font-size', '.8em');
-
-          // legend
-          var legendY = (data.length * (barHeight + barPadding)) + graphMargin + barMargin + 15;
-          var legendX = -55;
-          legendY = barHeight + 20;
-          var legend = group.append('g')
-            .attr('class', 'legend')
-            .attr('x', function () {})
-            .attr('transform', 'translate(' + legendX + ',' + legendY + ')')
-            .attr('height', 100)
-            .attr('width', 100);
-
-          var relative = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 350)');
-          relative.append('line')
-            .attr('x1', -50)
-            .attr('y1', 20)
-            .attr('x2', 30)
-            .attr('y2', 20)
-            .style('stroke-width', 1)
-            .style('stroke-dasharray', ('3, 3'))
-            .style('stroke', '#4393B9')
-            .style('fill', 'none');
-          relative.append('text')
-            .attr('x', -50)
-            .attr('y', -10)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('Percentile Risk');
-
-          var absolute = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(-50, -35)');
-
-          absolute.append('text')
-            .attr('font-size', '.8em')
-            .text('Absolute Risk');
-
-          var five = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 0)');
-          five.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.05));
-            })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          five.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          five.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('5%');
-
-          var ten = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 50)');
-          ten.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.1));
-            })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          ten.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          ten.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('10%');
-
-          var twoFive = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 120)');
-          twoFive.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.25));
-            })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          twoFive.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          twoFive.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('25%');
-
-          var fifty = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 210)');
-          fifty.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.5));
-            })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          fifty.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          fifty.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('50%');
 
           element.removeAttr('d3-Dualbars');
           $compile(element)(scope);

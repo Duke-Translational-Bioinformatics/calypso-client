@@ -270,19 +270,19 @@ angular.module('calypsoClientApp')
         'name': 'Diabetes Severity',
         'description': 'Patients with insulin resistance that routinely take anti-diabetic agents are included. Patients whose diabetes is controlled by diet alone are not included.',
         'type': 'string',
-        'category': ['non-insulin', 'insulin', 'no']
+        'category': ['No Diabetes','Non-insulin', 'Insulin']
       },
       'dyspnea': {
         'name': 'Baseline Dyspnea',
         'description': 'The usual or typical level of dyspnea (patient’s baseline), within the 30-days prior to surgery. The intent is not to include patients solely because of an acute respiratory condition leading to intubation prior to surgery, but rather to reflect a chronic disease state.',
         'type': 'string',
-        'category': ['at rest', 'moderate exertion', 'no']
+        'category': ['No Dyspnea','At Rest', 'Moderate Exertion']
       },
       'fnstatus': {
         'name': 'Functional Health Status',
         'description': 'The best functional status demonstrated by the patient within the 30 days prior to surgery is reported. Report the level of functional health status as defined by the following criteria. (1) Independent: The patient does not require assistance from another person for any activities of daily living. This includes a person who is able to function independently with prosthetics, equipment, or devices. (2) Partially dependent: The patient requires some assistance from another person for activities of daily living. This includes a person who utilizes prosthetics, equipment, or devices but still requires some assistance from another person for ADLs. (3) Totally dependent: The patient requires total assistance for all activities of daily living.',
         'type': 'string',
-        'category': ['independent', 'partially dependent', 'totally dependent']
+        'category': ['Independent', 'Partially Dependent', 'Totally Dependent']
       },
       'liver': {
         'name': 'Liver Disease',
@@ -310,15 +310,15 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'chemo_radio': {
-        'name': 'Recent chemotherapy',
+        'name': 'Recent Chemo or XRT',
         'description': 'Chemotherapy <= 30 days before surgery, OR radiotherapy <= 90 days',
         'type': 'boolean'
       },
       'infx': {
-        'name': 'Septic status',
+        'name': 'Sepsis',
         'description': 'Infection Level',
         'type': 'string',
-        'category': ['SIRS', 'sepsis', 'septic shock', 'no']
+        'category': ['No Sepsis','SIRS', 'Sepsis', 'Septic shock']
       },
       'lab_sodium': {
         'name': 'Sodium',
@@ -408,7 +408,7 @@ angular.module('calypsoClientApp')
         'name': 'Surgical Indication Type',
         'description': 'Categories of the indications for surgery',
         'type': 'string',
-        'category': ['neoplasm', 'infection', 'no']
+        'category': ['Neither','Neoplasm', 'Infection']
       },
       'workrvu': {
         'name': 'Work RVU',
@@ -422,23 +422,23 @@ angular.module('calypsoClientApp')
         'description': 'Post Graduate Year of Resident',
         'type': 'int',
         'min': 0,
-        'max': 20,
+        'max': 12,
       },
       'emergency': {
-        'name': 'Emergency Surgery Status',
+        'name': 'Emergency Surgery',
         'description': 'Designate if emergent case (note: urgent cases do not count)',
         'type': 'boolean'
       },
       'optime': {
         'name': 'Operation Time (min)',
-        'description': 'Surgical Operation Time in ',
+        'description': 'Surgical operation time in minutes',
         'type': 'int',
         'min': 0,
         'max': 10000
       },
       'general_anes': {
         'name': 'General Anesthesia',
-        'description': 'General anesthesia was used',
+        'description': 'If general anesthesia was used',
         'type': 'boolean'
       },
       'other_proc': {
@@ -447,7 +447,7 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'concurrent_proc': {
-        'name': 'Concurrent Procedure (Different team)',
+        'name': 'Concurrent Procedure',
         'description': 'There were additional procedures while the principle procedure was performed',
         'type': 'boolean'
       },
@@ -455,11 +455,11 @@ angular.module('calypsoClientApp')
         'name': 'Wound Classification',
         'description': 'Wound class',
         'type': 'string',
-        'category': ['contaminated', 'dirty', 'clean contaminated', 'clean']
+        'category': ['Clean','Clean contaminated','Contaminated', 'Dirty']
       },
       'cpt': {
         'name': 'CPT Code of Primary Procedure',
-        'description': 'Common Procedure Code',
+        'description': 'Procedure Code',
         'type': 'string'
       },
       'cpt_type': {
@@ -488,7 +488,7 @@ angular.module('calypsoClientApp')
     DEFAULT_PATIENT: {
       'caseid': 1,
       'year': 2005,
-      'sex': 'male',
+      'sex': 'Male',
       'age': 63,
       'smoker': true,
       'alcohol': false,
@@ -511,16 +511,16 @@ angular.module('calypsoClientApp')
       'race': null,
       'bmi': 27.9854,
       'asa': 4,
-      'diabetes': 'no',
-      'dyspnea': 'no',
-      'fnstatus': 'totally dependent',
+      'diabetes': 'No Diabetes',
+      'dyspnea': 'No Dyspnea',
+      'fnstatus': 'Totally Dependent',
       'liver': false,
       'heart': true,
       'pvd': false,
       'neuro': false,
       'plegia': false,
       'chemo_radio': false,
-      'infx': 'no',
+      'infx': 'No Sepsis',
       'lab_sodium': 144,
       'lab_bun': 41,
       'lab_creatine': 1.6,
@@ -541,7 +541,7 @@ angular.module('calypsoClientApp')
       'general_anes': true,
       'other_proc': true,
       'concurrent_proc': false,
-      'wound': 'clean',
+      'wound': 'Clean',
       'cpt_type': 'OFFICIAL4',
       'ccs_category': null,
       'cpt': '33881',

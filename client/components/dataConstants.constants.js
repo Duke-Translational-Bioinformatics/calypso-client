@@ -222,7 +222,7 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'wtloss': {
-        'name': 'Recent weight Loss',
+        'name': 'Recent Weight Loss',
         'description': 'Patients with a greater than 10% decrease in body weight in the six month interval immediately preceding surgery as manifested by serial weights in the chart, as reported by the patient, or as evidenced by change in clothing size or severe cachexia. Patients who have intentionally lost weight as part of a weight reduction program do not qualify.',
         'type': 'boolean'
       },
@@ -250,7 +250,7 @@ angular.module('calypsoClientApp')
         'name': 'Race',
         'description': 'Race',
         'type': 'string',
-        'category': ['other', 'asian', 'black']
+        'category': ['White','Black','Asian', 'Other']
       },
       'bmi': {
         'name': 'BMI',
@@ -311,7 +311,7 @@ angular.module('calypsoClientApp')
       },
       'chemo_radio': {
         'name': 'Recent Chemo or XRT',
-        'description': 'Chemotherapy <= 30 days before surgery, OR radiotherapy <= 90 days',
+        'description': 'Chemotherapy within 30 days of surgery, OR radiation within 90 days of surgery',
         'type': 'boolean'
       },
       'infx': {
@@ -552,7 +552,7 @@ angular.module('calypsoClientApp')
     PATIENT_HISTORY: 'heart,hxchf,cardiac_surgery,hxcopd,neuro,plegia,steroid_immunosup,bleeddis,pvd,chemo_radio,discancr',
     RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
     RISK_FACTORS_BOOLEAN: 'smoker,cpneumon,ventilat,liver,alcohol,pregnancy,dnr,renalfail,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
-    SURGICAL_INFO: 'podiag,cpt,cpt_type,ccs_category,workrvu,pgy,optime,wound',
+    SURGICAL_INFO: 'ccs_category,podiag,cpt,cpt_type,workrvu,optime,pgy,wound',
     SURGICAL_INFO_BOOLEAN: 'emergency,cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [
@@ -873,7 +873,7 @@ angular.module('calypsoClientApp')
         'order_text': 'alert: Avoid benzo/anticholinergic'
       }, {
         'order_type': 'order',
-        'order_text': 'order: lovenox 40mg BID'
+        'order_text': 'order: lovenox 40mg daily'
       }, {
         'order_type': 'order',
         'order_text': 'order: CPAP for suspected/diagnosed sleep apnea;'

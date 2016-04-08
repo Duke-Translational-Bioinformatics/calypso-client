@@ -217,7 +217,7 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'steroid_immunosup': {
-        'name': 'Steroid/Immunosuppression Use',
+        'name': 'Steroid Use',
         'description': 'Patient has required the regular administration of oral or parenteral corticosteroid (e.g. Prednisone, Decadron) medications or immunosuppressant medications, within the 30 days prior to the principal operative procedure or at the time the patient is being considered as a candidate for surgery, for a chronic medical condition (e.g. COPD, asthma, rheumatologic disease, rheumatoid arthritis, inflammatory bowel disease). A one-time pulse, limited short course, or a taper of less than 10 days duration would not qualify. Do not include topical corticosteroids applied to the skin or corticosteroids administered by inhalation or rectally. Do not include patients who only receive short course steroids (duration 10 days or less) in the 30 days prior to surgery.',
         'type': 'boolean'
       },
@@ -270,7 +270,7 @@ angular.module('calypsoClientApp')
         'name': 'Diabetes Severity',
         'description': 'Patients with insulin resistance that routinely take anti-diabetic agents are included. Patients whose diabetes is controlled by diet alone are not included.',
         'type': 'string',
-        'category': ['No Diabetes','Non-insulin', 'Insulin']
+        'category': ['No Diabetes','Non-Insulin', 'Insulin']
       },
       'dyspnea': {
         'name': 'Baseline Dyspnea',

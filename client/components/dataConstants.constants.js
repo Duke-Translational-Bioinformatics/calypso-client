@@ -262,9 +262,8 @@ angular.module('calypsoClientApp')
       'asa': {
         'name': 'ASA Classification',
         'description': 'The American Society of Anesthesiology (ASA) Physical Status Classification of the patient’s present physical condition on a scale from 1-5 as it appears on the anesthesia record. The classifications are as follows: ASA 1-Normal healthy patient; ASA 2-Patient with mild systemic disease; ASA 3-Patient with severe systemic disease; ASA 4-Patient with severe systemic disease that is a constant threat to life; ASA 5-Moribund patient who is not expected to survive without the operation.',
-        'type': 'int',
-        'min': 1,
-        'max': 5
+        'type': 'string',
+        'category': ['1-Healthy','2-Mild Systemic Disease','3-Severe Systemic Disease','4-Life Threatening Disease','5-Moribund']
       },
       'diabetes': {
         'name': 'Diabetes Severity',
@@ -418,7 +417,7 @@ angular.module('calypsoClientApp')
         'max': 1000
       },
       'pgy': {
-        'name': 'Resident PGY level',
+        'name': 'Resident PGY',
         'description': 'Post Graduate Year of Resident',
         'type': 'int',
         'min': 0,
@@ -460,7 +459,7 @@ angular.module('calypsoClientApp')
       'cpt': {
         'name': 'Primary Procedure CPT',
         'description': 'CPT code of the primary surgical procedure',
-        'type': 'string'
+        'type': 'int'
       },
       'cpt_type': {
         'name': 'CPT Type',

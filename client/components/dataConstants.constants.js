@@ -621,7 +621,7 @@ angular.module('calypsoClientApp')
       'cpt_implant': false
     },
     PATIENT_INFO: 'caseid,age,sex,race,bmi', // removed: year
-    // PATIENT_HISTORY: 'heart,hxchf,cardiac_surgery,hxcopd,neuro,plegia,steroid_immunosup,bleeddis,pvd,chemo_radio,discancr',
+    PATIENT_HISTORY: '',
     RISK_FACTORS: '',
     RISK_FACTORS_BOOLEAN: 'heart,hxchf,cardiac_surgery,smoker,pvd,dyspnea,cpneumon,hxcopd,ventilat,diabetes,renalfail,dialysis,liver,alcohol,neuro,plegia,steroid_immunosup,chemo_radio,discancr,preop_wndinf,infx,bleeddis,preop_transfus,wtloss,fnstatus,dnr,priorop,pregnancy',
     SURGICAL_INFO: 'asa,ccs_category,podiag,cpt,workrvu,cpt_mis,cpt_implant,other_proc,concurrent_proc,optime,emergency,general_anes,pgy,wound',  // removed: cpt_type

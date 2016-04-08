@@ -164,50 +164,54 @@ angular.module('calypsoClientApp')
       for (i = 87; i <= 282; i++) {
         array[i] = 0;
       }
-      if (data.ccs_category === 'CCS.CATEGORY1') array[87] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY2') array[88] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY3') array[89] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY4') array[90] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY5') array[91] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY6') array[92] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY7') array[93] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY8') array[94] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY11') array[95] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY12') array[96] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY13') array[97] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY14') array[98] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY15') array[99] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY16') array[100] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY17') array[101] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY18') array[102] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY19') array[103] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY20') array[104] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY21') array[105] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY22') array[106] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY23') array[107] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY24') array[108] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY25') array[109] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY26') array[110] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY27') array[111] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY28') array[112] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY29') array[113] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY30') array[114] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY31') array[115] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY32') array[116] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY33') array[117] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY34') array[118] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY35') array[119] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY36') array[120] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY37') array[121] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY38') array[122] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY39') array[123] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY40') array[124] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY41') array[125] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY42') array[126] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY43') array[127] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY44') array[128] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY46') array[129] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY47') array[130] = 1;
+      // reference: $dxref 2015.csv
+      if (data.ccs_category === 'Tuberculosis') array[87] = 1; //1
+      if (data.ccs_category === 'Septicemia') array[88] = 1;
+      if (data.ccs_category === 'Bacterial Infection NOS') array[89] = 1;
+      if (data.ccs_category === 'Fungal Mycoses') array[90] = 1;
+      if (data.ccs_category === 'HIV Infection') array[91] = 1;
+      if (data.ccs_category === 'Hepatitis') array[92] = 1;
+      if (data.ccs_category === 'Viral Infection') array[93] = 1;
+      if (data.ccs_category === 'Infection NOS') array[94] = 1; //8
+      if (data.ccs_category === 'Head and Neck Cancer') array[95] = 1; //11
+      if (data.ccs_category === 'Esophageal Cancer') array[96] = 1;
+      if (data.ccs_category === 'Gastric Cancer') array[97] = 1;
+      if (data.ccs_category === 'Colon Cancer') array[98] = 1;
+      if (data.ccs_category === 'Rectal or Anal Cancer') array[99] = 1;
+      if (data.ccs_category === 'Liver or Biliary Cancer') array[100] = 1;
+      if (data.ccs_category === 'Pancreas Cancer') array[101] = 1;
+      if (data.ccs_category === 'Small Bowel or Gallbladder or Other GI Cancer') array[102] = 1; //18
+      if (data.ccs_category === 'Lung Cancer') array[103] = 1;
+      if (data.ccs_category === 'Mesothelioma or Other Respiratory Tract Cancer') array[104] = 1;
+      if (data.ccs_category === 'Bone or Connective Tissue Cancer') array[105] = 1; //21
+      if (data.ccs_category === 'Skin Cancer - Melanoma') array[106] = 1;
+      if (data.ccs_category === 'Skin Cancer - Non-Epithelial') array[107] = 1;
+      if (data.ccs_category === 'Breast Cancer') array[108] = 1;
+      if (data.ccs_category === 'Uterine Cancer') array[109] = 1;
+      if (data.ccs_category === 'Cervical Cancer') array[110] = 1;
+      if (data.ccs_category === 'Ovarian Cancer') array[111] = 1;
+      if (data.ccs_category === 'Female Genitourinary Cancer, NOS') array[112] = 1;
+      if (data.ccs_category === 'Protate Cancer') array[113] = 1;
+      if (data.ccs_category === 'Testicular Cancer') array[114] = 1;
+      if (data.ccs_category === 'Male Genitourinary Cancer, NOS') array[115] = 1;
+      if (data.ccs_category === 'Bladder Cancer') array[116] = 1;
+      if (data.ccs_category === 'Renal Cancer') array[117] = 1;
+      if (data.ccs_category === 'Urinary System Cancer, NOS') array[118] = 1;
+      if (data.ccs_category === 'Brain Cancer') array[119] = 1; // 35
+      if (data.ccs_category === 'Thyroid Cancer / Multiple Endocrine Neoplasia') array[120] = 1;
+      if (data.ccs_category === 'Hodgkin Disease Cancer') array[121] = 1;
+      if (data.ccs_category === 'Non-Hodgkin Lymphoma Cancer') array[122] = 1;
+      if (data.ccs_category === 'Leukemia, Cancer, NOS') array[123] = 1;
+      if (data.ccs_category === 'Multiple Myeloma Cancer') array[124] = 1;
+      if (data.ccs_category === 'Other Primary Cancer, NOS') { 
+        array[125] = 1; // 41- nos cancer
+        array[126] = 1; // 42- not sure what this exactly means
+        array[127] = 1; // 43- another nos cancer
+        array[128] = 1; // 44- another nos cancer
+      }
+      // no ccs.category45
+      if (data.ccs_category === 'Benign Uterine Neoplasia / Leiomyoma') array[129] = 1; //46
+      if (data.ccs_category === 'Benign Neoplasia, NOS') array[130] = 1; // 47
       if (data.ccs_category === 'CCS.CATEGORY48') array[131] = 1;
       if (data.ccs_category === 'CCS.CATEGORY49') array[132] = 1;
       if (data.ccs_category === 'CCS.CATEGORY50') array[133] = 1;
@@ -305,10 +309,10 @@ angular.module('calypsoClientApp')
       if (data.ccs_category === 'CCS.CATEGORY173') array[225] = 1;
       if (data.ccs_category === 'CCS.CATEGORY175') array[226] = 1;
       if (data.ccs_category === 'CCS.CATEGORY176') array[227] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY178') array[228] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY180') array[229] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY181') array[230] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY195') array[231] = 1;
+      if (data.ccs_category === 'CCS.CATEGORY178') array[228] = 1; //178
+      if (data.ccs_category === 'CCS.CATEGORY180') array[229] = 1; //180
+      if (data.ccs_category === 'CCS.CATEGORY181') array[230] = 1;  //181
+      if (data.ccs_category === 'CCS.CATEGORY195') array[231] = 1; //195
       if (data.ccs_category === 'CCS.CATEGORY197') array[232] = 1;
       if (data.ccs_category === 'CCS.CATEGORY198') array[233] = 1;
       if (data.ccs_category === 'CCS.CATEGORY199') array[234] = 1;

@@ -127,20 +127,39 @@ angular.module('calypsoClientApp')
       for (i = 73; i <= 86; i++) {
         array[i] = 0;
       }
-      if (data.cpt_type === 'OFFICIAL1') array[73] = 1; //OFFICIAL1
-      if (data.cpt_type === 'OFFICIAL2') array[74] = 1; //2
-      if (data.cpt_type === 'OFFICIAL3') array[75] = 1; //3
-      if (data.cpt_type === 'OFFICIAL4') array[76] = 1; //4
-      if (data.cpt_type === 'OFFICIAL5') array[77] = 1; //5
-      if (data.cpt_type === 'OFFICIAL6') array[78] = 1; //6
-      if (data.cpt_type === 'OFFICIAL7') array[79] = 1; //7
-      if (data.cpt_type === 'OFFICIAL8') array[80] = 1; //8
-      if (data.cpt_type === 'OFFICIAL9') array[81] = 1; //9
-      if (data.cpt_type === 'OFFICIAL11') array[82] = 1; //11
-      if (data.cpt_type === 'OFFICIAL12') array[83] = 1; //12
-      if (data.cpt_type === 'OFFICIAL13') array[84] = 1; //13
-      if (data.cpt_type === 'OFFICIAL14') array[85] = 1; //14
-      if (data.cpt_type === 'OFFICIAL16') array[86] = 1; //16
+      // https://en.wikipedia.org/wiki/Current_Procedural_Terminology
+      if (data.cpt >= 10040 && data.cpt <= 19499) array[73] = 1; //1 = integumentary system 
+      if (data.cpt >= 20000 && data.cpt <= 29999) array[74] = 1; //2 = musculoskeletal system 
+      if (data.cpt >= 30000 && data.cpt <= 32999) array[75] = 1; //3 = respiratory system 
+      if (data.cpt >= 33010 && data.cpt <= 37799) array[76] = 1; //4 = cardiovascular system 
+      if (data.cpt >= 38100 && data.cpt <= 38999) array[77] = 1; //5 = hemic and lymphatic systems 
+      if (data.cpt >= 39000 && data.cpt <= 39599) array[78] = 1; //6 = mediastinum and diaphragm 
+      if (data.cpt >= 40490 && data.cpt <= 49999) array[79] = 1; //7 = digestive system 
+      if (data.cpt >= 50010 && data.cpt <= 53899) array[80] = 1; //8 = urinary system 
+      if (data.cpt >= 54000 && data.cpt <= 55899) array[81] = 1; //9 = male genital system 
+      // skips official type 10: 10 = reproductive system and intersex
+      if (data.cpt >= 56405 && data.cpt <= 58999) array[82] = 1; //11 = female genital system 
+      if (data.cpt >= 59000 && data.cpt <= 59899) array[83] = 1; //12 = maternity care and delivery 
+      if (data.cpt >= 60000 && data.cpt <= 60699) array[84] = 1; //13 = endocrine system 
+      if (data.cpt >= 61000 && data.cpt <= 64999) array[85] = 1; //14 = nervous system 
+      // skips official type 15: 15 = eye and ocular adnexa  
+      if (data.cpt >= 69000 && data.cpt <= 69979) array[86] = 1; //16 = auditory system  
+      
+      // Old way of filling index 73-86
+      //if (data.cpt_type === 'OFFICIAL1') array[73] = 1; //OFFICIAL1
+      //if (data.cpt_type === 'OFFICIAL2') array[74] = 1; //2
+      //if (data.cpt_type === 'OFFICIAL3') array[75] = 1; //3
+      //if (data.cpt_type === 'OFFICIAL4') array[76] = 1; //4
+      //if (data.cpt_type === 'OFFICIAL5') array[77] = 1; //5
+      //if (data.cpt_type === 'OFFICIAL6') array[78] = 1; //6
+      //if (data.cpt_type === 'OFFICIAL7') array[79] = 1; //7
+      //if (data.cpt_type === 'OFFICIAL8') array[80] = 1; //8
+      //if (data.cpt_type === 'OFFICIAL9') array[81] = 1; //9
+      //if (data.cpt_type === 'OFFICIAL11') array[82] = 1; //11
+      //if (data.cpt_type === 'OFFICIAL12') array[83] = 1; //12
+      //if (data.cpt_type === 'OFFICIAL13') array[84] = 1; //13
+      //if (data.cpt_type === 'OFFICIAL14') array[85] = 1; //14
+      //if (data.cpt_type === 'OFFICIAL16') array[86] = 1; //16
 
       for (i = 87; i <= 282; i++) {
         array[i] = 0;

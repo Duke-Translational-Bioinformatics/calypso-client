@@ -459,7 +459,10 @@ angular.module('calypsoClientApp')
       'cpt': {
         'name': 'Primary Procedure CPT',
         'description': 'CPT code of the primary surgical procedure',
-        'type': 'int'
+        'type': 'int',
+        'min': 10040,
+        'max': 69979
+        
       },
       'cpt_type': {
         'name': 'CPT Type',
@@ -551,7 +554,7 @@ angular.module('calypsoClientApp')
     PATIENT_HISTORY: 'heart,hxchf,cardiac_surgery,hxcopd,neuro,plegia,steroid_immunosup,bleeddis,pvd,chemo_radio,discancr',
     RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
     RISK_FACTORS_BOOLEAN: 'smoker,cpneumon,ventilat,liver,alcohol,pregnancy,dnr,renalfail,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
-    SURGICAL_INFO: 'ccs_category,podiag,cpt,cpt_type,workrvu,optime,pgy,wound',
+    SURGICAL_INFO: 'ccs_category,podiag,cpt,workrvu,optime,pgy,wound',
     SURGICAL_INFO_BOOLEAN: 'emergency,cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [

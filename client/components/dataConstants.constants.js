@@ -111,25 +111,29 @@ angular.module('calypsoClientApp')
       }
     },
     CPT_TYPE_LABELS: {
-      'OFFICIAL1': 'integumentary system',
-      'OFFICIAL2': 'musculoskeletal system',
-      'OFFICIAL3': 'respiratory system',
-      'OFFICIAL4': 'cardiovascular system',
-      'OFFICIAL5': 'hemic and lymphatic systems',
-      'OFFICIAL6': 'mediastinum and diaphragm',
-      'OFFICIAL7': 'digestive system',
-      'OFFICIAL8': 'urinary system',
-      'OFFICIAL9': 'male genital system',
-      'OFFICIAL10': 'reproductive system and intersex',
-      'OFFICIAL11': 'female genital system',
-      'OFFICIAL12': 'maternity care and delivery',
-      'OFFICIAL13': 'endocrine system',
-      'OFFICIAL14': 'nervous system',
-      'OFFICIAL15': 'eye and ocular adnexa',
-      'OFFICIAL16': 'auditory system',
+      'OFFICIAL1': 'Integumentary system',
+      'OFFICIAL2': 'Musculoskeletal system',
+      'OFFICIAL3': 'Respiratory system',
+      'OFFICIAL4': 'Cardiovascular system',
+      'OFFICIAL5': 'Hemic and lymphatic systems',
+      'OFFICIAL6': 'Mediastinum and diaphragm',
+      'OFFICIAL7': 'Digestive system',
+      'OFFICIAL8': 'Urinary system',
+      'OFFICIAL9': 'Male genital system',
+      'OFFICIAL10': 'Reproductive system and intersex',
+      'OFFICIAL11': 'Female genital system',
+      'OFFICIAL12': 'Maternity care and delivery',
+      'OFFICIAL13': 'Endocrine system',
+      'OFFICIAL14': 'Nervous system',
+      'OFFICIAL15': 'Eye and ocular adnexa',
+      'OFFICIAL16': 'Auditory system',
       'OFFICIAL17': 'NOS'
     },
     LABELS: {
+      'name': {
+        'name': 'Patient Name',
+        'type': 'string'
+      },
       'caseid': {
         'name': 'Case ID',
         'description': 'Unique case ID from NSQIP',
@@ -137,171 +141,170 @@ angular.module('calypsoClientApp')
         'min': 0
       },
       'year': {
-        'name': 'Operation Year',
+        'name': 'Year of Operation',
         'description': 'Year of surgical operation',
         'type': 'int',
         'min': 2005,
         'max': 2008
       },
       'sex': {
-        'name': 'Sex',
-        'description': 'Patient biological sex',
+        'name': 'Gender',
+        'description': 'Gender',
         'type': 'string',
-        'category': ['male', 'female']
+        'category': ['Male', 'Female']
       },
       'age': {
         'name': 'Age',
-        'description': 'Patient age in years (enter 90 for >90)',
+        'description': 'Enter patient age in years (enter 90 for greater than age 90).',
         'type': 'int',
         'min': 15,
         'max': 90
       },
       'smoker': {
-        'name': 'Smoking History',
-        'description': 'Current smoker within 1 year',
+        'name': 'Current Smoker',
+        'description': 'If the patient has smoked cigarettes in the year prior to admission for surgery',
         'type': 'boolean'
       },
       'alcohol': {
-        'name': 'Alcohol History',
-        'description': 'Significant alcoholic history',
+        'name': 'Alcohol Abuse',
+        'description': 'If 2 drinks per day in the two weeks prior to admission',
         'type': 'boolean'
       },
       'dnr': {
-        'name': 'DNR',
-        'description': 'Do Not Resuscitate status',
+        'name': 'DNR Status',
+        'description': 'If the patient has had a Do-Not-Resuscitate order',
         'type': 'boolean'
       },
       'ventilat': {
-        'name': 'Ventilator Dependence',
-        'description': 'Ventilator dependent within 48hrs before surgery',
+        'name': 'Recent Ventilator Use',
+        'description': 'If a preoperative patient required ventilator-assisted respiration at any time during the 48 hours preceding surgery. This does not include the treatment of sleep apnea with CPAP.',
         'type': 'boolean'
       },
       'hxcopd': {
-        'name': 'COPD',
-        'description': 'History of severe COPD',
+        'name': 'Severe COPD',
+        'description': 'If there is a historical or current diagnosis of COPD AND at least one of the following, within the 30 days prior to the principal operative procedure or at the time the patient is being considered as a candidate for surgery: (1) Functional disability from COPD (e.g., dyspnea, inability to perform ADLs) (2) Requires chronic bronchodilator therapy with oral or inhaled agents (3) Hospitalization in the past for treatment of COPD (4) An FEV1 of <75% of predicted on a prior pulmonary function test (PFT)',
         'type': 'boolean'
       },
       'cpneumon': {
         'name': 'Pneumonia',
-        'description': 'Currently has pneumonia',
+        'description': 'If the patient has a new pneumonia or recently diagnosed pneumonia and on current antibiotic treatment at the time the patient is brought to the OR',
         'type': 'boolean'
       },
       'hxchf': {
-        'name': 'CHF History',
-        'description': 'History of Congestive Heart Failure',
+        'name': 'Symptomatic CHF',
+        'description': 'Only newly diagnosed CHF within the previous 30 days or a diagnosis of chronic CHF with new signs or symptoms in the 30 days prior to surgery fulfills this definition. Common manifestations are: Abnormal limitation in exercise tolerance due to dyspnea or fatigue -Orthopnea (dyspnea on lying supine); Paroxysmal nocturnal dyspnea (PND-awakening from sleep with dyspnea); Increased jugular venous pressure -Pulmonary rales on physical examination; Cardiomegaly -Pulmonary vascular engorgement',
         'type': 'boolean'
       },
       'cardiac_surgery': {
-        'name': 'History of Cardiac Surgery',
-        'description': 'Patient previously had a cardiac surgery',
+        'name': 'Previous Cardiac Surgery',
+        'description': 'If the patient has had any major cardiac surgical procedures (performed either as an ‘off-pump’ repair or utilizing cardiopulmonary bypass). This includes coronary artery bypass graft surgery, valve replacement or repair, repair of atrial or ventricular septal defects, great thoracic vessel repair, cardiac transplant, left ventricular aneurysmectomy, insertion of left ventricular assist devices (LVAD)',
         'type': 'boolean'
       },
       'renalfail': {
-        'name': 'Renal Failure',
-        'description': 'Preoperative actue renal failure',
+        'name': 'Acute Renal Failure',
+        'description': 'The patient’s renal function has demonstrated compromise within 24 hours prior to surgery. Patient must have an increase in BUN based on two measurements and two creatinine (Cr) results above 3mg/dl. There must be at minimum two measurements per lab value, the most recent of which must be within 24 hours prior to the start of the principal operative procedure; the second must be within 90 days of the principal operative procedure.',
         'type': 'boolean',
       },
       'dialysis': {
         'name': 'Dialysis Dependent',
-        'description': 'Patient currently on dialysis',
+        'description': 'If the patient has acute or chronic renal failure requiring treatment with peritoneal dialysis, hemodialysis, hemofiltration, hemodiafiltration, or ultrafiltration within 2 weeks prior to the principal operative procedure.',
         'type': 'boolean'
       },
       'discancr': {
         'name': 'Disseminated Cancer',
-        'description': 'History of disseminated cancer',
+        'description': 'Patients who have cancer that: (1) Has spread to one site or more sites in addition to the primary site AND (2) In whom the presence of multiple metastases indicates the cancer is widespread, fulminant, or near terminal. The following are reported as Disseminated Cancer: Acute Lymphocytic Leukemia (ALL), Acute Myelogenous Leukemia (AML), and Stage IV Lymphoma. The following are not reported as Disseminated Cancer: Chronic Lymphocytic Leukemia (CLL), Chronic Myelogenous Leukemia (CML), Stages I through III Lymphomas or Multiple Myeloma. Example: A patient with a primary breast cancer with positive nodes in the axilla does NOT qualify for this definition. She has spread of the tumor to a site other than the primary site, but does not have widespread metastases. A patient with primary breast cancer with positive nodes in the axilla AND liver metastases does qualify, because she has both spread of the tumor to the axilla and other major organs.',
         'type': 'boolean'
       },
       'preop_wndinf': {
-        'name': 'Preoperative Wound Infection',
-        'description': 'Preoperative open wound or wound infection',
+        'name': 'Open/Infected Wound',
+        'description': 'Preoperative evidence of a documented open wound at the time of the principal operative procedure. An open wound is a breach in the integrity of the skin or separation of skin edges and includes open surgical wounds, with or without cellulitis or purulent exudate. Open drains should be considered an open wound: (e.g. Penrose drains). Open wounds currently undergoing dressing changes or with negative pressure wound devices (e.g., wound vacs). Any abnormal passageway leading from an internal organ (e.g. intestinal tract) to the surface of the body / skin. (e.g. enterocutaneous fistula [ECF])',
         'type': 'boolean'
       },
       'steroid_immunosup': {
-        'name': 'Steroid or immunosuppression use',
-        'description': 'History of using steroid or any other immunosuppressant',
+        'name': 'Steroid Use',
+        'description': 'Patient has required the regular administration of oral or parenteral corticosteroid (e.g. Prednisone, Decadron) medications or immunosuppressant medications, within the 30 days prior to the principal operative procedure or at the time the patient is being considered as a candidate for surgery, for a chronic medical condition (e.g. COPD, asthma, rheumatologic disease, rheumatoid arthritis, inflammatory bowel disease). A one-time pulse, limited short course, or a taper of less than 10 days duration would not qualify. Do not include topical corticosteroids applied to the skin or corticosteroids administered by inhalation or rectally. Do not include patients who only receive short course steroids (duration 10 days or less) in the 30 days prior to surgery.',
         'type': 'boolean'
       },
       'wtloss': {
-        'name': 'Recenet weight Loss',
-        'description': '> 10% weight loss in last 6 months',
+        'name': 'Recent Weight Loss',
+        'description': 'Patients with a greater than 10% decrease in body weight in the six month interval immediately preceding surgery as manifested by serial weights in the chart, as reported by the patient, or as evidenced by change in clothing size or severe cachexia. Patients who have intentionally lost weight as part of a weight reduction program do not qualify.',
         'type': 'boolean'
       },
       'bleeddis': {
-        'name': 'Bleeding Disorder',
-        'description': 'History of bleeding disorder',
+        'name': 'Bleeding Risk',
+        'description': 'Patients with any condition that places the patient at risk for excessive bleeding requiring hospitalization due to a deficiency of blood clotting elements (e.g., vitamin K deficiency, hemophilias, thrombocytopenia, chronic anticoagulation therapy that has not been discontinued prior to surgery).',
         'type': 'boolean'
       },
       'preop_transfus': {
         'name': 'Recent Transfusion',
-        'description': 'Preop transfusion of >=1 unit of red blood cells within 72 hours before surgery',
+        'description': 'Preoperative loss of blood necessitating any transfusion (minimum of 1 unit) of whole blood/packed red cells transfused during the 72 hours prior to surgery start time, including any blood transfused in the emergency room.',
         'type': 'boolean'
       },
       'pregnancy': {
-        'name': 'Pregnancy',
-        'description': 'Pregnant',
+        'name': 'Pregnancy Status',
+        'description': 'Pregnancy is determined by one of the following: Administration of a blood or urine pregnancy test with a positive result; Visualization of the fetus by ultrasound . Indication of fetal heart rate by ultrasound or fetal heart monitoring Pregnancy takes approximately 40 weeks between the time of the last menstrual cycle and delivery',
         'type': 'boolean'
       },
       'priorop': {
-        'name': 'Prior Operation',
-        'description': 'Patient received another operation within 30 days of the index operation',
+        'name': 'Recent Surgery',
+        'description': 'Patient has had any major surgical procedure performed within 30 days prior to the assessed operation',
         'type': 'boolean'
       },
       'race': {
         'name': 'Race',
-        'description': 'Patient Race',
+        'description': 'Race',
         'type': 'string',
-        'category': ['other', 'asian', 'black']
+        'category': ['White','Black','Asian', 'Other']
       },
       'bmi': {
         'name': 'BMI',
-        'description': 'Patient BMI',
+        'description': 'Patient body mass index, caculated from the most recent height and weight',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'asa': {
-        'name': 'ASA Class',
-        'description': 'American society of anesthesiology physical status classification',
-        'type': 'int',
-        'min': 1,
-        'max': 5
+        'name': 'ASA Classification',
+        'description': 'The American Society of Anesthesiology (ASA) Physical Status Classification of the patient’s present physical condition on a scale from 1-5 as it appears on the anesthesia record. The classifications are as follows: ASA 1-Normal healthy patient; ASA 2-Patient with mild systemic disease; ASA 3-Patient with severe systemic disease; ASA 4-Patient with severe systemic disease that is a constant threat to life; ASA 5-Moribund patient who is not expected to survive without the operation.',
+        'type': 'string',
+        'category': ['1-Healthy','2-Mild Systemic Disease','3-Severe Systemic Disease','4-Life Threatening Disease','5-Moribund']
       },
       'diabetes': {
-        'name': 'Diabetes History',
-        'description': 'Diabetes mellitus with oral agents or insulin',
+        'name': 'Diabetes Severity',
+        'description': 'Patients with insulin resistance that routinely take anti-diabetic agents are included. Patients whose diabetes is controlled by diet alone are not included.',
         'type': 'string',
-        'category': ['non-insulin', 'insulin', 'no']
+        'category': ['No Diabetes','Non-Insulin', 'Insulin']
       },
       'dyspnea': {
-        'name': 'Dyspnea at rest',
-        'description': 'Dyspnea',
+        'name': 'Baseline Dyspnea',
+        'description': 'The usual or typical level of dyspnea (patient’s baseline), within the 30-days prior to surgery. The intent is not to include patients solely because of an acute respiratory condition leading to intubation prior to surgery, but rather to reflect a chronic disease state.',
         'type': 'string',
-        'category': ['at rest', 'moderate exertion', 'no']
+        'category': ['No Dyspnea','At Rest', 'Moderate Exertion']
       },
       'fnstatus': {
-        'name': 'Functional Status',
-        'description': 'Functional health status Prior to Surgery',
+        'name': 'Functional Health Status',
+        'description': 'The best functional status demonstrated by the patient within the 30 days prior to surgery is reported. Report the level of functional health status as defined by the following criteria. (1) Independent: The patient does not require assistance from another person for any activities of daily living. This includes a person who is able to function independently with prosthetics, equipment, or devices. (2) Partially dependent: The patient requires some assistance from another person for activities of daily living. This includes a person who utilizes prosthetics, equipment, or devices but still requires some assistance from another person for ADLs. (3) Totally dependent: The patient requires total assistance for all activities of daily living.',
         'type': 'string',
-        'category': ['independent', 'partially dependent', 'totally dependent']
+        'category': ['Independent', 'Partially Dependent', 'Totally Dependent']
       },
       'liver': {
-        'name': 'Liver Condition',
-        'description': 'History of any ascites or esophageal variceas',
+        'name': 'Liver Disease',
+        'description': 'Presence of ascites or esophageal varices. Patients with the presence of fluid accumulation in the peritoneal cavity noted on physical examination, abdominal ultrasound, or abdominal CT/MRI within 30 days prior to the operation. Documentation should state either active or a history of liver disease (for example, jaundice, encephalopathy, hepatomegaly, portal hypertension, liver failure, or spider telangiectasia). Minimal or trace ascites would not qualify; however; malignant ascites (exclusive of liver disease) due to extensive cancer would qualify. Also, patients with esophageal varices present preoperatively and documented on an EGD or CT scan performed within 6 months prior to the surgical procedure.',
         'type': 'boolean'
       },
       'heart': {
-        'name': 'Heart Condition',
-        'description': 'History of myocardial infarctions 6 months before surgery, previous percutaneous coronary',
+        'name': 'Heart Disease',
+        'description': 'History of myocardial infarction within 6 months from surgery. Or, patient has undergone percutaneous coronary intervention at any time. Or, patient reports pain or discomfort between the diaphragm and the mandible resulting from myocardial ischemia. Or, hypertension documented in the patient’s medical record and the condition is severe enough that it requires antihypertensive medication, within 30 days prior to the principal operative procedure.',
         'type': 'boolean'
       },
       'pvd': {
         'name': 'Peripheral vascular disease',
-        'description': 'History of revascularization / amputation for peripheral vascular disease, or rest pain',
+        'description': 'Patient with any type of angioplasty (including stent placement) or revascularization procedure for atherosclerotic peripheral vascular disease (PVD) (e.g., aorta-femoral, femoral-femoral, femoral-popliteal) or a patient who has had any type of amputation procedure for PVD (e.g., toe amputations, transmetatarsal amputations, below the knee or above the knee amputations). Patients who have had amputation for trauma or a resection of abdominal aortic aneurysms should not be included. Or, patient with rest pain or gangrene. Patients included with ischemic ulceration and/or tissue loss related to peripheral vascular disease.',
         'type': 'boolean'
       },
       'neuro': {
         'name': 'Neurological Disorder',
-        'description': 'History of neurological disorders: impaired sensorium, coma >24hrs, history of transient ischemic attacks, history of stroke with / without neurological deficit, tumor involving central nervous system',
+        'description': 'History of neurological disorders: impaired sensorium, coma >24hrs, history of transient ischemic attacks, history of stroke with/without neurological deficit, tumor involving central nervous system. Patient is acutely confused and/or delirious and responds to verbal and/or mild tactile stimulation. Patients is noted to have developed an impaired sensorium if they have mental status changes, and/or delirium in the context of the current illness. Patients with chronic or long-standing mental status changes secondary to chronic mental illness (e.g., schizophrenia) or chronic dementing illnesses (e.g., multi-infarct dementia, senile dementia of the Alzheimer type) are not included. Patient is unconscious, or postures to painful stimuli, or is unresponsive to all stimuli entering surgery. This does not include drug-induced coma. Patient has transient ischemic attacks (TIAs). Patient has a history of a cerebrovascular accident (embolic, thrombotic, or hemorrhagic) with/without persistent residual motor, sensory, or cognitive dysfunction. (e.g., hemiplegia, hemiparesis, aphasia, sensory deficit, impaired memory). Patient has a space-occupying tumor of the brain or spinal cord, which may be benign (e.g., meningiomas, ependymoma, oligodendroglioma) or primary (e.g., astrocytoma, glioma, glioblastoma multiform) or secondary malignancies (e.g., metastatic lung, breast, malignant melanoma). Other tumors that may involve the CNS include lymphomas and sarcomas.',
         'type': 'boolean'
       },
       'plegia': {
@@ -310,15 +313,15 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'chemo_radio': {
-        'name': 'Recent chemotherapy',
-        'description': 'Chemotherapy <= 30 days before surgery, OR radiotherapy <= 90 days',
+        'name': 'Recent Chemo or XRT',
+        'description': 'Chemotherapy within 30 days of surgery, OR radiation within 90 days of surgery',
         'type': 'boolean'
       },
       'infx': {
-        'name': 'Septic status',
+        'name': 'Sepsis',
         'description': 'Infection Level',
         'type': 'string',
-        'category': ['SIRS', 'sepsis', 'septic shock', 'no']
+        'category': ['No Sepsis','SIRS', 'Sepsis', 'Septic shock']
       },
       'lab_sodium': {
         'name': 'Sodium',
@@ -408,7 +411,7 @@ angular.module('calypsoClientApp')
         'name': 'Surgical Indication Type',
         'description': 'Categories of the indications for surgery',
         'type': 'string',
-        'category': ['neoplasm', 'infection', 'no']
+        'category': ['Neither','Neoplasm', 'Infection']
       },
       'workrvu': {
         'name': 'Work RVU',
@@ -418,36 +421,36 @@ angular.module('calypsoClientApp')
         'max': 1000
       },
       'pgy': {
-        'name': 'Resident PGY level',
+        'name': 'Resident PGY',
         'description': 'Post Graduate Year of Resident',
         'type': 'int',
         'min': 0,
-        'max': 20,
+        'max': 12,
       },
       'emergency': {
-        'name': 'Emergency Surgery Status',
+        'name': 'Emergency Surgery',
         'description': 'Designate if emergent case (note: urgent cases do not count)',
         'type': 'boolean'
       },
       'optime': {
         'name': 'Operation Time (min)',
-        'description': 'Surgical Operation Time in ',
+        'description': 'Surgical operation time in minutes',
         'type': 'int',
         'min': 0,
         'max': 10000
       },
       'general_anes': {
         'name': 'General Anesthesia',
-        'description': 'General anesthesia was used',
+        'description': 'If general anesthesia was used',
         'type': 'boolean'
       },
       'other_proc': {
-        'name': 'Other Procedure (Same team)',
+        'name': 'Additional Procedure',
         'description': 'There were additional procedures performed by the same surgical team',
         'type': 'boolean'
       },
       'concurrent_proc': {
-        'name': 'Concurrent Procedure (Different team)',
+        'name': 'Concurrent Procedure',
         'description': 'There were additional procedures while the principle procedure was performed',
         'type': 'boolean'
       },
@@ -455,12 +458,15 @@ angular.module('calypsoClientApp')
         'name': 'Wound Classification',
         'description': 'Wound class',
         'type': 'string',
-        'category': ['contaminated', 'dirty', 'clean contaminated', 'clean']
+        'category': ['Clean','Clean contaminated','Contaminated', 'Dirty']
       },
       'cpt': {
-        'name': 'CPT Code of Primary Procedure',
-        'description': 'Common Procedure Code',
-        'type': 'string'
+        'name': 'Primary Procedure CPT',
+        'description': 'CPT code of the primary surgical procedure',
+        'type': 'int',
+        'min': 10040,
+        'max': 69979
+        
       },
       'cpt_type': {
         'name': 'CPT Type',
@@ -479,16 +485,86 @@ angular.module('calypsoClientApp')
         'type': 'boolean'
       },
       'ccs_category': {
-        'name': 'CCS Category',
-        'description': 'Clinical Classification Software Category',
+        'name': 'Surgical Diagnosis',
+        'description': 'Enter reason for surgery, categorized by the Clinical Classification Software (CCS) category',
         'type': 'string',
-        'category': ['CCS.CATEGORY1', 'CCS.CATEGORY2', 'CCS.CATEGORY3', 'CCS.CATEGORY4', 'CCS.CATEGORY5', 'CCS.CATEGORY6', 'CCS.CATEGORY7', 'CCS.CATEGORY8', 'CCS.CATEGORY11', 'CCS.CATEGORY12', 'CCS.CATEGORY13', 'CCS.CATEGORY14', 'CCS.CATEGORY15', 'CCS.CATEGORY16', 'CCS.CATEGORY17', 'CCS.CATEGORY18', 'CCS.CATEGORY19', 'CCS.CATEGORY20', 'CCS.CATEGORY21', 'CCS.CATEGORY22', 'CCS.CATEGORY23', 'CCS.CATEGORY24', 'CCS.CATEGORY25', 'CCS.CATEGORY26', 'CCS.CATEGORY27', 'CCS.CATEGORY28', 'CCS.CATEGORY29', 'CCS.CATEGORY30', 'CCS.CATEGORY31', 'CCS.CATEGORY32', 'CCS.CATEGORY33', 'CCS.CATEGORY34', 'CCS.CATEGORY35', 'CCS.CATEGORY36', 'CCS.CATEGORY37', 'CCS.CATEGORY38', 'CCS.CATEGORY39', 'CCS.CATEGORY40', 'CCS.CATEGORY41', 'CCS.CATEGORY42', 'CCS.CATEGORY43', 'CCS.CATEGORY44', 'CCS.CATEGORY46', 'CCS.CATEGORY47', 'CCS.CATEGORY48', 'CCS.CATEGORY49', 'CCS.CATEGORY50', 'CCS.CATEGORY51', 'CCS.CATEGORY52', 'CCS.CATEGORY53', 'CCS.CATEGORY54', 'CCS.CATEGORY55', 'CCS.CATEGORY58', 'CCS.CATEGORY59', 'CCS.CATEGORY60', 'CCS.CATEGORY62', 'CCS.CATEGORY63', 'CCS.CATEGORY64', 'CCS.CATEGORY78', 'CCS.CATEGORY79', 'CCS.CATEGORY81', 'CCS.CATEGORY82', 'CCS.CATEGORY83', 'CCS.CATEGORY91', 'CCS.CATEGORY92', 'CCS.CATEGORY94', 'CCS.CATEGORY95', 'CCS.CATEGORY96', 'CCS.CATEGORY97', 'CCS.CATEGORY98', 'CCS.CATEGORY99', 'CCS.CATEGORY100', 'CCS.CATEGORY101', 'CCS.CATEGORY102', 'CCS.CATEGORY103', 'CCS.CATEGORY104', 'CCS.CATEGORY106', 'CCS.CATEGORY108', 'CCS.CATEGORY109', 'CCS.CATEGORY110', 'CCS.CATEGORY111', 'CCS.CATEGORY112', 'CCS.CATEGORY114', 'CCS.CATEGORY115', 'CCS.CATEGORY116', 'CCS.CATEGORY117', 'CCS.CATEGORY118', 'CCS.CATEGORY119', 'CCS.CATEGORY120', 'CCS.CATEGORY121', 'CCS.CATEGORY122', 'CCS.CATEGORY124', 'CCS.CATEGORY126', 'CCS.CATEGORY127', 'CCS.CATEGORY128', 'CCS.CATEGORY129', 'CCS.CATEGORY130', 'CCS.CATEGORY131', 'CCS.CATEGORY132', 'CCS.CATEGORY133', 'CCS.CATEGORY134', 'CCS.CATEGORY135', 'CCS.CATEGORY136', 'CCS.CATEGORY137', 'CCS.CATEGORY138', 'CCS.CATEGORY139', 'CCS.CATEGORY140', 'CCS.CATEGORY141', 'CCS.CATEGORY142', 'CCS.CATEGORY143', 'CCS.CATEGORY144', 'CCS.CATEGORY145', 'CCS.CATEGORY146', 'CCS.CATEGORY147', 'CCS.CATEGORY148', 'CCS.CATEGORY149', 'CCS.CATEGORY151', 'CCS.CATEGORY152', 'CCS.CATEGORY153', 'CCS.CATEGORY154', 'CCS.CATEGORY155', 'CCS.CATEGORY156', 'CCS.CATEGORY157', 'CCS.CATEGORY158', 'CCS.CATEGORY159', 'CCS.CATEGORY160', 'CCS.CATEGORY161', 'CCS.CATEGORY162', 'CCS.CATEGORY163', 'CCS.CATEGORY164', 'CCS.CATEGORY165', 'CCS.CATEGORY166', 'CCS.CATEGORY167', 'CCS.CATEGORY168', 'CCS.CATEGORY169', 'CCS.CATEGORY170', 'CCS.CATEGORY171', 'CCS.CATEGORY172', 'CCS.CATEGORY173', 'CCS.CATEGORY175', 'CCS.CATEGORY176', 'CCS.CATEGORY178', 'CCS.CATEGORY180', 'CCS.CATEGORY181', 'CCS.CATEGORY195', 'CCS.CATEGORY197', 'CCS.CATEGORY198', 'CCS.CATEGORY199', 'CCS.CATEGORY200', 'CCS.CATEGORY201', 'CCS.CATEGORY202', 'CCS.CATEGORY203', 'CCS.CATEGORY204', 'CCS.CATEGORY205', 'CCS.CATEGORY207', 'CCS.CATEGORY208', 'CCS.CATEGORY209', 'CCS.CATEGORY210', 'CCS.CATEGORY211', 'CCS.CATEGORY212', 'CCS.CATEGORY213', 'CCS.CATEGORY214', 'CCS.CATEGORY215', 'CCS.CATEGORY216', 'CCS.CATEGORY217', 'CCS.CATEGORY224', 'CCS.CATEGORY225', 'CCS.CATEGORY226', 'CCS.CATEGORY227', 'CCS.CATEGORY228', 'CCS.CATEGORY229', 'CCS.CATEGORY230', 'CCS.CATEGORY231', 'CCS.CATEGORY232', 'CCS.CATEGORY233', 'CCS.CATEGORY234', 'CCS.CATEGORY235', 'CCS.CATEGORY236', 'CCS.CATEGORY237', 'CCS.CATEGORY238', 'CCS.CATEGORY239', 'CCS.CATEGORY240', 'CCS.CATEGORY244', 'CCS.CATEGORY246', 'CCS.CATEGORY247', 'CCS.CATEGORY248', 'CCS.CATEGORY249', 'CCS.CATEGORY250', 'CCS.CATEGORY251', 'CCS.CATEGORY253', 'CCS.CATEGORY254', 'CCS.CATEGORY257', 'CCS.CATEGORY258', 'CCS.CATEGORY259', 'CCS.CATEGORY660', 'CCS.CATEGORY2616']
+        'category': [
+        'Tuberculosis Infection', //1
+        'Septicemia Infection', 
+        'Bacterial Infection NOS',
+        'Fungal Mycoses Infection', 
+        'HIV Infection', 
+        'Hepatitis Infection', 
+        'Viral Infection', 
+        'Infection NOS', //8
+        'Head and Neck Cancer',  //11
+        'Esophageal Cancer', 
+        'Gastric Cancer', 
+        'Colon Cancer', 
+        'Rectal or Anal Cancer', 
+        'Liver or Biliary Cancer', 
+        'Pancreas Cancer', 
+        'Small Bowel or Gallbladder or Other GI Cancer', 
+        'Lung Cancer', 
+        'Mesothelioma or Other Respiratory Tract Cancer', 
+        'Bone or Connective Tissue Cancer',  //21
+        "Skin Cancer - Melanoma", 
+        'Skin Cancer - Non-Epithelial', 
+        'Breast Cancer', 
+        'Uterine Cancer', 
+        'Cervical Cancer', 
+        'Ovarian Cancer', 
+        'Female Genitourinary Cancer, NOS', 
+        'Protate Cancer', 
+        'Testicular Cancer', 
+        'Male Genitourinary Cancer, NOS',  // 31
+        'Bladder Cancer',
+        'Renal Cancer', 
+        'Urinary System Cancer, NOS', 
+        'Brain Cancer', 
+        'Thyroid Cancer / Multiple Endocrine Neoplasia', 
+        'Hodgkin Disease Cancer', 
+        'Non-Hodgkin Lymphoma Cancer', //38
+        'Leukemia, Cancer, NOS', 
+        'Multiple Myeloma Cancer', 
+        'Other Primary Cancer, NOS', 
+        'Benign Uterine Neoplasia / Leiomyoma',
+        'Benign Neoplasia, NOS', 
+        'CCS.CATEGORY48', 
+        'CCS.CATEGORY49',
+        'CCS.CATEGORY50', 
+        'CCS.CATEGORY51', 
+        'CCS.CATEGORY52', 
+        'CCS.CATEGORY53', 
+        'CCS.CATEGORY54', 
+        'CCS.CATEGORY55', 
+        'CCS.CATEGORY58', 
+        'CCS.CATEGORY59', 
+        'CCS.CATEGORY60', 
+        'CCS.CATEGORY62', 
+        'CCS.CATEGORY63',
+        'CCS.CATEGORY64', 
+        'CCS.CATEGORY78', 
+        'CCS.CATEGORY79', 
+        'CCS.CATEGORY81', 
+        'CCS.CATEGORY82', 
+        'CCS.CATEGORY83', 
+        'CCS.CATEGORY91',
+        'CCS.CATEGORY92', 
+        'CCS.CATEGORY94', 
+        'CCS.CATEGORY95', 
+        'CCS.CATEGORY96', 
+        'CCS.CATEGORY97', 
+        'CCS.CATEGORY98', 
+        'CCS.CATEGORY99', 
+        'CCS.CATEGORY100', 
+        'CCS.CATEGORY101', 'CCS.CATEGORY102', 'CCS.CATEGORY103', 'CCS.CATEGORY104', 'CCS.CATEGORY106', 'CCS.CATEGORY108', 'CCS.CATEGORY109', 'CCS.CATEGORY110', 'CCS.CATEGORY111', 'CCS.CATEGORY112', 'CCS.CATEGORY114', 'CCS.CATEGORY115', 'CCS.CATEGORY116', 'CCS.CATEGORY117', 'CCS.CATEGORY118', 'CCS.CATEGORY119', 'CCS.CATEGORY120', 'CCS.CATEGORY121', 'CCS.CATEGORY122', 'CCS.CATEGORY124', 'CCS.CATEGORY126', 'CCS.CATEGORY127', 'CCS.CATEGORY128', 'CCS.CATEGORY129', 'CCS.CATEGORY130', 'CCS.CATEGORY131', 'CCS.CATEGORY132', 'CCS.CATEGORY133', 'CCS.CATEGORY134', 'CCS.CATEGORY135', 'CCS.CATEGORY136', 'CCS.CATEGORY137', 'CCS.CATEGORY138', 'CCS.CATEGORY139', 'CCS.CATEGORY140', 'CCS.CATEGORY141', 'CCS.CATEGORY142', 'CCS.CATEGORY143', 'CCS.CATEGORY144', 'CCS.CATEGORY145', 'CCS.CATEGORY146', 'CCS.CATEGORY147', 'CCS.CATEGORY148', 'CCS.CATEGORY149', 'CCS.CATEGORY151', 'CCS.CATEGORY152', 'CCS.CATEGORY153', 'CCS.CATEGORY154', 'CCS.CATEGORY155', 'CCS.CATEGORY156', 'CCS.CATEGORY157', 'CCS.CATEGORY158', 'CCS.CATEGORY159', 'CCS.CATEGORY160', 'CCS.CATEGORY161', 'CCS.CATEGORY162', 'CCS.CATEGORY163', 'CCS.CATEGORY164', 'CCS.CATEGORY165', 'CCS.CATEGORY166', 'CCS.CATEGORY167', 'CCS.CATEGORY168', 'CCS.CATEGORY169', 'CCS.CATEGORY170', 'CCS.CATEGORY171', 'CCS.CATEGORY172', 'CCS.CATEGORY173', 'CCS.CATEGORY175', 'CCS.CATEGORY176', 'CCS.CATEGORY178', 'CCS.CATEGORY180', 'CCS.CATEGORY181', 'CCS.CATEGORY195', 'CCS.CATEGORY197', 'CCS.CATEGORY198', 'CCS.CATEGORY199', 'CCS.CATEGORY200', 'CCS.CATEGORY201', 'CCS.CATEGORY202', 'CCS.CATEGORY203', 'CCS.CATEGORY204', 'CCS.CATEGORY205', 'CCS.CATEGORY207', 'CCS.CATEGORY208', 'CCS.CATEGORY209', 'CCS.CATEGORY210', 'CCS.CATEGORY211', 'CCS.CATEGORY212', 'CCS.CATEGORY213', 'CCS.CATEGORY214', 'CCS.CATEGORY215', 'CCS.CATEGORY216', 'CCS.CATEGORY217', 'CCS.CATEGORY224', 'CCS.CATEGORY225', 'CCS.CATEGORY226', 'CCS.CATEGORY227', 'CCS.CATEGORY228', 'CCS.CATEGORY229', 'CCS.CATEGORY230', 'CCS.CATEGORY231', 'CCS.CATEGORY232', 'CCS.CATEGORY233', 'CCS.CATEGORY234', 'CCS.CATEGORY235', 'CCS.CATEGORY236', 'CCS.CATEGORY237', 'CCS.CATEGORY238', 'CCS.CATEGORY239', 'CCS.CATEGORY240', 'CCS.CATEGORY244', 'CCS.CATEGORY246', 'CCS.CATEGORY247', 'CCS.CATEGORY248', 'CCS.CATEGORY249', 'CCS.CATEGORY250', 'CCS.CATEGORY251', 'CCS.CATEGORY253', 'CCS.CATEGORY254', 'CCS.CATEGORY257', 'CCS.CATEGORY258', 'CCS.CATEGORY259', 'CCS.CATEGORY260', 'CCS.CATEGORY261']
       }
     },
     DEFAULT_PATIENT: {
       'caseid': 1,
       'year': 2005,
-      'sex': 'male',
+      'sex': 'Male',
       'age': 63,
       'smoker': true,
       'alcohol': false,
@@ -511,16 +587,16 @@ angular.module('calypsoClientApp')
       'race': null,
       'bmi': 27.9854,
       'asa': 4,
-      'diabetes': 'no',
-      'dyspnea': 'no',
-      'fnstatus': 'totally dependent',
+      'diabetes': 'No Diabetes',
+      'dyspnea': 'No Dyspnea',
+      'fnstatus': 'Totally Dependent',
       'liver': false,
       'heart': true,
       'pvd': false,
       'neuro': false,
       'plegia': false,
       'chemo_radio': false,
-      'infx': 'no',
+      'infx': 'No Sepsis',
       'lab_sodium': 144,
       'lab_bun': 41,
       'lab_creatine': 1.6,
@@ -541,19 +617,19 @@ angular.module('calypsoClientApp')
       'general_anes': true,
       'other_proc': true,
       'concurrent_proc': false,
-      'wound': 'clean',
+      'wound': 'Clean',
       'cpt_type': 'OFFICIAL4',
       'ccs_category': null,
       'cpt': '33881',
       'cpt_mis': true,
       'cpt_implant': false
     },
-    PATIENT_INFO: 'caseid,sex,age,race,year,bmi',
-    PATIENT_HISTORY: 'hxcopd,hxchf,cardiac_surgery,discancr,steroid_immunosup,bleeddis,liver,heart,pvd,neuro,plegia,chemo_radio',
-    RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
-    RISK_FACTORS_BOOLEAN: 'smoker,alcohol,pregnancy,dnr,renalfail,ventilat,cpneumon,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
-    SURGICAL_INFO: 'cpt,cpt_type,ccs_category,workrvu,pgy,optime,wound,podiag',
-    SURGICAL_INFO_BOOLEAN: 'cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc,emergency',
+    PATIENT_INFO: 'caseid,name,age,sex,race,bmi', // removed: year
+    PATIENT_HISTORY: '',
+    RISK_FACTORS: '',
+    RISK_FACTORS_BOOLEAN: 'heart,hxchf,cardiac_surgery,smoker,pvd,dyspnea,cpneumon,hxcopd,ventilat,diabetes,renalfail,dialysis,liver,alcohol,neuro,plegia,steroid_immunosup,chemo_radio,discancr,preop_wndinf,infx,bleeddis,preop_transfus,wtloss,fnstatus,dnr,priorop,pregnancy',
+    SURGICAL_INFO: 'asa,ccs_category,podiag,cpt,workrvu,cpt_mis,cpt_implant,other_proc,concurrent_proc,optime,emergency,general_anes,pgy,wound',  // removed: cpt_type
+    SURGICAL_INFO_BOOLEAN: '',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [
       null, {
@@ -873,7 +949,7 @@ angular.module('calypsoClientApp')
         'order_text': 'alert: Avoid benzo/anticholinergic'
       }, {
         'order_type': 'order',
-        'order_text': 'order: lovenox 40mg BID'
+        'order_text': 'order: lovenox 40mg daily'
       }, {
         'order_type': 'order',
         'order_text': 'order: CPAP for suspected/diagnosed sleep apnea;'

@@ -14,8 +14,8 @@ angular.module('calypsoClientApp')
       if (data.year === 2007) array[2] = 1;
       if (data.year === 2008) array[3] = 1;
 
-      if (data.sex === 'male') array[4] = 1;
-      if (data.sex === 'female') array[4] = 0;
+      if (data.sex === 'Male') array[4] = 1;
+      if (data.sex === 'Female') array[4] = 0;
 
       array[5] = data.age;
       array[6] = data.smoker ? 1 : 0;
@@ -40,37 +40,37 @@ angular.module('calypsoClientApp')
       for (i = 24; i <= 26; i++) {
         array[i] = 0;
       }
-      if (data.race === 'other') array[24] = 1;
-      if (data.race === 'asian') array[25] = 1;
-      if (data.race === 'black') array[26] = 1;
+      if (data.race === 'Other') array[24] = 1;
+      if (data.race === 'Asian') array[25] = 1;
+      if (data.race === 'Black') array[26] = 1;
 
       array[27] = data.bmi;
 
       for (i = 28; i <= 31; i++) {
         array[i] = 0;
       }
-      if (data.asa === 4) array[28] = 1;
-      if (data.asa === 3) array[29] = 1;
-      if (data.asa === 2) array[30] = 1;
-      if (data.asa === 5) array[31] = 1;
+      if (data.asa === '4-Life Threatening Disease') array[28] = 1;
+      if (data.asa === '3-Severe Systemic Disease') array[29] = 1;
+      if (data.asa === '2-Mild Systemic Disease') array[30] = 1;
+      if (data.asa === '5-Moribund') array[31] = 1;
 
       for (i = 32; i <= 33; i++) {
         array[i] = 0;
       }
-      if (data.diabetes === 'non-insulin') array[32] = 1;
-      if (data.diabetes === 'insulin') array[33] = 1;
+      if (data.diabetes === 'Non-Insulin') array[32] = 1;
+      if (data.diabetes === 'Insulin') array[33] = 1;
 
       for (i = 34; i <= 35; i++) {
         array[i] = 0;
       }
-      if (data.dyspnea === 'moderate exertion') array[34] = 1;
-      if (data.dyspnea === 'at rest') array[35] = 1;
+      if (data.dyspnea === 'Moderate Exertion') array[34] = 1;
+      if (data.dyspnea === 'At Rest') array[35] = 1;
 
       for (i = 36; i <= 37; i++) {
         array[i] = 0;
       }
-      if (data.fnstatus === 'totally dependent') array[36] = 1;
-      if (data.fnstatus === 'partially dependent') array[37] = 1;
+      if (data.fnstatus === 'Totally Dependent') array[36] = 1;
+      if (data.fnstatus === 'Partially Dependent') array[37] = 1;
 
       array[38] = data.liver ? 1 : 0;
       array[39] = data.heart ? 1 : 0;
@@ -83,8 +83,8 @@ angular.module('calypsoClientApp')
         array[i] = 0;
       }
       if (data.infx === 'SIRS') array[44] = 1;
-      if (data.infx === 'sepsis') array[45] = 1;
-      if (data.infx === 'septic shock') array[46] = 1;
+      if (data.infx === 'Sepsis') array[45] = 1;
+      if (data.infx === 'Septic Shock') array[46] = 1;
 
       array[47] = data.lab_sodium;
       array[48] = data.lab_bun;
@@ -102,8 +102,8 @@ angular.module('calypsoClientApp')
       for (i = 59; i <= 60; i++) {
         array[i] = 0;
       }
-      if (data.podiag === 'neoplasm') array[59] = 1;
-      if (data.podiag === 'infection') array[60] = 1;
+      if (data.podiag === 'Neoplasm') array[59] = 1;
+      if (data.podiag === 'Infection') array[60] = 1;
 
       array[61] = data.workrvu;
       array[62] = data.pgy;
@@ -120,75 +120,98 @@ angular.module('calypsoClientApp')
       for (i = 70; i <= 72; i++) {
         array[i] = 0;
       }
-      if (data.wound === 'contaminated') array[70] = 1;
-      if (data.wound === 'dirty') array[71] = 1;
-      if (data.wound === 'clean contaminated') array[72] = 1;
+      if (data.wound === 'Contaminated') array[70] = 1;
+      if (data.wound === 'Dirty') array[71] = 1;
+      if (data.wound === 'Clean Contaminated') array[72] = 1;
 
       for (i = 73; i <= 86; i++) {
         array[i] = 0;
       }
-      if (data.cpt_type === 'OFFICIAL1') array[73] = 1;
-      if (data.cpt_type === 'OFFICIAL2') array[74] = 1;
-      if (data.cpt_type === 'OFFICIAL3') array[75] = 1;
-      if (data.cpt_type === 'OFFICIAL4') array[76] = 1;
-      if (data.cpt_type === 'OFFICIAL5') array[77] = 1;
-      if (data.cpt_type === 'OFFICIAL6') array[78] = 1;
-      if (data.cpt_type === 'OFFICIAL7') array[79] = 1;
-      if (data.cpt_type === 'OFFICIAL8') array[80] = 1;
-      if (data.cpt_type === 'OFFICIAL9') array[81] = 1;
-      if (data.cpt_type === 'OFFICIAL11') array[82] = 1;
-      if (data.cpt_type === 'OFFICIAL12') array[83] = 1;
-      if (data.cpt_type === 'OFFICIAL13') array[84] = 1;
-      if (data.cpt_type === 'OFFICIAL14') array[85] = 1;
-      if (data.cpt_type === 'OFFICIAL16') array[86] = 1;
+      // https://en.wikipedia.org/wiki/Current_Procedural_Terminology
+      if (data.cpt >= 10040 && data.cpt <= 19499) array[73] = 1; //1 = integumentary system 
+      if (data.cpt >= 20000 && data.cpt <= 29999) array[74] = 1; //2 = musculoskeletal system 
+      if (data.cpt >= 30000 && data.cpt <= 32999) array[75] = 1; //3 = respiratory system 
+      if (data.cpt >= 33010 && data.cpt <= 37799) array[76] = 1; //4 = cardiovascular system 
+      if (data.cpt >= 38100 && data.cpt <= 38999) array[77] = 1; //5 = hemic and lymphatic systems 
+      if (data.cpt >= 39000 && data.cpt <= 39599) array[78] = 1; //6 = mediastinum and diaphragm 
+      if (data.cpt >= 40490 && data.cpt <= 49999) array[79] = 1; //7 = digestive system 
+      if (data.cpt >= 50010 && data.cpt <= 53899) array[80] = 1; //8 = urinary system 
+      if (data.cpt >= 54000 && data.cpt <= 55899) array[81] = 1; //9 = male genital system 
+      // skips official type 10: 10 = reproductive system and intersex
+      if (data.cpt >= 56405 && data.cpt <= 58999) array[82] = 1; //11 = female genital system 
+      if (data.cpt >= 59000 && data.cpt <= 59899) array[83] = 1; //12 = maternity care and delivery 
+      if (data.cpt >= 60000 && data.cpt <= 60699) array[84] = 1; //13 = endocrine system 
+      if (data.cpt >= 61000 && data.cpt <= 64999) array[85] = 1; //14 = nervous system 
+      // skips official type 15: 15 = eye and ocular adnexa  
+      if (data.cpt >= 69000 && data.cpt <= 69979) array[86] = 1; //16 = auditory system  
+      
+      // Old way of filling index 73-86
+      //if (data.cpt_type === 'OFFICIAL1') array[73] = 1; //OFFICIAL1
+      //if (data.cpt_type === 'OFFICIAL2') array[74] = 1; //2
+      //if (data.cpt_type === 'OFFICIAL3') array[75] = 1; //3
+      //if (data.cpt_type === 'OFFICIAL4') array[76] = 1; //4
+      //if (data.cpt_type === 'OFFICIAL5') array[77] = 1; //5
+      //if (data.cpt_type === 'OFFICIAL6') array[78] = 1; //6
+      //if (data.cpt_type === 'OFFICIAL7') array[79] = 1; //7
+      //if (data.cpt_type === 'OFFICIAL8') array[80] = 1; //8
+      //if (data.cpt_type === 'OFFICIAL9') array[81] = 1; //9
+      //if (data.cpt_type === 'OFFICIAL11') array[82] = 1; //11
+      //if (data.cpt_type === 'OFFICIAL12') array[83] = 1; //12
+      //if (data.cpt_type === 'OFFICIAL13') array[84] = 1; //13
+      //if (data.cpt_type === 'OFFICIAL14') array[85] = 1; //14
+      //if (data.cpt_type === 'OFFICIAL16') array[86] = 1; //16
 
       for (i = 87; i <= 282; i++) {
         array[i] = 0;
       }
-      if (data.ccs_category === 'CCS.CATEGORY1') array[87] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY2') array[88] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY3') array[89] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY4') array[90] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY5') array[91] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY6') array[92] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY7') array[93] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY8') array[94] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY11') array[95] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY12') array[96] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY13') array[97] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY14') array[98] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY15') array[99] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY16') array[100] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY17') array[101] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY18') array[102] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY19') array[103] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY20') array[104] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY21') array[105] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY22') array[106] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY23') array[107] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY24') array[108] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY25') array[109] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY26') array[110] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY27') array[111] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY28') array[112] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY29') array[113] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY30') array[114] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY31') array[115] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY32') array[116] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY33') array[117] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY34') array[118] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY35') array[119] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY36') array[120] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY37') array[121] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY38') array[122] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY39') array[123] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY40') array[124] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY41') array[125] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY42') array[126] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY43') array[127] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY44') array[128] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY46') array[129] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY47') array[130] = 1;
+      // reference: $dxref 2015.csv
+      if (data.ccs_category === 'Tuberculosis') array[87] = 1; //1
+      if (data.ccs_category === 'Septicemia') array[88] = 1;
+      if (data.ccs_category === 'Bacterial Infection NOS') array[89] = 1;
+      if (data.ccs_category === 'Fungal Mycoses') array[90] = 1;
+      if (data.ccs_category === 'HIV Infection') array[91] = 1;
+      if (data.ccs_category === 'Hepatitis') array[92] = 1;
+      if (data.ccs_category === 'Viral Infection') array[93] = 1;
+      if (data.ccs_category === 'Infection NOS') array[94] = 1; //8
+      if (data.ccs_category === 'Head and Neck Cancer') array[95] = 1; //11
+      if (data.ccs_category === 'Esophageal Cancer') array[96] = 1;
+      if (data.ccs_category === 'Gastric Cancer') array[97] = 1;
+      if (data.ccs_category === 'Colon Cancer') array[98] = 1;
+      if (data.ccs_category === 'Rectal or Anal Cancer') array[99] = 1;
+      if (data.ccs_category === 'Liver or Biliary Cancer') array[100] = 1;
+      if (data.ccs_category === 'Pancreas Cancer') array[101] = 1;
+      if (data.ccs_category === 'Small Bowel or Gallbladder or Other GI Cancer') array[102] = 1; //18
+      if (data.ccs_category === 'Lung Cancer') array[103] = 1;
+      if (data.ccs_category === 'Mesothelioma or Other Respiratory Tract Cancer') array[104] = 1;
+      if (data.ccs_category === 'Bone or Connective Tissue Cancer') array[105] = 1; //21
+      if (data.ccs_category === 'Skin Cancer - Melanoma') array[106] = 1;
+      if (data.ccs_category === 'Skin Cancer - Non-Epithelial') array[107] = 1;
+      if (data.ccs_category === 'Breast Cancer') array[108] = 1;
+      if (data.ccs_category === 'Uterine Cancer') array[109] = 1;
+      if (data.ccs_category === 'Cervical Cancer') array[110] = 1;
+      if (data.ccs_category === 'Ovarian Cancer') array[111] = 1;
+      if (data.ccs_category === 'Female Genitourinary Cancer, NOS') array[112] = 1;
+      if (data.ccs_category === 'Protate Cancer') array[113] = 1;
+      if (data.ccs_category === 'Testicular Cancer') array[114] = 1;
+      if (data.ccs_category === 'Male Genitourinary Cancer, NOS') array[115] = 1;
+      if (data.ccs_category === 'Bladder Cancer') array[116] = 1;
+      if (data.ccs_category === 'Renal Cancer') array[117] = 1;
+      if (data.ccs_category === 'Urinary System Cancer, NOS') array[118] = 1;
+      if (data.ccs_category === 'Brain Cancer') array[119] = 1; // 35
+      if (data.ccs_category === 'Thyroid Cancer / Multiple Endocrine Neoplasia') array[120] = 1;
+      if (data.ccs_category === 'Hodgkin Disease Cancer') array[121] = 1;
+      if (data.ccs_category === 'Non-Hodgkin Lymphoma Cancer') array[122] = 1;
+      if (data.ccs_category === 'Leukemia, Cancer, NOS') array[123] = 1;
+      if (data.ccs_category === 'Multiple Myeloma Cancer') array[124] = 1;
+      if (data.ccs_category === 'Other Primary Cancer, NOS') { 
+        array[125] = 1; // 41- nos cancer
+        array[126] = 1; // 42- not sure what this exactly means
+        array[127] = 1; // 43- another nos cancer
+        array[128] = 1; // 44- another nos cancer
+      }
+      // no ccs.category45
+      if (data.ccs_category === 'Benign Uterine Neoplasia / Leiomyoma') array[129] = 1; //46
+      if (data.ccs_category === 'Benign Neoplasia, NOS') array[130] = 1; // 47
       if (data.ccs_category === 'CCS.CATEGORY48') array[131] = 1;
       if (data.ccs_category === 'CCS.CATEGORY49') array[132] = 1;
       if (data.ccs_category === 'CCS.CATEGORY50') array[133] = 1;
@@ -286,10 +309,10 @@ angular.module('calypsoClientApp')
       if (data.ccs_category === 'CCS.CATEGORY173') array[225] = 1;
       if (data.ccs_category === 'CCS.CATEGORY175') array[226] = 1;
       if (data.ccs_category === 'CCS.CATEGORY176') array[227] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY178') array[228] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY180') array[229] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY181') array[230] = 1;
-      if (data.ccs_category === 'CCS.CATEGORY195') array[231] = 1;
+      if (data.ccs_category === 'CCS.CATEGORY178') array[228] = 1; //178
+      if (data.ccs_category === 'CCS.CATEGORY180') array[229] = 1; //180
+      if (data.ccs_category === 'CCS.CATEGORY181') array[230] = 1;  //181
+      if (data.ccs_category === 'CCS.CATEGORY195') array[231] = 1; //195
       if (data.ccs_category === 'CCS.CATEGORY197') array[232] = 1;
       if (data.ccs_category === 'CCS.CATEGORY198') array[233] = 1;
       if (data.ccs_category === 'CCS.CATEGORY199') array[234] = 1;
@@ -381,14 +404,14 @@ angular.module('calypsoClientApp')
 
     var getName = function (name) {
       var map = {
-        'ssi': 'Surgical Site Infection',
-        'cardiac': 'Cardiac Arrest',
-        'dvt': 'Deep Vein Thrombosis',
-        'pna': 'Pneumonia',
-        'renal': 'Renal Failure',
+        'ssi': 'Wound Complications',
+        'cardiac': 'Cardiac Complications',
+        'dvt': 'Thromboembolic Complications',
+        'pna': 'Pulmonary Complications',
+        'renal': 'Renal Complications',
         'uti': 'Urinary Tract Infection',
-        'morbidity': 'Morbidity',
-        'mortality': 'Mortality'
+        'morbidity': 'Any Morbidity',
+        'mortality': '30-Day Mortality'
       };
 
       return map[name];

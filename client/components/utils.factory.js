@@ -49,10 +49,10 @@ angular.module('calypsoClientApp')
       for (i = 28; i <= 31; i++) {
         array[i] = 0;
       }
-      if (data.asa === 4) array[28] = 1;
-      if (data.asa === 3) array[29] = 1;
-      if (data.asa === 2) array[30] = 1;
-      if (data.asa === 5) array[31] = 1;
+      if (data.asa === '4-Life Threatening Disease') array[28] = 1;
+      if (data.asa === '3-Severe Systemic Disease') array[29] = 1;
+      if (data.asa === '2-Mild Systemic Disease') array[30] = 1;
+      if (data.asa === '5-Moribund') array[31] = 1;
 
       for (i = 32; i <= 33; i++) {
         array[i] = 0;
@@ -127,20 +127,20 @@ angular.module('calypsoClientApp')
       for (i = 73; i <= 86; i++) {
         array[i] = 0;
       }
-      if (data.cpt_type === 'OFFICIAL1') array[73] = 1;
-      if (data.cpt_type === 'OFFICIAL2') array[74] = 1;
-      if (data.cpt_type === 'OFFICIAL3') array[75] = 1;
-      if (data.cpt_type === 'OFFICIAL4') array[76] = 1;
-      if (data.cpt_type === 'OFFICIAL5') array[77] = 1;
-      if (data.cpt_type === 'OFFICIAL6') array[78] = 1;
-      if (data.cpt_type === 'OFFICIAL7') array[79] = 1;
-      if (data.cpt_type === 'OFFICIAL8') array[80] = 1;
-      if (data.cpt_type === 'OFFICIAL9') array[81] = 1;
-      if (data.cpt_type === 'OFFICIAL11') array[82] = 1;
-      if (data.cpt_type === 'OFFICIAL12') array[83] = 1;
-      if (data.cpt_type === 'OFFICIAL13') array[84] = 1;
-      if (data.cpt_type === 'OFFICIAL14') array[85] = 1;
-      if (data.cpt_type === 'OFFICIAL16') array[86] = 1;
+      if (data.cpt_type === 'OFFICIAL1') array[73] = 1; //OFFICIAL1
+      if (data.cpt_type === 'OFFICIAL2') array[74] = 1; //2
+      if (data.cpt_type === 'OFFICIAL3') array[75] = 1; //3
+      if (data.cpt_type === 'OFFICIAL4') array[76] = 1; //4
+      if (data.cpt_type === 'OFFICIAL5') array[77] = 1; //5
+      if (data.cpt_type === 'OFFICIAL6') array[78] = 1; //6
+      if (data.cpt_type === 'OFFICIAL7') array[79] = 1; //7
+      if (data.cpt_type === 'OFFICIAL8') array[80] = 1; //8
+      if (data.cpt_type === 'OFFICIAL9') array[81] = 1; //9
+      if (data.cpt_type === 'OFFICIAL11') array[82] = 1; //11
+      if (data.cpt_type === 'OFFICIAL12') array[83] = 1; //12
+      if (data.cpt_type === 'OFFICIAL13') array[84] = 1; //13
+      if (data.cpt_type === 'OFFICIAL14') array[85] = 1; //14
+      if (data.cpt_type === 'OFFICIAL16') array[86] = 1; //16
 
       for (i = 87; i <= 282; i++) {
         array[i] = 0;

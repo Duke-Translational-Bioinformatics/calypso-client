@@ -620,12 +620,12 @@ angular.module('calypsoClientApp')
       'cpt_mis': true,
       'cpt_implant': false
     },
-    PATIENT_INFO: 'caseid,age,sex,race,year,bmi',
-    PATIENT_HISTORY: 'heart,hxchf,cardiac_surgery,hxcopd,neuro,plegia,steroid_immunosup,bleeddis,pvd,chemo_radio,discancr',
-    RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
-    RISK_FACTORS_BOOLEAN: 'smoker,cpneumon,ventilat,liver,alcohol,pregnancy,dnr,renalfail,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
-    SURGICAL_INFO: 'ccs_category,podiag,cpt,workrvu,optime,pgy,wound',
-    SURGICAL_INFO_BOOLEAN: 'emergency,cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc',
+    PATIENT_INFO: 'caseid,age,sex,race,bmi', // removed: year
+    // PATIENT_HISTORY: 'heart,hxchf,cardiac_surgery,hxcopd,neuro,plegia,steroid_immunosup,bleeddis,pvd,chemo_radio,discancr',
+    RISK_FACTORS: '',
+    RISK_FACTORS_BOOLEAN: 'heart,hxchf,cardiac_surgery,smoker,pvd,dyspnea,cpneumon,hxcopd,ventilat,diabetes,renalfail,dialysis,liver,alcohol,neuro,plegia,steroid_immunosup,chemo_radio,discancr,preop_wndinf,infx,bleeddis,preop_transfus,wtloss,fnstatus,dnr,priorop,pregnancy',
+    SURGICAL_INFO: 'asa,ccs_category,podiag,cpt,workrvu,cpt_mis,cpt_implant,other_proc,concurrent_proc,optime,emergency,general_anes,pgy,wound',  // removed: cpt_type
+    SURGICAL_INFO_BOOLEAN: '',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [
       null, {

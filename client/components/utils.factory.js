@@ -14,8 +14,8 @@ angular.module('calypsoClientApp')
       if (data.year === 2007) array[2] = 1;
       if (data.year === 2008) array[3] = 1;
 
-      if (data.sex === 'male') array[4] = 1;
-      if (data.sex === 'female') array[4] = 0;
+      if (data.sex === 'Male') array[4] = 1;
+      if (data.sex === 'Female') array[4] = 0;
 
       array[5] = data.age;
       array[6] = data.smoker ? 1 : 0;
@@ -40,9 +40,9 @@ angular.module('calypsoClientApp')
       for (i = 24; i <= 26; i++) {
         array[i] = 0;
       }
-      if (data.race === 'other') array[24] = 1;
-      if (data.race === 'asian') array[25] = 1;
-      if (data.race === 'black') array[26] = 1;
+      if (data.race === 'Other') array[24] = 1;
+      if (data.race === 'Asian') array[25] = 1;
+      if (data.race === 'Black') array[26] = 1;
 
       array[27] = data.bmi;
 
@@ -57,20 +57,20 @@ angular.module('calypsoClientApp')
       for (i = 32; i <= 33; i++) {
         array[i] = 0;
       }
-      if (data.diabetes === 'non-insulin') array[32] = 1;
-      if (data.diabetes === 'insulin') array[33] = 1;
+      if (data.diabetes === 'Non-Insulin') array[32] = 1;
+      if (data.diabetes === 'Insulin') array[33] = 1;
 
       for (i = 34; i <= 35; i++) {
         array[i] = 0;
       }
-      if (data.dyspnea === 'moderate exertion') array[34] = 1;
-      if (data.dyspnea === 'at rest') array[35] = 1;
+      if (data.dyspnea === 'Moderate Exertion') array[34] = 1;
+      if (data.dyspnea === 'At Rest') array[35] = 1;
 
       for (i = 36; i <= 37; i++) {
         array[i] = 0;
       }
-      if (data.fnstatus === 'totally dependent') array[36] = 1;
-      if (data.fnstatus === 'partially dependent') array[37] = 1;
+      if (data.fnstatus === 'Totally Dependent') array[36] = 1;
+      if (data.fnstatus === 'Partially Dependent') array[37] = 1;
 
       array[38] = data.liver ? 1 : 0;
       array[39] = data.heart ? 1 : 0;
@@ -83,8 +83,8 @@ angular.module('calypsoClientApp')
         array[i] = 0;
       }
       if (data.infx === 'SIRS') array[44] = 1;
-      if (data.infx === 'sepsis') array[45] = 1;
-      if (data.infx === 'septic shock') array[46] = 1;
+      if (data.infx === 'Sepsis') array[45] = 1;
+      if (data.infx === 'Septic Shock') array[46] = 1;
 
       array[47] = data.lab_sodium;
       array[48] = data.lab_bun;
@@ -102,8 +102,8 @@ angular.module('calypsoClientApp')
       for (i = 59; i <= 60; i++) {
         array[i] = 0;
       }
-      if (data.podiag === 'neoplasm') array[59] = 1;
-      if (data.podiag === 'infection') array[60] = 1;
+      if (data.podiag === 'Neoplasm') array[59] = 1;
+      if (data.podiag === 'Infection') array[60] = 1;
 
       array[61] = data.workrvu;
       array[62] = data.pgy;
@@ -120,9 +120,9 @@ angular.module('calypsoClientApp')
       for (i = 70; i <= 72; i++) {
         array[i] = 0;
       }
-      if (data.wound === 'contaminated') array[70] = 1;
-      if (data.wound === 'dirty') array[71] = 1;
-      if (data.wound === 'clean contaminated') array[72] = 1;
+      if (data.wound === 'Contaminated') array[70] = 1;
+      if (data.wound === 'Dirty') array[71] = 1;
+      if (data.wound === 'Clean Contaminated') array[72] = 1;
 
       for (i = 73; i <= 86; i++) {
         array[i] = 0;
@@ -381,14 +381,14 @@ angular.module('calypsoClientApp')
 
     var getName = function (name) {
       var map = {
-        'ssi': 'Surgical Site Infection',
-        'cardiac': 'Cardiac Arrest',
-        'dvt': 'Deep Vein Thrombosis',
-        'pna': 'Pneumonia',
-        'renal': 'Renal Failure',
+        'ssi': 'Wound Complications',
+        'cardiac': 'Cardiac Complications',
+        'dvt': 'Thromboembolic Complications',
+        'pna': 'Pulmonary Complications',
+        'renal': 'Renal Complications',
         'uti': 'Urinary Tract Infection',
-        'morbidity': 'Morbidity',
-        'mortality': 'Mortality'
+        'morbidity': 'Any Morbidity',
+        'mortality': '30-Day Mortality'
       };
 
       return map[name];

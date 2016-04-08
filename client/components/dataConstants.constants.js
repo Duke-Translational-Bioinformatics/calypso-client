@@ -111,22 +111,22 @@ angular.module('calypsoClientApp')
       }
     },
     CPT_TYPE_LABELS: {
-      'OFFICIAL1': 'integumentary system',
-      'OFFICIAL2': 'musculoskeletal system',
-      'OFFICIAL3': 'respiratory system',
-      'OFFICIAL4': 'cardiovascular system',
-      'OFFICIAL5': 'hemic and lymphatic systems',
-      'OFFICIAL6': 'mediastinum and diaphragm',
-      'OFFICIAL7': 'digestive system',
-      'OFFICIAL8': 'urinary system',
-      'OFFICIAL9': 'male genital system',
-      'OFFICIAL10': 'reproductive system and intersex',
-      'OFFICIAL11': 'female genital system',
-      'OFFICIAL12': 'maternity care and delivery',
-      'OFFICIAL13': 'endocrine system',
-      'OFFICIAL14': 'nervous system',
-      'OFFICIAL15': 'eye and ocular adnexa',
-      'OFFICIAL16': 'auditory system',
+      'OFFICIAL1': 'Integumentary system',
+      'OFFICIAL2': 'Musculoskeletal system',
+      'OFFICIAL3': 'Respiratory system',
+      'OFFICIAL4': 'Cardiovascular system',
+      'OFFICIAL5': 'Hemic and lymphatic systems',
+      'OFFICIAL6': 'Mediastinum and diaphragm',
+      'OFFICIAL7': 'Digestive system',
+      'OFFICIAL8': 'Urinary system',
+      'OFFICIAL9': 'Male genital system',
+      'OFFICIAL10': 'Reproductive system and intersex',
+      'OFFICIAL11': 'Female genital system',
+      'OFFICIAL12': 'Maternity care and delivery',
+      'OFFICIAL13': 'Endocrine system',
+      'OFFICIAL14': 'Nervous system',
+      'OFFICIAL15': 'Eye and ocular adnexa',
+      'OFFICIAL16': 'Auditory system',
       'OFFICIAL17': 'NOS'
     },
     LABELS: {
@@ -137,166 +137,166 @@ angular.module('calypsoClientApp')
         'min': 0
       },
       'year': {
-        'name': 'Operation Year',
+        'name': 'Year of Operation',
         'description': 'Year of surgical operation',
         'type': 'int',
         'min': 2005,
         'max': 2008
       },
       'sex': {
-        'name': 'Sex',
-        'description': 'Patient biological sex',
+        'name': 'Gender',
+        'description': 'Gender',
         'type': 'string',
-        'category': ['male', 'female']
+        'category': ['Male', 'Female']
       },
       'age': {
         'name': 'Age',
-        'description': 'Patient age in years (enter 90 for >90)',
+        'description': 'Enter patient age in years (enter 90 for greater than age 90).',
         'type': 'int',
         'min': 15,
         'max': 90
       },
       'smoker': {
-        'name': 'Smoking History',
-        'description': 'Current smoker within 1 year',
+        'name': 'Current Smoker',
+        'description': 'If the patient has smoked cigarettes in the year prior to admission for surgery',
         'type': 'boolean'
       },
       'alcohol': {
-        'name': 'Alcohol History',
-        'description': 'Significant alcoholic history',
+        'name': 'Alcohol Abuse',
+        'description': 'If 2 drinks per day in the two weeks prior to admission',
         'type': 'boolean'
       },
       'dnr': {
-        'name': 'DNR',
-        'description': 'Do Not Resuscitate status',
+        'name': 'DNR Status',
+        'description': 'If the patient has had a Do-Not-Resuscitate order',
         'type': 'boolean'
       },
       'ventilat': {
-        'name': 'Ventilator Dependence',
-        'description': 'Ventilator dependent within 48hrs before surgery',
+        'name': 'Recent Ventilator Use',
+        'description': 'If a preoperative patient required ventilator-assisted respiration at any time during the 48 hours preceding surgery. This does not include the treatment of sleep apnea with CPAP.',
         'type': 'boolean'
       },
       'hxcopd': {
-        'name': 'COPD',
-        'description': 'History of severe COPD',
+        'name': 'Severe COPD',
+        'description': 'If there is a historical or current diagnosis of COPD AND at least one of the following, within the 30 days prior to the principal operative procedure or at the time the patient is being considered as a candidate for surgery: (1) Functional disability from COPD (e.g., dyspnea, inability to perform ADLs) (2) Requires chronic bronchodilator therapy with oral or inhaled agents (3) Hospitalization in the past for treatment of COPD (4) An FEV1 of <75% of predicted on a prior pulmonary function test (PFT)',
         'type': 'boolean'
       },
       'cpneumon': {
         'name': 'Pneumonia',
-        'description': 'Currently has pneumonia',
+        'description': 'If the patient has a new pneumonia or recently diagnosed pneumonia and on current antibiotic treatment at the time the patient is brought to the OR',
         'type': 'boolean'
       },
       'hxchf': {
-        'name': 'CHF History',
-        'description': 'History of Congestive Heart Failure',
+        'name': 'Symptomatic CHF',
+        'description': 'Only newly diagnosed CHF within the previous 30 days or a diagnosis of chronic CHF with new signs or symptoms in the 30 days prior to surgery fulfills this definition. Common manifestations are: Abnormal limitation in exercise tolerance due to dyspnea or fatigue -Orthopnea (dyspnea on lying supine); Paroxysmal nocturnal dyspnea (PND-awakening from sleep with dyspnea); Increased jugular venous pressure -Pulmonary rales on physical examination; Cardiomegaly -Pulmonary vascular engorgement',
         'type': 'boolean'
       },
       'cardiac_surgery': {
-        'name': 'History of Cardiac Surgery',
-        'description': 'Patient previously had a cardiac surgery',
+        'name': 'Previous Cardiac Surgery',
+        'description': 'If the patient has had any major cardiac surgical procedures (performed either as an ‘off-pump’ repair or utilizing cardiopulmonary bypass). This includes coronary artery bypass graft surgery, valve replacement or repair, repair of atrial or ventricular septal defects, great thoracic vessel repair, cardiac transplant, left ventricular aneurysmectomy, insertion of left ventricular assist devices (LVAD)',
         'type': 'boolean'
       },
       'renalfail': {
-        'name': 'Renal Failure',
-        'description': 'Preoperative actue renal failure',
+        'name': 'Acute Renal Failure',
+        'description': 'The patient’s renal function has demonstrated compromise within 24 hours prior to surgery. Patient must have an increase in BUN based on two measurements and two creatinine (Cr) results above 3mg/dl. There must be at minimum two measurements per lab value, the most recent of which must be within 24 hours prior to the start of the principal operative procedure; the second must be within 90 days of the principal operative procedure.',
         'type': 'boolean',
       },
       'dialysis': {
         'name': 'Dialysis Dependent',
-        'description': 'Patient currently on dialysis',
+        'description': 'If the patient has acute or chronic renal failure requiring treatment with peritoneal dialysis, hemodialysis, hemofiltration, hemodiafiltration, or ultrafiltration within 2 weeks prior to the principal operative procedure.',
         'type': 'boolean'
       },
       'discancr': {
         'name': 'Disseminated Cancer',
-        'description': 'History of disseminated cancer',
+        'description': 'Patients who have cancer that: (1) Has spread to one site or more sites in addition to the primary site AND (2) In whom the presence of multiple metastases indicates the cancer is widespread, fulminant, or near terminal. The following are reported as Disseminated Cancer: Acute Lymphocytic Leukemia (ALL), Acute Myelogenous Leukemia (AML), and Stage IV Lymphoma. The following are not reported as Disseminated Cancer: Chronic Lymphocytic Leukemia (CLL), Chronic Myelogenous Leukemia (CML), Stages I through III Lymphomas or Multiple Myeloma. Example: A patient with a primary breast cancer with positive nodes in the axilla does NOT qualify for this definition. She has spread of the tumor to a site other than the primary site, but does not have widespread metastases. A patient with primary breast cancer with positive nodes in the axilla AND liver metastases does qualify, because she has both spread of the tumor to the axilla and other major organs.',
         'type': 'boolean'
       },
       'preop_wndinf': {
-        'name': 'Preoperative Wound Infection',
-        'description': 'Preoperative open wound or wound infection',
+        'name': 'Open/Infected Wound',
+        'description': 'Preoperative evidence of a documented open wound at the time of the principal operative procedure. An open wound is a breach in the integrity of the skin or separation of skin edges and includes open surgical wounds, with or without cellulitis or purulent exudate. Open drains should be considered an open wound: (e.g. Penrose drains). Open wounds currently undergoing dressing changes or with negative pressure wound devices (e.g., wound vacs). Any abnormal passageway leading from an internal organ (e.g. intestinal tract) to the surface of the body / skin. (e.g. enterocutaneous fistula [ECF])',
         'type': 'boolean'
       },
       'steroid_immunosup': {
-        'name': 'Steroid or immunosuppression use',
-        'description': 'History of using steroid or any other immunosuppressant',
+        'name': 'Steroid/Immunosuppression Use',
+        'description': 'Patient has required the regular administration of oral or parenteral corticosteroid (e.g. Prednisone, Decadron) medications or immunosuppressant medications, within the 30 days prior to the principal operative procedure or at the time the patient is being considered as a candidate for surgery, for a chronic medical condition (e.g. COPD, asthma, rheumatologic disease, rheumatoid arthritis, inflammatory bowel disease). A one-time pulse, limited short course, or a taper of less than 10 days duration would not qualify. Do not include topical corticosteroids applied to the skin or corticosteroids administered by inhalation or rectally. Do not include patients who only receive short course steroids (duration 10 days or less) in the 30 days prior to surgery.',
         'type': 'boolean'
       },
       'wtloss': {
-        'name': 'Recenet weight Loss',
-        'description': '> 10% weight loss in last 6 months',
+        'name': 'Recent weight Loss',
+        'description': 'Patients with a greater than 10% decrease in body weight in the six month interval immediately preceding surgery as manifested by serial weights in the chart, as reported by the patient, or as evidenced by change in clothing size or severe cachexia. Patients who have intentionally lost weight as part of a weight reduction program do not qualify.',
         'type': 'boolean'
       },
       'bleeddis': {
-        'name': 'Bleeding Disorder',
-        'description': 'History of bleeding disorder',
+        'name': 'Bleeding Risk',
+        'description': 'Patients with any condition that places the patient at risk for excessive bleeding requiring hospitalization due to a deficiency of blood clotting elements (e.g., vitamin K deficiency, hemophilias, thrombocytopenia, chronic anticoagulation therapy that has not been discontinued prior to surgery).',
         'type': 'boolean'
       },
       'preop_transfus': {
         'name': 'Recent Transfusion',
-        'description': 'Preop transfusion of >=1 unit of red blood cells within 72 hours before surgery',
+        'description': 'Preoperative loss of blood necessitating any transfusion (minimum of 1 unit) of whole blood/packed red cells transfused during the 72 hours prior to surgery start time, including any blood transfused in the emergency room.',
         'type': 'boolean'
       },
       'pregnancy': {
-        'name': 'Pregnancy',
-        'description': 'Pregnant',
+        'name': 'Pregnancy Status',
+        'description': 'Pregnancy is determined by one of the following: Administration of a blood or urine pregnancy test with a positive result; Visualization of the fetus by ultrasound . Indication of fetal heart rate by ultrasound or fetal heart monitoring Pregnancy takes approximately 40 weeks between the time of the last menstrual cycle and delivery',
         'type': 'boolean'
       },
       'priorop': {
-        'name': 'Prior Operation',
-        'description': 'Patient received another operation within 30 days of the index operation',
+        'name': 'Recent Surgery',
+        'description': 'Patient has had any major surgical procedure performed within 30 days prior to the assessed operation',
         'type': 'boolean'
       },
       'race': {
         'name': 'Race',
-        'description': 'Patient Race',
+        'description': 'Race',
         'type': 'string',
         'category': ['other', 'asian', 'black']
       },
       'bmi': {
         'name': 'BMI',
-        'description': 'Patient BMI',
+        'description': 'Patient body mass index , caculated from recent height and weight',
         'type': 'real',
         'min': 0,
         'max': 100
       },
       'asa': {
-        'name': 'ASA Class',
-        'description': 'American society of anesthesiology physical status classification',
+        'name': 'ASA Classification',
+        'description': 'The American Society of Anesthesiology (ASA) Physical Status Classification of the patient’s present physical condition on a scale from 1-5 as it appears on the anesthesia record. The classifications are as follows: ASA 1-Normal healthy patient; ASA 2-Patient with mild systemic disease; ASA 3-Patient with severe systemic disease; ASA 4-Patient with severe systemic disease that is a constant threat to life; ASA 5-Moribund patient who is not expected to survive without the operation.',
         'type': 'int',
         'min': 1,
         'max': 5
       },
       'diabetes': {
-        'name': 'Diabetes History',
-        'description': 'Diabetes mellitus with oral agents or insulin',
+        'name': 'Diabetes Severity',
+        'description': 'Patients with insulin resistance that routinely take anti-diabetic agents are included. Patients whose diabetes is controlled by diet alone are not included.',
         'type': 'string',
         'category': ['non-insulin', 'insulin', 'no']
       },
       'dyspnea': {
-        'name': 'Dyspnea at rest',
-        'description': 'Dyspnea',
+        'name': 'Baseline Dyspnea',
+        'description': 'The usual or typical level of dyspnea (patient’s baseline), within the 30-days prior to surgery. The intent is not to include patients solely because of an acute respiratory condition leading to intubation prior to surgery, but rather to reflect a chronic disease state.',
         'type': 'string',
         'category': ['at rest', 'moderate exertion', 'no']
       },
       'fnstatus': {
-        'name': 'Functional Status',
-        'description': 'Functional health status Prior to Surgery',
+        'name': 'Functional Health Status',
+        'description': 'The best functional status demonstrated by the patient within the 30 days prior to surgery is reported. Report the level of functional health status as defined by the following criteria. (1) Independent: The patient does not require assistance from another person for any activities of daily living. This includes a person who is able to function independently with prosthetics, equipment, or devices. (2) Partially dependent: The patient requires some assistance from another person for activities of daily living. This includes a person who utilizes prosthetics, equipment, or devices but still requires some assistance from another person for ADLs. (3) Totally dependent: The patient requires total assistance for all activities of daily living.',
         'type': 'string',
         'category': ['independent', 'partially dependent', 'totally dependent']
       },
       'liver': {
-        'name': 'Liver Condition',
-        'description': 'History of any ascites or esophageal variceas',
+        'name': 'Liver Disease',
+        'description': 'Presence of ascites or esophageal varices. Patients with the presence of fluid accumulation in the peritoneal cavity noted on physical examination, abdominal ultrasound, or abdominal CT/MRI within 30 days prior to the operation. Documentation should state either active or a history of liver disease (for example, jaundice, encephalopathy, hepatomegaly, portal hypertension, liver failure, or spider telangiectasia). Minimal or trace ascites would not qualify; however; malignant ascites (exclusive of liver disease) due to extensive cancer would qualify. Also, patients with esophageal varices present preoperatively and documented on an EGD or CT scan performed within 6 months prior to the surgical procedure.',
         'type': 'boolean'
       },
       'heart': {
-        'name': 'Heart Condition',
-        'description': 'History of myocardial infarctions 6 months before surgery, previous percutaneous coronary',
+        'name': 'Heart Disease',
+        'description': 'History of myocardial infarction within 6 months from surgery. Or, patient has undergone percutaneous coronary intervention at any time. Or, patient reports pain or discomfort between the diaphragm and the mandible resulting from myocardial ischemia. Or, hypertension documented in the patient’s medical record and the condition is severe enough that it requires antihypertensive medication, within 30 days prior to the principal operative procedure.',
         'type': 'boolean'
       },
       'pvd': {
         'name': 'Peripheral vascular disease',
-        'description': 'History of revascularization / amputation for peripheral vascular disease, or rest pain',
+        'description': 'Patient with any type of angioplasty (including stent placement) or revascularization procedure for atherosclerotic peripheral vascular disease (PVD) (e.g., aorta-femoral, femoral-femoral, femoral-popliteal) or a patient who has had any type of amputation procedure for PVD (e.g., toe amputations, transmetatarsal amputations, below the knee or above the knee amputations). Patients who have had amputation for trauma or a resection of abdominal aortic aneurysms should not be included. Or, patient with rest pain or gangrene. Patients included with ischemic ulceration and/or tissue loss related to peripheral vascular disease.',
         'type': 'boolean'
       },
       'neuro': {

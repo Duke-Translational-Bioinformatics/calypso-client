@@ -130,6 +130,10 @@ angular.module('calypsoClientApp')
       'OFFICIAL17': 'NOS'
     },
     LABELS: {
+      'name': {
+        'name': 'Patient Name',
+        'type': 'string'
+      },
       'caseid': {
         'name': 'Case ID',
         'description': 'Unique case ID from NSQIP',
@@ -620,7 +624,7 @@ angular.module('calypsoClientApp')
       'cpt_mis': true,
       'cpt_implant': false
     },
-    PATIENT_INFO: 'caseid,age,sex,race,bmi', // removed: year
+    PATIENT_INFO: 'caseid,name,age,sex,race,bmi', // removed: year
     PATIENT_HISTORY: '',
     RISK_FACTORS: '',
     RISK_FACTORS_BOOLEAN: 'heart,hxchf,cardiac_surgery,smoker,pvd,dyspnea,cpneumon,hxcopd,ventilat,diabetes,renalfail,dialysis,liver,alcohol,neuro,plegia,steroid_immunosup,chemo_radio,discancr,preop_wndinf,infx,bleeddis,preop_transfus,wtloss,fnstatus,dnr,priorop,pregnancy',

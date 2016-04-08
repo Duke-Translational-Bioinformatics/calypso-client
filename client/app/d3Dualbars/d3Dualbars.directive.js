@@ -44,6 +44,7 @@ angular.module('calypsoClientApp')
         // init svg
         var svg = d3.select(element[0])
           .append('svg')
+          .attr('aria-label', 'dualbarsSvg')
           .style('width', '100%');
 
         // resize logic
@@ -147,7 +148,7 @@ angular.module('calypsoClientApp')
               .attr('class', function (d) {
                 return d.value > 50 ? 'bar negative' : 'bar positive';
               })
-              .attr('x', function (d) {
+              .attr('x', function () {
                 return xScale(0);
               })
               .attr('y', function (d, i) {
@@ -281,31 +282,30 @@ angular.module('calypsoClientApp')
             .data(data).enter()
             .append('g').attr('class', 'risk-label-group');
 
-
           riskLabelGroup.append('text')
             .attr('x', function (d) {
-              return d.value > 50 ? xScale(d.value-25) : xScale(d.value+2);
+              return d.value > 50 ? xScale(d.value - 25) : xScale(d.value + 2);
             })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
             })
             .text(function (d) {
-              return 'Absolute Risk: ' + Math.round(d.original_value*10000)/100 + '%';
+              return 'Absolute Risk: ' + Math.round(d.original_value * 10000) / 100 + '%';
             })
             .attr('font-size', '.8em');
 
           riskLabelGroup.append('text')
             .attr('x', function (d) {
-              return d.value > 50 ? xScale(d.value-25) : xScale(d.value+2);
+              return d.value > 50 ? xScale(d.value - 25) : xScale(d.value + 2);
             })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })
             .text(function (d) {
-              return 'Relative Risk: ' + Math.round(d.value*100)/100 + '%';
+              return 'Relative Risk: ' + Math.round(d.value * 100) / 100 + '%';
             })
             .attr('font-size', '.8em');
-        
+
           // legend
           var legendY = (data.length * (barHeight + barPadding)) + graphMargin + barMargin + 15;
           var legendX = -55;

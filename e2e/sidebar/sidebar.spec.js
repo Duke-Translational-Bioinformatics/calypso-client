@@ -17,9 +17,9 @@ describe('Sidebar directive', function () {
     expect(Sidebar.downloadButton.isPresent()).toBe(true);
   });
 
-  it('buttons should be clickable', function (){
+  it('buttons should be clickable', function () {
     Sidebar.findButton.click();
-//    Sidebar.downloadButton.click();
+    //    Sidebar.downloadButton.click();
     Sidebar.loadButton.click();
 
     expect(true).toBe(true);

@@ -549,9 +549,9 @@ angular.module('calypsoClientApp')
       'cpt_implant': false
     },
     PATIENT_INFO: 'caseid,age,sex,race,year,bmi',
-    PATIENT_HISTORY: 'hxcopd ,hxchf,cardiac_surgery,discancr,steroid_immunosup,bleeddis,heart,pvd,neuro,plegia,chemo_radio',
+    PATIENT_HISTORY: 'heart,hxchf,cardiac_surgery,hxcopd,liver,neuro,plegia,steroid_immunosup,bleeddis,pvd,chemo_radio,discancr',
     RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
-    RISK_FACTORS_BOOLEAN: 'smoker,cpneumon,ventilat, alcohol, liver, pregnancy,dnr,renalfail,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
+    RISK_FACTORS_BOOLEAN: 'smoker,cpneumon,ventilat, alcohol, pregnancy,dnr,renalfail,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
     SURGICAL_INFO: 'podiag,cpt,cpt_type,ccs_category,workrvu,pgy,optime,wound',
     SURGICAL_INFO_BOOLEAN: 'emergency,cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',

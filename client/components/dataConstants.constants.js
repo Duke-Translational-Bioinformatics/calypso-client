@@ -130,10 +130,6 @@ angular.module('calypsoClientApp')
       'OFFICIAL17': 'NOS'
     },
     LABELS: {
-      'name': {
-        'name': 'Patient Name',
-        'type': 'string'
-      },
       'caseid': {
         'name': 'Case ID',
         'description': 'Unique case ID from NSQIP',
@@ -625,11 +621,11 @@ angular.module('calypsoClientApp')
       'cpt_implant': false
     },
     PATIENT_INFO: 'caseid,name,age,sex,race,bmi', // removed: year
-    PATIENT_HISTORY: '',
-    RISK_FACTORS: '',
-    RISK_FACTORS_BOOLEAN: 'heart,hxchf,cardiac_surgery,smoker,pvd,dyspnea,cpneumon,hxcopd,ventilat,diabetes,renalfail,dialysis,liver,alcohol,neuro,plegia,steroid_immunosup,chemo_radio,discancr,preop_wndinf,infx,bleeddis,preop_transfus,wtloss,fnstatus,dnr,priorop,pregnancy',
-    SURGICAL_INFO: 'asa,ccs_category,podiag,cpt,workrvu,cpt_mis,cpt_implant,other_proc,concurrent_proc,optime,emergency,general_anes,pgy,wound',  // removed: cpt_type
-    SURGICAL_INFO_BOOLEAN: '',
+    PATIENT_HISTORY: 'hxcopd,hxchf,cardiac_surgery,discancr,steroid_immunosup,bleeddis,liver,heart,pvd,neuro,plegia,chemo_radio',
+    RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
+    RISK_FACTORS_BOOLEAN: 'smoker,alcohol,pregnancy,dnr,renalfail,ventilat,cpneumon,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
+    SURGICAL_INFO: 'cpt,ccs_category,workrvu,pgy,optime,wound,podiag',  // removed: cpt_type
+    SURGICAL_INFO_BOOLEAN: ''cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc,emergency',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [
       null, {

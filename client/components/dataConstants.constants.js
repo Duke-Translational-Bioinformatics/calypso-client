@@ -625,7 +625,7 @@ angular.module('calypsoClientApp')
     RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
     RISK_FACTORS_BOOLEAN: 'smoker,alcohol,pregnancy,dnr,renalfail,ventilat,cpneumon,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
     SURGICAL_INFO: 'cpt,ccs_category,workrvu,pgy,optime,wound,podiag',  // removed: cpt_type
-    SURGICAL_INFO_BOOLEAN: ''cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc,emergency',
+    SURGICAL_INFO_BOOLEAN: 'cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc,emergency',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [
       null, {

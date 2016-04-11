@@ -620,12 +620,12 @@ angular.module('calypsoClientApp')
       'cpt_mis': true,
       'cpt_implant': false
     },
-    PATIENT_INFO: 'caseid,name,age,sex,race,bmi', // removed: year
-    PATIENT_HISTORY: 'hxcopd,hxchf,cardiac_surgery,discancr,steroid_immunosup,bleeddis,liver,heart,pvd,neuro,plegia,chemo_radio',
+ PATIENT_INFO: 'caseid,sex,age,race,year,bmi',
+    PATIENT_HISTORY: '',
     RISK_FACTORS: 'asa,infx,fnstatus,diabetes,dyspnea',
-    RISK_FACTORS_BOOLEAN: 'smoker,alcohol,pregnancy,dnr,renalfail,ventilat,cpneumon,dialysis,preop_wndinf,preop_transfus,wtloss,priorop',
-    SURGICAL_INFO: 'cpt,ccs_category,workrvu,pgy,optime,wound,podiag',  // removed: cpt_type
-    SURGICAL_INFO_BOOLEAN: 'cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc,emergency',
+    RISK_FACTORS_BOOLEAN: 'smoker,alcohol,pregnancy,dnr,renalfail,ventilat,cpneumon,dialysis,preop_wndinf,preop_transfus,wtloss,priorop,cpt_mis,cpt_implant,general_anes,other_proc,concurrent_proc,emergency,hxcopd,hxchf,cardiac_surgery,discancr,steroid_immunosup,bleeddis,liver,heart,pvd,neuro,plegia,chemo_radio',
+    SURGICAL_INFO: 'cpt,cpt_type,ccs_category,workrvu,pgy,optime,wound,podiag',
+    SURGICAL_INFO_BOOLEAN: '',
     LABS: 'lab_sodium,lab_bun,lab_creatine,lab_albumin,lab_bili,lab_ast,lab_alkphos,lab_wbc,lab_hct,lab_plt,lab_ptt,lab_inr',
     ORDERS: [
       null, {

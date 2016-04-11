@@ -9,7 +9,7 @@ describe('Dualbars directive', function () {
     browser.waitForAngular();
     Dualbars = require('./dualbars.po');
   });
-  it('dualbar legend should exist', function (){
+  it('dualbar legend should exist', function () {
     expect(Dualbars.legend.isPresent()).toBe(true);
     expect(Dualbars.svgLegend.isPresent()).toBe(true);
     expect(Dualbars.groupLegend.isPresent()).toBe(true);
@@ -22,7 +22,7 @@ describe('Dualbars directive', function () {
     expect(Dualbars.bar.isPresent()).toBe(true);
   });
 
-  it('dualbar should be clickable', function (){
+  it('dualbar should be clickable', function () {
     expect(Dualbars.bar.isPresent()).toBe(true);
     Dualbars.bar.click();
   });

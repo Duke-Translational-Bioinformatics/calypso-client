@@ -113,7 +113,7 @@ angular.module('calypsoClientApp')
             .attr('x', width)
             .attr('y', -6)
             .style('text-anchor', 'end')
-            .text('% risk prediction');
+            .text('Absolute Risk %');
 
           group.append('g')
             .attr('class', 'y axis graph')
@@ -178,7 +178,7 @@ angular.module('calypsoClientApp')
             .attr('y', 0)
             .attr('height', 30)
             .attr('width', 100)
-            .text('patient');
+            .text('Patient');
 
           median.append('circle')
             .attr('cx', -10)
@@ -191,7 +191,7 @@ angular.module('calypsoClientApp')
             .attr('y', 20)
             .attr('height', 30)
             .attr('width', 100)
-            .text('median');
+            .text('Median');
 
           group.append('line')
             .attr('x1', x(metric.median))
@@ -217,7 +217,7 @@ angular.module('calypsoClientApp')
             .attr('y2', y(0))
             .style('stroke-width', 1)
             .style('stroke-dasharray', ('3, 3'))
-            .style('stroke', '#4393B9')
+            .style('stroke', '#d9534f')
             .style('fill', 'none');
 
           group.append('circle')
@@ -233,7 +233,7 @@ angular.module('calypsoClientApp')
             .attr('y2', y(0))
             .style('stroke-width', 1)
             .style('stroke-dasharray', ('3, 3'))
-            .style('stroke', 'rgb(244,81,30)')
+            .style('stroke', '#4393B9')
             .style('fill', 'none');
         };
 

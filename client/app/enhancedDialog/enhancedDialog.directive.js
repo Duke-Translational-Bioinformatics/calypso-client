@@ -32,14 +32,13 @@ angular.module('calypsoClientApp')
           orders: []
         };
 
-
         $scope.$watch('valuesOutcome', function (newValues) {
           var orders = newValues.map(function (ele, index) {
             if (ele) return index;
           }).filter(function (ele) {
             if (ele !== undefined) {
               return true;
-            }  
+            }
           }).map(function (ele) {
             return $scope.outcomes[ele];
           });
@@ -63,7 +62,7 @@ angular.module('calypsoClientApp')
           }).filter(function (ele) {
             if (ele !== undefined) {
               return true;
-            }  
+            }
           }).map(function (ele) {
             return $scope.postop[ele];
           });

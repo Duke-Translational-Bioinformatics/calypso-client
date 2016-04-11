@@ -867,13 +867,13 @@ angular.module('calypsoClientApp')
         'order_text': 'consult: social work '
       }, {
         'order_type': 'consult',
-        'order_text': 'consult: PT/OT '
+        'order_text': 'consult: PT/OT'
       }, {
-        'order_type': ' systemic narcotics ',
+        'order_type': 'systemic narcotics',
         'order_text': 'alert: Avoid benzo/anticholinergic'
       }, {
         'order_type': 'order',
-        'order_text': 'order: lovenox 40mg BID'
+        'order_text': 'order: lovenox 40mg daily'
       }, {
         'order_type': 'order',
         'order_text': 'order: CPAP for suspected/diagnosed sleep apnea;'

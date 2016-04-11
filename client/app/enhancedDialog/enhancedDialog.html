@@ -5,7 +5,8 @@
         <div class="md-toolbar-tools">
           <h2>
             <span>{{Utils.getName(name)}}
-              <span ng-bind="(Patient.prediction.predict[name]*100).toFixed(1)"></span>% Chance</span>
+              <strong>
+                <span ng-bind="(Patient.prediction.predict[name]*100).toFixed(1)"></span>%</strong> Risk</span>
           </h2>
           <span flex></span>
         </div>
@@ -44,16 +45,18 @@
         <h1 class="md-toolbar-tools">Interventions</h1>
         <md-divider></md-divider>
       </md-toolbar>
-      <md-list class="orderlist" ng-cloak>
-        <md-list-item ng-repeat="order in orderObj.orders track by $index">
-          <p class="small unselectable"> {{ order.order_text }} </p>
-          <md-checkbox class="md-secondary" ng-model="orderObj.selected_orders[$index]"></md-checkbox>
-          <md-divider></md-divider>
-        </md-list-item>
-      </md-list>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="resample()" class="md-raised md-primary">Order</md-button>
-      </md-card-actions>
+      <div layout="column" layout-align="space-between">
+        <md-list class="target-container" ng-cloak>
+          <md-list-item ng-repeat="order in orderObj.orders track by $index">
+            <p class="small unselectable"> {{ order.order_text }} </p>
+            <md-checkbox class="md-secondary" ng-model="orderObj.selected_orders[$index]"></md-checkbox>
+            <md-divider></md-divider>
+          </md-list-item>
+        </md-list>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="resample()" class="md-raised md-primary">Order</md-button>
+        </md-card-actions>
+      </div>
     </md-card>
   </div>
 </div>

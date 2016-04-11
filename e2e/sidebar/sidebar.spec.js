@@ -18,6 +18,7 @@ describe('Sidebar directive', function () {
   });
 
   it('buttons should be clickable', function () {
+    Sidebar.FAB.click();
     Sidebar.findButton.click();
     //    Sidebar.downloadButton.click();
     Sidebar.loadButton.click();

@@ -30,7 +30,7 @@ angular.module('calypsoClientApp')
           return labels.map(function (ele) {
             return {
               name: ele,
-              value: data[ele] 
+              value: data[ele]
             };
           }).map(function (ele) {
             return {
@@ -52,21 +52,21 @@ angular.module('calypsoClientApp')
         $window.addEventListener('resize', function () {
           if (timeout) $timeout.cancel(timeout);
           timeout = $timeout(function () {
-            if(scope.data) scope.render(preprocess(scope.data), scope.config);
+            if (scope.data) scope.render(preprocess(scope.data), scope.config);
           }, 500);
         });
 
         // watch data
         scope.$watch('data', function (newData) {
-          if(newData) scope.render(preprocess(newData), scope.config);
+          if (newData) scope.render(preprocess(newData), scope.config);
         }, true);
 
         scope.$watch('config', function (newConfig) {
-          if(scope.data && newConfig) scope.render(preprocess(scope.data), newConfig);
+          if (scope.data && newConfig) scope.render(preprocess(scope.data), newConfig);
         }, true);
 
         scope.$on('patient-update', function () {
-          if(scope.data) scope.render(preprocess(scope.data), scope.config);
+          if (scope.data) scope.render(preprocess(scope.data), scope.config);
         });
 
         var dragmove = function () {
@@ -93,17 +93,12 @@ angular.module('calypsoClientApp')
             .domain([0, 100])
             .range([0, width]);
 
-          var tickDensity = d3.scale.linear()
-            .domain([300, 600])
-            .range([5, 15])
-            .clamp(true);
-
           var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient('top')
             .innerTickSize(-height + barHeight + barMargin + barPadding + graphMargin)
             .outerTickSize(0)
-            .ticks(tickDensity(width))
+            .tickValues([0, 25, 50, 75, 100])
             .tickPadding(10)
             .tickFormat(function (d) {
               return d + 'th';
@@ -120,6 +115,7 @@ angular.module('calypsoClientApp')
             .attr('y', 0)
             .attr('font-size', '1em')
             .attr('class', 'unselectable')
+            .attr('font-weight', 'bold')
             .text('Percentile Risk');
 
           group.append('g').attr('class', 'x axis')
@@ -244,7 +240,7 @@ angular.module('calypsoClientApp')
             })
             .attr('tooltip', function (d) {
               return 'Absolute: ' + d.original_value.toFixed(2) + ', Percentile Risk: ' + d.value.toFixed(2);
-            }); 
+            });
 
           // onclick logic
           scope.open = function (event, name) {
@@ -284,21 +280,17 @@ angular.module('calypsoClientApp')
             .append('g').attr('class', 'risk-label-group');
 
           riskLabelGroup.append('text')
-            .attr('x', function (d) {
-              return textMargin - 125;
-            })
+            .attr('x', textMargin - 125)
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
             })
             .text(function (d) {
-              return 'Absolute Risk: ' + Math.round(d.original_value*1000)/10 + '%';
+              return 'Absolute Risk: ' + Math.round(d.original_value * 1000) / 10 + '%';
             })
             .attr('font-size', '.8em');
 
           riskLabelGroup.append('text')
-            .attr('x', function (d) {
-              return textMargin - 125;
-            })
+            .attr('x', textMargin - 125)
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })

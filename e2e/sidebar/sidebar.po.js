@@ -10,6 +10,8 @@ var Sidebar = function () {
   this.findButton = element(by.css('[aria-label="findButton"]'));
   this.loadButton = element(by.css('[aria-label="loadButton"]'));
   this.downloadButton = element(by.css('[aria-label="downloadButton"]'));
+  this.FAB = element(by.css('[aria-label="SidebarFAB"]'));
+
   // this.login_form = this.login.element(by.css('[name="form"]'));
   // this.email = this.login.element(by.css('[type="email"]'))
   // this.password = this.login.element(by.css('[type="password"]'))

@@ -432,7 +432,7 @@ angular.module('calypsoClientApp')
           listOutcomes.push(interventions[label]);
         }
       });
-      return [listOutcomes,listPostop];
+      return [listOutcomes, listPostop];
     };
 
     return {

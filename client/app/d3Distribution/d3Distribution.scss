@@ -36,13 +36,13 @@
   fill: #d9534f;
 }
 .bar.primary {
-  fill: #4393B9;
+  fill: #d9534f; //#4393B9;
 }
 .point {
-  fill: #4393B9;
+  fill: #d9534f; //#4393B9;
 }
 .point.median {
-  fill: rgb(244, 81, 30);
+  fill: #4393B9 // rgb(244, 81, 30);
 }
 .point:hover {
   opacity: 0.9;

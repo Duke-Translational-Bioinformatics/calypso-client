@@ -5,7 +5,7 @@
         <div class="md-toolbar-tools">
           <h2>
             <span>{{Utils.getName(name)}}
-              <span ng-bind="(Patient.prediction.predict[name]*100).toFixed(2)"></span>% Chance</span>
+              <span ng-bind="(Patient.prediction.predict[name]*100).toFixed(1)"></span>% Chance</span>
           </h2>
           <span flex></span>
         </div>

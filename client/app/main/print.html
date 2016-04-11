@@ -1,0 +1,13 @@
+<h2 class = "print-margin">Selected Interventions</h2>
+<!-- <script src = "print.js"></script> -->
+<h3 class = "print-margin">Complications and Risk Factors</h3>
+<ul>
+	<li ng-repeat="factors in listFactors track by $index">{{ factors }}</li>
+</ul>
+<h3 class = "print-margin">Interventions</h3>
+<ul>
+	<li ng-repeat="orders in listOrders track by $index">{{ orders }}</li>
+</ul>
+<!-- <ul>
+	<li ng-repeat="factor in listFactors track by $index">{{ factor.name }}</li>
+</ul> -->

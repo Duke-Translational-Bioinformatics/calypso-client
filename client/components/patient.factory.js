@@ -94,7 +94,7 @@ angular.module('calypsoClientApp')
 
     patientService.find_patient = function (caseid) {
       var deferred = $q.defer();
-      $http.get(ENV.hosts.server + '/patient/' + caseid).success(function (patient_values) {
+      $http.get('http://54.186.43.170/api/patients/' + caseid).success(function (patient_values) {
         patientService.refresh(patient_values).then(function () {
           deferred.resolve();
         });
@@ -106,7 +106,7 @@ angular.module('calypsoClientApp')
 
     patientService.get_histogram = function (patient_values) {
       return $http({
-        url: ENV.hosts.server + '/histogram',
+        url: 'http://54.186.43.170/api/patients/' + '/histogram',
         method: 'GET',
         params: {
           ccs_category: patient_values.cpt_type,
@@ -117,7 +117,7 @@ angular.module('calypsoClientApp')
 
     patientService.get_prediction = function (patient_values) {
       return $http({
-        url: ENV.hosts.server + '/predict',
+        url: 'http://54.186.43.170/api/patients/' + '/predict',
         method: 'GET',
         params: {
           preds: Utils.transform(patient_values)

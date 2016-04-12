@@ -16,11 +16,20 @@ angular.module('calypsoClientApp')
         var textMargin = parseInt(attrs.textMargin) || 5;
         var groupPadding = parseInt(attrs.groupPadding) || 60;
         var topPadding = 20;
-        var sidePadding = 110;
+        var sidePadding = 100;
         var defaultConfig = {
           barOpacity: 0.05,
           upperRadius: 0.45,
           autoBarHeight: true
+        };
+
+        //show risk values on hover 
+        scope.showTable = {};
+        scope.hoverIn = function (name) {
+          scope.showTable[name] = true;
+        };
+        scope.hoverOut = function (name) {
+          scope.showTable[name] = false;
         };
 
         scope.config = _.merge(defaultConfig, scope.config);
@@ -36,7 +45,8 @@ angular.module('calypsoClientApp')
             return {
               name: ele.name,
               value: Utils.getPercentile(Patient.prediction.predict[ele.name], Patient.histogram.histogram[ele.name]),
-              original_value: ele.value
+              original_value: ele.value,
+              show: false
             };
           });
         };
@@ -85,7 +95,7 @@ angular.module('calypsoClientApp')
           // sizing logic
           if (config.autoBarHeight) barHeight = $(window).height() / (data.length + 1) - barPadding - 40;
           if (barHeight < 57) barHeight = 57;
-          var width = d3.select(element[0]).node().offsetWidth - graphMargin - groupPadding - sidePadding;
+          var width = d3.select(element[0]).node().offsetWidth - graphMargin - groupPadding - sidePadding - 70;
           var height = ((data.length + 1) * (barHeight + barPadding)) + graphMargin + barMargin + topPadding;
           svg.attr('height', height);
 
@@ -111,7 +121,7 @@ angular.module('calypsoClientApp')
           var group = svg.append('g').attr('transform', 'translate(' + ((groupPadding / 2) + sidePadding) + ',' + topPadding + ')');
 
           group.append('text')
-            .attr('x', xScale(50) - 100)
+            .attr('x', xScale(45))
             .attr('y', 0)
             .attr('font-size', '1em')
             .attr('class', 'unselectable')
@@ -132,6 +142,7 @@ angular.module('calypsoClientApp')
             .attr('stroke-width', 3);
 
           // bars
+
           if (config.barOpacity > 0) {
             var bars = group.append('g').attr('class', 'bars')
               .selectAll('rect')
@@ -161,7 +172,13 @@ angular.module('calypsoClientApp')
                 return d.value > 50 ? 'right' : 'left';
               })
               .attr('tooltip', function (d) {
-                return 'Absolute: ' + d.original_value.toFixed(2) + ', Percentile Risk: ' + d.value.toFixed(2);
+                return 'Absolute: ' + d.original_value.toFixed(2) + ', Relative: ' + d.value.toFixed(2);
+              })
+              .attr('ng-mouseover', function (d) {
+                return 'hoverIn(\'' + d.name + '\', true)';
+              })
+              .attr('ng-mouseleave', function (d) {
+                return 'hoverOut(\'' + d.name + '\', false)';
               });
           }
 
@@ -212,7 +229,7 @@ angular.module('calypsoClientApp')
               return d.value > 50 ? 'right' : 'left';
             })
             .attr('tooltip', function (d) {
-              return 'Absolute: ' + d.original_value.toFixed(2) + ', Percentile Risk: ' + d.value.toFixed(2);
+              return 'Absolute: ' + d.original_value.toFixed(2) + ', Relative: ' + d.value.toFixed(2);
             });
 
           // point circles
@@ -263,15 +280,47 @@ angular.module('calypsoClientApp')
             .append('g').attr('class', 'text')
             .append('text')
             .attr('x', function () {
-              return textMargin;
+              return textMargin - 125;
             })
             .attr('y', function (d, i) {
-              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 25;
             })
             .text(function (d) {
-              return Utils.getName(d.name);
+              var nameArray = Utils.getName(d.name).split(' ');
+              if (['Urinary', 'Any'].indexOf(nameArray[0]) >= 0) {
+                return nameArray[0] + ' ' + nameArray[1];
+              }
+              if (nameArray[0] === '30') {
+                return nameArray[0] + ' ' + nameArray[1] + ' ' + nameArray[2];
+              }
+              return nameArray[0];
             })
-            .attr('font-size', '.8em');
+            .attr('font-size', '.8em')
+            .attr('font-weight', 'bold');
+
+          group.append('g').attr('class', 'texts')
+            .selectAll('text')
+            .data(data).enter()
+            .append('g').attr('class', 'text')
+            .append('text')
+            .attr('x', function () {
+              return textMargin - 125;
+            })
+            .attr('y', function (d, i) {
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
+            })
+            .text(function (d) {
+              var nameArray = Utils.getName(d.name).split(' ');
+              var noIndent = ['Urinary', 'Any', '30'];
+              if (noIndent.indexOf(nameArray[0]) < 0) {
+                return nameArray[1];
+              }
+              if (nameArray[0] === 'Urinary') {
+                return nameArray[2];
+              }
+            })
+            .attr('font-size', '.8em')
+            .attr('font-weight', 'bold');
 
           //risk value labels
           var riskLabelGroup = group.append('g').attr('class', 'risk-labels')
@@ -280,24 +329,34 @@ angular.module('calypsoClientApp')
             .append('g').attr('class', 'risk-label-group');
 
           riskLabelGroup.append('text')
-            .attr('x', textMargin - 125)
+            .attr('x', function (d) {
+              return xScale(d.value + 2);
+            })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
             })
             .text(function (d) {
               return 'Absolute Risk: ' + Math.round(d.original_value * 1000) / 10 + '%';
             })
-            .attr('font-size', '.8em');
+            .attr('font-size', '.8em')
+            .attr('ng-show', function (d) {
+              return 'showTable.' + d.name;
+            });
 
           riskLabelGroup.append('text')
-            .attr('x', textMargin - 125)
+            .attr('x', function (d) {
+              return xScale(d.value + 2);
+            })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })
             .text(function (d) {
-              return 'Percentile Risk: ' + Math.round((d.value * 100) / 100) + 'th';
+              return 'Relative Risk: ' + Math.round(d.value * 100) / 100 + '%';
             })
-            .attr('font-size', '.8em');
+            .attr('font-size', '.8em')
+            .attr('ng-show', function (d) {
+              return 'showTable.' + d.name;
+            });
 
           element.removeAttr('d3-Dualbars');
           $compile(element)(scope);

@@ -351,7 +351,7 @@ angular.module('calypsoClientApp')
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })
             .text(function (d) {
-              return 'Relative Risk: ' + Math.round(d.value * 100) / 100 + '%';
+              return 'Percentile Risk: ' + Math.round(d.value * 100) / 100 + 'th';
             })
             .attr('font-size', '.8em')
             .attr('ng-show', function (d) {

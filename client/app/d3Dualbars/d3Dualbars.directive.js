@@ -23,6 +23,15 @@ angular.module('calypsoClientApp')
           autoBarHeight: true
         };
 
+        //show risk values on hover 
+        scope.showTable = {};
+        scope.hoverIn = function (name) {
+          scope.showTable[name] = true;
+        };
+        scope.hoverOut = function (name) {
+          scope.showTable[name] = false;
+        };
+
         scope.config = _.merge(defaultConfig, scope.config);
 
         var preprocess = function (data) {
@@ -36,7 +45,8 @@ angular.module('calypsoClientApp')
             return {
               name: ele.name,
               value: Utils.getPercentile(Patient.prediction.predict[ele.name], Patient.histogram.histogram[ele.name]),
-              original_value: ele.value
+              original_value: ele.value,
+              show: false
             };
           });
         };
@@ -44,6 +54,7 @@ angular.module('calypsoClientApp')
         // init svg
         var svg = d3.select(element[0])
           .append('svg')
+          .attr('aria-label', 'dualbarsSvg')
           .style('width', '100%');
 
         // resize logic
@@ -51,21 +62,21 @@ angular.module('calypsoClientApp')
         $window.addEventListener('resize', function () {
           if (timeout) $timeout.cancel(timeout);
           timeout = $timeout(function () {
-            scope.render(preprocess(scope.data), scope.config);
+            if (scope.data) scope.render(preprocess(scope.data), scope.config);
           }, 500);
         });
 
         // watch data
         scope.$watch('data', function (newData) {
-          scope.render(preprocess(newData), scope.config);
+          if (newData) scope.render(preprocess(newData), scope.config);
         }, true);
 
         scope.$watch('config', function (newConfig) {
-          scope.render(preprocess(scope.data), newConfig);
+          if (scope.data && newConfig) scope.render(preprocess(scope.data), newConfig);
         }, true);
 
         scope.$on('patient-update', function () {
-          scope.render(preprocess(scope.data), scope.config);
+          if (scope.data) scope.render(preprocess(scope.data), scope.config);
         });
 
         var dragmove = function () {
@@ -84,7 +95,7 @@ angular.module('calypsoClientApp')
           // sizing logic
           if (config.autoBarHeight) barHeight = $(window).height() / (data.length + 1) - barPadding - 40;
           if (barHeight < 57) barHeight = 57;
-          var width = d3.select(element[0]).node().offsetWidth - graphMargin - groupPadding - sidePadding;
+          var width = d3.select(element[0]).node().offsetWidth - graphMargin - groupPadding - sidePadding - 70;
           var height = ((data.length + 1) * (barHeight + barPadding)) + graphMargin + barMargin + topPadding;
           svg.attr('height', height);
 
@@ -92,20 +103,16 @@ angular.module('calypsoClientApp')
             .domain([0, 100])
             .range([0, width]);
 
-          var tickDensity = d3.scale.linear()
-            .domain([300, 600])
-            .range([5, 15])
-            .clamp(true);
-
+          // x-axis parameters
           var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient('top')
             .innerTickSize(-height + barHeight + barMargin + barPadding + graphMargin)
             .outerTickSize(0)
-            .ticks(tickDensity(width))
+            .tickValues([0, 25, 50, 75, 100])
             .tickPadding(10)
             .tickFormat(function (d) {
-              return d + 'th';
+              return d;
             });
 
           var radiusScale = d3.scale.linear()
@@ -115,25 +122,33 @@ angular.module('calypsoClientApp')
           var group = svg.append('g').attr('transform', 'translate(' + ((groupPadding / 2) + sidePadding) + ',' + topPadding + ')');
 
           group.append('text')
-            .attr('x', xScale(95))
+            .attr('x', xScale(45))
             .attr('y', 0)
             .attr('font-size', '1em')
-            .text('Percentile');
+            .attr('class', 'unselectable')
+            .attr('font-weight', 'bold')
+            .text('Percentile Risk');
 
           group.append('g').attr('class', 'x axis')
             .attr('transform', 'translate(0, ' + graphMargin + ')')
-            .call(xAxis);
+            .call(xAxis)
+            .selectAll('.tick text')
+            .append('tspan')
+            .style('font-size', '9px')
+            .attr('dy', '-.6em')
+            .text('th');
 
           // center line
           group.append('g').attr('class', 'y axis')
             .append('line')
-            .attr('x1', xScale(50))
-            .attr('x2', xScale(50))
+            .attr('x1', xScale(0))
+            .attr('x2', xScale(0))
             .attr('y1', graphMargin)
             .attr('y2', height - barHeight - barPadding)
             .attr('stroke-width', 3);
 
           // bars
+
           if (config.barOpacity > 0) {
             var bars = group.append('g').attr('class', 'bars')
               .selectAll('rect')
@@ -147,14 +162,14 @@ angular.module('calypsoClientApp')
               .attr('class', function (d) {
                 return d.value > 50 ? 'bar negative' : 'bar positive';
               })
-              .attr('x', function (d) {
-                return xScale(Math.min(50, d.value));
+              .attr('x', function () {
+                return xScale(0);
               })
               .attr('y', function (d, i) {
                 return (i * (barHeight + barPadding)) + graphMargin + barMargin;
               })
               .attr('width', function (d) {
-                return Math.abs(xScale(d.value) - xScale(50));
+                return Math.abs(xScale(d.value));
               })
               .attr('height', barHeight)
               .attr('opacity', config.barOpacity)
@@ -164,6 +179,12 @@ angular.module('calypsoClientApp')
               })
               .attr('tooltip', function (d) {
                 return 'Absolute: ' + d.original_value.toFixed(2) + ', Relative: ' + d.value.toFixed(2);
+              })
+              .attr('ng-mouseover', function (d) {
+                return 'hoverIn(\'' + d.name + '\', true)';
+              })
+              .attr('ng-mouseleave', function (d) {
+                return 'hoverOut(\'' + d.name + '\', false)';
               });
           }
 
@@ -172,7 +193,7 @@ angular.module('calypsoClientApp')
             .selectAll('line')
             .data(data).enter()
             .append('line')
-            .attr('x1', xScale(50))
+            .attr('x1', xScale(0))
             .attr('y1', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + barHeight / 2;
             })
@@ -241,7 +262,7 @@ angular.module('calypsoClientApp')
               return d.value > 50 ? 'right' : 'left';
             })
             .attr('tooltip', function (d) {
-              return 'Absolute: ' + d.original_value.toFixed(2) + ', Relative: ' + d.value.toFixed(2);
+              return 'Absolute: ' + d.original_value.toFixed(2) + ', Percentile Risk: ' + d.value.toFixed(2);
             });
 
           // onclick logic
@@ -265,150 +286,97 @@ angular.module('calypsoClientApp')
             .append('g').attr('class', 'text')
             .append('text')
             .attr('x', function () {
-              return xScale(50) + textMargin;
+              return textMargin - 125;
+            })
+            .attr('y', function (d, i) {
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 25;
+            })
+            .text(function (d) {
+              var nameArray = Utils.getName(d.name).split(' ');
+              if (['Urinary', 'Any'].indexOf(nameArray[0]) >= 0) {
+                return nameArray[0] + ' ' + nameArray[1];
+              }
+              if (nameArray[0] === '30') {
+                return nameArray[0] + ' ' + nameArray[1] + ' ' + nameArray[2];
+              }
+              return nameArray[0];
+            })
+            .attr('font-size', '.8em')
+            .attr('font-weight', 'bold');
+
+          group.append('g').attr('class', 'texts')
+            .selectAll('text')
+            .data(data).enter()
+            .append('g').attr('class', 'text')
+            .append('text')
+            .attr('x', function () {
+              return textMargin - 125;
+            })
+            .attr('y', function (d, i) {
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
+            })
+            .text(function (d) {
+              var nameArray = Utils.getName(d.name).split(' ');
+              var noIndent = ['Urinary', 'Any', '30'];
+              if (noIndent.indexOf(nameArray[0]) < 0) {
+                return nameArray[1];
+              }
+              if (nameArray[0] === 'Urinary') {
+                return nameArray[2];
+              }
+            })
+            .attr('font-size', '.8em')
+            .attr('font-weight', 'bold');
+
+          //risk value labels
+          var riskLabelGroup = group.append('g').attr('class', 'risk-labels')
+            .selectAll('text')
+            .data(data).enter()
+            .append('g').attr('class', 'risk-label-group');
+
+          riskLabelGroup.append('text')
+            .attr('x', function (d) {
+              return xScale(d.value + 2);
             })
             .attr('y', function (d, i) {
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
             })
             .text(function (d) {
-              return Utils.getName(d.name);
+              if (d.original_value === 0) {
+                return 'Absolute Risk: Neglible';
+              } else {
+                return 'Absolute Risk: ' + Math.round(d.original_value * 1000) / 10 + '%';
+              }
             })
-            .attr('font-size', '.8em');
-
-          // legend
-          var legendY = (data.length * (barHeight + barPadding)) + graphMargin + barMargin + 15;
-          var legendX = -55;
-          legendY = barHeight + 20;
-          var legend = group.append('g')
-            .attr('class', 'legend')
-            .attr('x', function () {})
-            .attr('transform', 'translate(' + legendX + ',' + legendY + ')')
-            .attr('height', 100)
-            .attr('width', 100);
-
-          var relative = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 350)');
-          relative.append('line')
-            .attr('x1', -50)
-            .attr('y1', 20)
-            .attr('x2', 30)
-            .attr('y2', 20)
-            .style('stroke-width', 1)
-            .style('stroke-dasharray', ('3, 3'))
-            .style('stroke', '#4393B9')
-            .style('fill', 'none');
-          relative.append('text')
-            .attr('x', -50)
-            .attr('y', -10)
-            .attr('height', 30)
-            .attr('width', 100)
             .attr('font-size', '.8em')
-            .text('Percentile Risk');
+            .attr('font-weight', 'bold')
+            .attr('ng-show', function (d) {
+              return 'showTable.' + d.name;
+            });
 
-          var absolute = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(-50, -35)');
-
-          absolute.append('text')
-            .attr('font-size', '.8em')
-            .text('Absolute Risk');
-
-          var five = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 0)');
-          five.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.05));
+          riskLabelGroup.append('text')
+            .attr('x', function (d) {
+              return xScale(d.value + 2);
             })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          five.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          five.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('5%');
-
-          var ten = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 50)');
-          ten.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.1));
+            .attr('y', function (d, i) {
+              return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          ten.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          ten.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('10%');
-
-          var twoFive = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 120)');
-          twoFive.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.25));
+            .text(function (d) {
+              if (Math.round(d.value, 0) <= 1) {
+                return 'Percentile Risk: 1st';
+              } else if (Math.round(d.value, 0) === 2) {
+                return 'Percentile Risk: 2nd';
+              } else if (Math.round(d.value, 0) === 3) {
+                return 'Percentile Risk: 3rd';
+              } else {
+                return 'Percentile Risk: ' + Math.round(d.value, 0) + 'th';
+              }
             })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          twoFive.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          twoFive.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
             .attr('font-size', '.8em')
-            .text('25%');
-
-          var fifty = legend.append('g')
-            .append('g')
-            .attr('transform', 'translate(0, 210)');
-          fifty.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function () {
-              return radiusScale(Math.sqrt(0.5));
-            })
-            .attr('class', 'point negative')
-            .attr('opacity', 0.5);
-          fifty.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', 5)
-            .attr('class', 'point positive');
-          fifty.append('text')
-            .attr('x', 15)
-            .attr('y', 5)
-            .attr('height', 30)
-            .attr('width', 100)
-            .attr('font-size', '.8em')
-            .text('50%');
+            .attr('font-weight', 'bold')
+            .attr('ng-show', function (d) {
+              return 'showTable.' + d.name;
+            });
 
           element.removeAttr('d3-Dualbars');
           $compile(element)(scope);

@@ -381,14 +381,14 @@ angular.module('calypsoClientApp')
 
     var getName = function (name) {
       var map = {
-        'ssi': 'Surgical Site Infection',
-        'cardiac': 'Cardiac Arrest',
-        'dvt': 'Deep Vein Thrombosis',
-        'pna': 'Pneumonia',
-        'renal': 'Renal Failure',
+        'ssi': 'Wound Complications',
+        'cardiac': 'Cardiac Complications',
+        'dvt': 'Thrombotic Complications',
+        'pna': 'Respiratory Complications',
+        'renal': 'Renal Complications',
         'uti': 'Urinary Tract Infection',
-        'morbidity': 'Morbidity',
-        'mortality': 'Mortality'
+        'morbidity': 'Any Complication',
+        'mortality': '30 Day Mortality'
       };
 
       return map[name];
@@ -418,20 +418,21 @@ angular.module('calypsoClientApp')
     };
 
     var getInterventions = function (model, values) {
-      var list = [];
+      var listOutcomes = [];
+      var listPostop = [];
       var interventions = dataConstants.INTERVENTIONS;
 
       model = getOutcomeLink(model);
 
       Object.keys(interventions).map(function (label) {
         if (isTrigger(interventions[label].trigger, values[label])) {
-          list.push(interventions[label]);
+          listPostop.push(interventions[label]);
         }
         if (model === label) {
-          list.push(interventions[label]);
+          listOutcomes.push(interventions[label]);
         }
       });
-      return list;
+      return [listOutcomes, listPostop];
     };
 
     return {

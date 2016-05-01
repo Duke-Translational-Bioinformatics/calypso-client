@@ -14,9 +14,7 @@ angular.module('calypsoClientApp')
         $scope.Utils = Utils;
 
         $scope.toggle = function () {
-          if (!$mdMedia('gt-md')) {
-            $mdSidenav('left').toggle();
-          }
+          $mdSidenav('left').toggle();
         };
 
         var timeout;

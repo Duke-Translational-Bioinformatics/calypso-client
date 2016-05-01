@@ -24,20 +24,23 @@ angular.module('calypsoClientApp')
           });
         };
 
-        $scope.values = [];
+        $scope.valuesOutcome = [];
+        $scope.valuesPostop = [];
 
         $scope.orderObj = {
           selected_orders: [],
           orders: []
         };
 
-        $scope.$watch('values', function (newValues) {
+        $scope.$watch('valuesOutcome', function (newValues) {
           var orders = newValues.map(function (ele, index) {
             if (ele) return index;
           }).filter(function (ele) {
-            if (ele !== undefined) return true;
+            if (ele !== undefined) {
+              return true;
+            }
           }).map(function (ele) {
-            return $scope.interventions[ele];
+            return $scope.outcomes[ele];
           });
 
           orders = _.uniq(_.flatten(orders.map(function (ele) {
@@ -53,7 +56,32 @@ angular.module('calypsoClientApp')
           $scope.orderObj.orders = orders;
         }, true);
 
-        $scope.interventions = Utils.getInterventions($scope.name, Patient.values);
+        $scope.$watch('valuesPostop', function (newValues) {
+          var orders = newValues.map(function (ele, index) {
+            if (ele) return index;
+          }).filter(function (ele) {
+            if (ele !== undefined) {
+              return true;
+            }
+          }).map(function (ele) {
+            return $scope.postop[ele];
+          });
+
+          orders = _.uniq(_.flatten(orders.map(function (ele) {
+            return ele.order_ids;
+          }))).filter(function (ele) {
+            if (ele) return true;
+          });
+
+          orders = orders.map(function (ele) {
+            return dataConstants.ORDERS[ele];
+          });
+
+          $scope.orderObj.orders = orders;
+        }, true);
+
+        $scope.outcomes = Utils.getInterventions($scope.name, Patient.values)[0];
+        $scope.postop = Utils.getInterventions($scope.name, Patient.values)[1];
         $scope.resample();
       }
     };

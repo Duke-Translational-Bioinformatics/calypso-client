@@ -1,5 +1,5 @@
 <section layout-fill layout="row">
-  <md-sidenav flex sidenav-push-in class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+  <md-sidenav aria-label="sidebarSection" flex sidenav-push-in class="md-sidenav-left md-whiteframe-z1" md-component-id="left">
     <div layout="column" class="unselectable main-body">
       <md-toolbar class="md-accent unselectable" flex="initial">
         <div class="md-toolbar-tools">
@@ -8,13 +8,13 @@
         </div>
         <md-divider></md-divider>
       </md-toolbar>
-      <md-button ng-click="Patient.find_patient(Patient.values.caseid)">Find Patient
+      <md-button aria-label="findButton" ng-click="Patient.find_patient(Patient.values.caseid)">Find Patient
         <strong>{{Patient.values.caseid}}</strong>
       </md-button>
       <md-divider></md-divider>
-      <md-button ngf-select ngf-change="Patient.load_patient($files)"> Load Patient</md-button>
+      <md-button aria-label="loadButton" ngf-select ngf-change="Patient.load_patient($files)"> Load Patient</md-button>
       <md-divider></md-divider>
-      <md-button ng-click="Patient.download_patient(Patient.values)">Download Patient</md-button>
+      <md-button aria-label="downloadButton" ng-click="Patient.download_patient(Patient.values)">Download Patient</md-button>
       <md-divider></md-divider>
 
       <md-content flex="auto" style="overflow-y: auto;" layout-padding>
@@ -118,21 +118,29 @@
     </div>
   </md-sidenav>
 
-  <md-button aria-label="Sidebar FAB" hide-gt-md ng-click="toggle()" class="superfab md-fab md-mini md-primary">
+  <md-button aria-label="SidebarFAB" ng-click="toggle()" class="superfab md-fab md-mini md-primary">
     <md-icon md-svg-src="./assets/images/menu.svg"></md-icon>
   </md-button>
 
   <md-content layout="column" layout-padding layout-margin flex>
     <md-card flex="80">
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          Patient Overview
+      <md-toolbar layout="row" class="unselectable">
+        <div class="md-toolbar-tools unselectable">
+          <!-- Placeholder for logo
+         <md-button class="md-icon-button" aria-label="Settings">
+         <img src="../assets/images/favicon-96x96.png" alt="CALYPSO" style="width:54px;height:54px;", align="middle">
+        </md-button>
+         
+         <img src="../assets/images/favicon-96x96.png" alt="CALYPSO" style="width:54px;height:54px;", align="middle">
+         -->
+          <b>Patient Overview</b>
         </div>
+        <div aria-label="dualbarsLegend" d3-dualbars-legend></div>
       </md-toolbar>
-      <div class="md-whiteframe-5dp" d3-dualbars data="Patient.prediction.predict"></div>
+      <div class="md-whiteframe-5dp " aria-label="dualbarsSection" d3-dualbars data="Patient.prediction.predict"></div>
     </md-card>
     <footer class="footer" flex>
-      <p>&copy; 2016 The Calypso Project. All Rights Reserved.</p>
+      <p>&copy;2016 The Calypso Project. All Rights Reserved.</p>
     </footer class="footer">
   </md-content>
 </section>

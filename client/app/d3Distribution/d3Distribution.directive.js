@@ -159,39 +159,6 @@ angular.module('calypsoClientApp')
             })
             .attr('fill-opacity', 0.8);
 
-            // .data(histogram_data).enter()
-            // .append('rect', '.axis')
-            // .attr('class', function (d) {
-            //   if (d.x <= patient_prediction && d.x + d.dx > patient_prediction) {
-            //     return 'bar primary';
-            //   }
-            //   if (d.x < patient_prediction) {
-            //     return 'bar negative';
-            //   } else {
-            //     return 'bar';
-            //   }
-            // })
-            // .attr('x', function (d) {
-            //   return x(d.x) + 1;
-            // })
-            // .attr('y', function (d) {
-            //   return y(d.y);
-            // })
-            // .attr('width', x(histogram_data[0].dx + histogram_data[0].x) - x(histogram_data[0].x) - 1)
-            // .attr('height', function (d) {
-            //   return height - y(d.y);
-            // })
-            // .attr('fill-opacity', 0.8)
-            // .attr('tooltip-append-to-body', true)
-            // .attr('tooltip-placement', 'top')
-            // .attr('tooltip', function (d) {
-            //   if (d.x < patient_prediction && d.x + d.dx > patient_prediction) {
-            //     return 'patient is here: ' + (Utils.getPercentile(patient_prediction, histogram_array) * 100).toFixed(1) + '%';
-            //   } else {
-            //     return (Utils.getPercentile(d.x + d.dx, histogram_array) * 100).toFixed(1) + '%';
-            //   }
-            // });
-
           var legendX = x(Math.max.apply(null, histogram_array)) - 60;
           var legendY = y(0) - 300; // y(0) - 100
           var legend = group.append('g')

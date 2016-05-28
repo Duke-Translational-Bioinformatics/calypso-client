@@ -158,7 +158,7 @@ angular.module('calypsoClientApp')
               return d.freq;
             })
             .attr('fill-opacity', 0.8);
-
+            
           var legendX = x(Math.max.apply(null, histogram_array)) - 60;
           var legendY = y(0) - 300; // y(0) - 100
           var legend = group.append('g')

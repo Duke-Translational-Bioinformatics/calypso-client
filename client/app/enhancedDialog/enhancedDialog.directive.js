@@ -9,7 +9,7 @@ angular.module('calypsoClientApp')
       scope: {
         name: '@'
       },
-      controller: function ($scope, $mdDialog, Patient, $rootScope, Utils, dataConstants) {
+      controller: function ($scope, $mdDialog, Patient, $rootScope, Utils, dataConstants, $state, $http, $q) {
         $scope.Patient = Patient;
         $scope.Utils = Utils;
         $scope.dataConstants = dataConstants;
@@ -17,6 +17,12 @@ angular.module('calypsoClientApp')
         $scope.closeDialog = function () {
           $mdDialog.hide();
         };
+
+        $scope.print = function(){
+          $mdDialog.hide();
+          $state.go('print',{factors: $scope.checkedFactor, orders: $scope.checkedOrder});
+
+        }
 
         $scope.resample = function () {
           Patient.refresh(Patient.values).then(function () {
@@ -30,6 +36,39 @@ angular.module('calypsoClientApp')
         $scope.orderObj = {
           selected_orders: [],
           orders: []
+        };
+
+        //bind checkboxes to an array
+        $scope.checkedFactor = [];
+        $scope.checkedOrder = [];
+        var orderID_set = [];
+
+        $scope.selectFactor = function(obj){
+          var index = $scope.checkedFactor.indexOf(obj);
+          if (index < 0){
+            $scope.checkedFactor.push(obj);
+          }
+          if (index > -1){
+            $scope.checkedFactor.splice(index, 1);
+          }
+          //clear and remake orders list on each checkbox
+          $scope.orderObj.orders = [];
+          orderID_set = [];
+          $scope.checkedFactor.map(function (iObject) {
+            console.log(iObject.id)
+             get_orders_server(iObject.id);
+          });
+          
+        };
+
+        $scope.selectIntervention = function(order){
+          var index1 = $scope.checkedOrder.indexOf(order);
+          if (index1 < 0){
+            $scope.checkedOrder.push(order);
+          }
+          if (index1 > -1){
+            $scope.checkedOrder.splice(index1, 1);
+          }
         };
 
         $scope.$watch('valuesOutcome', function (newValues) {
@@ -56,6 +95,8 @@ angular.module('calypsoClientApp')
           $scope.orderObj.orders = orders;
         }, true);
 
+
+
         $scope.$watch('valuesPostop', function (newValues) {
           var orders = newValues.map(function (ele, index) {
             if (ele) return index;
@@ -72,17 +113,46 @@ angular.module('calypsoClientApp')
           }))).filter(function (ele) {
             if (ele) return true;
           });
-
           orders = orders.map(function (ele) {
             return dataConstants.ORDERS[ele];
           });
 
           $scope.orderObj.orders = orders;
+
         }, true);
 
-        $scope.outcomes = Utils.getInterventions($scope.name, Patient.values)[0];
-        $scope.postop = Utils.getInterventions($scope.name, Patient.values)[1];
+        var get_orders_server = function(id){
+          return $http({
+            url: 'http://54.186.43.170/api/orders/target/' + id,
+            method: 'GET'
+          }).then(function (response){
+            makeSet(response.data);
+          });
+        }
+
+        var makeSet = function(orderArray){
+          var mySet = $scope.orderObj.orders;
+          orderArray.map(function (order){
+            if (orderID_set.indexOf(order.id) < 0){
+              mySet.push(order);
+              orderID_set.push(order.id);
+            }
+          });
+          $scope.orderObj.orders = mySet;
+        }
+
+        var get_interventions_server = function(id){
+          return $http({
+            url: 'http://54.186.43.170/api/targets/patient/' + id,
+            method: 'GET'
+          }).then(function (response){
+            $scope.postop = response.data;
+          });
+        };
+        //run
+        get_interventions_server(Patient.values.caseid);
         $scope.resample();
+
       }
     };
   });

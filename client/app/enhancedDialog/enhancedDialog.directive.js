@@ -13,6 +13,8 @@ angular.module('calypsoClientApp')
         $scope.Patient = Patient;
         $scope.Utils = Utils;
         $scope.dataConstants = dataConstants;
+        $scope.postop = Patient.targets;
+
 
         $scope.closeDialog = function () {
           $mdDialog.hide();
@@ -140,17 +142,7 @@ angular.module('calypsoClientApp')
           });
           $scope.orderObj.orders = mySet;
         }
-
-        var get_interventions_server = function(id){
-          return $http({
-            url: 'http://54.186.43.170/api/targets/patient/' + id,
-            method: 'GET'
-          }).then(function (response){
-            $scope.postop = response.data;
-          });
-        };
         //run
-        get_interventions_server(Patient.values.caseid);
         $scope.resample();
 
       }

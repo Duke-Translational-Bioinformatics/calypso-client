@@ -80,7 +80,8 @@ angular.module('calypsoClientApp')
         'mortality': null
       },
       prediction: {},
-      percentile: {}
+      percentile: {},
+      targets: {}
     };
 
     // init values
@@ -107,6 +108,7 @@ angular.module('calypsoClientApp')
             if (i<values_array.length) i++;
           });
         };
+        console.log(patientService.targets);
         patientService.values = patient_values;
         $rootScope.$broadcast('patient-update');
       });
@@ -116,19 +118,20 @@ angular.module('calypsoClientApp')
       var deferred = $q.defer();
       $http.get('http://54.186.43.170/api/patients/' + caseid).success(function (patient_values) {
         patientService.refresh(patient_values).then(function () {
-          deferred.resolve();
+          $http.get('http://54.186.43.170/api/targets/patient/1').then(function (targets){
+            patientService.targets = targets.data;
+          });
         });
+          deferred.resolve();
       }).error(function (err) {
         console.log(err);
       });
       return deferred.promise;
     };
 
-
-
     patientService.get_histogram = function (complication, caseid) {
       return $http({
-        url: 'http://54.186.43.170/api/analysis/histogram/' + caseid, //'http://54.186.43.170/api/analysis/predict/0?values='
+        url: 'http://54.186.43.170/api/analysis/histogram/' + caseid,
         method: 'GET',
         params: {
           complication: complication,
@@ -139,18 +142,25 @@ angular.module('calypsoClientApp')
 
     patientService.get_prediction = function (caseid) {
       return $http({
-        url: 'http://54.186.43.170/api/analysis/predict/' + caseid, //'http://54.186.43.170/api/analysis/predict/0?values='
+        url: 'http://54.186.43.170/api/analysis/predict/' + caseid,
         method: 'GET'
       });
     };
 
     patientService.get_percentile = function (caseid) {
       return $http({
-        url: 'http://54.186.43.170/api/analysis/percentile/' + caseid, //'http://54.186.43.170/api/analysis/predict/0?values='
+        url: 'http://54.186.43.170/api/analysis/percentile/' + caseid, 
         method: 'GET'
       });
     };
 
+    // patientService.get_interventions= function(caseid){
+    //   console.log(caseid);
+    //   return $http({
+    //     url: 'http://54.186.43.170/api/targets/patient/' + caseid,
+    //     method: 'GET'
+    //   });
+    // };
     patientService.download_patient = function (data) {
       var json = JSON.stringify(data, null, '\t');
       var blob = new Blob([json], {

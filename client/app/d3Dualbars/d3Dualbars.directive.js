@@ -45,7 +45,6 @@ angular.module('calypsoClientApp')
             return {
               name: ele.name,
               value: Patient.percentile.percentile[ele.name],
-              // value: Utils.getPercentile(Patient.prediction.predict[ele.name], Patient.histogram.histogram[ele.name]),
               original_value: ele.value,
               show: false
             };
@@ -124,9 +123,7 @@ angular.module('calypsoClientApp')
           var group = svg.append('g').attr('transform', 'translate(' + ((groupPadding / 2) + sidePadding) + ',' + topPadding + ')');
 
           group.append('text')
-
             .attr('x', xScale(95))
-
             .attr('y', 0)
             .attr('font-size', '1em')
             .attr('class', 'unselectable')
@@ -246,7 +243,6 @@ angular.module('calypsoClientApp')
             })
             .attr('ng-mouseleave', function (d) {
                 return 'hoverOut(\'' + d.name + '\', false)';
-
             });
 
           // point circles
@@ -368,7 +364,6 @@ angular.module('calypsoClientApp')
             })
             .attr('font-size', '.8em')
             .attr('font-weight', 'bold')
-
             .attr('ng-show', function (d) {
               return 'showTable.' + d.name;
             });
@@ -381,7 +376,6 @@ angular.module('calypsoClientApp')
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })
             .text(function (d) {
-
               if (Math.round(d.value, 0) <= 1) {
                 return 'Percentile Risk: 1st';
               } else if (Math.round(d.value, 0) === 2) {
@@ -394,7 +388,6 @@ angular.module('calypsoClientApp')
             })
             .attr('font-size', '.8em')
             .attr('font-weight', 'bold')
-
             .attr('ng-show', function (d) {
               return 'showTable.' + d.name;
             });

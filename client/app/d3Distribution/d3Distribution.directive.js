@@ -157,6 +157,7 @@ angular.module('calypsoClientApp')
             .attr('height', function (d){
               return d.freq;
             })
+<<<<<<< HEAD
             .attr('fill-opacity', 0.8);
 
             // .data(histogram_data).enter()
@@ -191,6 +192,18 @@ angular.module('calypsoClientApp')
             //     return (Utils.getPercentile(d.x + d.dx, histogram_array) * 100).toFixed(1) + '%';
             //   }
             // });
+=======
+            .attr('fill-opacity', 0.8)
+            .attr('tooltip-append-to-body', true)
+            .attr('tooltip-placement', 'top')
+            .attr('tooltip', function (d) {
+              if (d.x < patient_prediction && d.x + d.dx > patient_prediction) {
+                return 'patient is here: ' + (Utils.getPercentile(patient_prediction, histogram_array) * 100).toFixed(1) + '%';
+              } else {
+                return (Utils.getPercentile(d.x + d.dx, histogram_array) * 100).toFixed(1) + '%';
+              }
+            });
+>>>>>>> d3abaab6c3c3c6fb1ad9ba16a84e8f258d8f6121
 
           var legendX = x(Math.max.apply(null, histogram_array)) - 60;
           var legendY = y(0) - 300; // y(0) - 100

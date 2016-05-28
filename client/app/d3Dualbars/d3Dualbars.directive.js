@@ -44,11 +44,13 @@ angular.module('calypsoClientApp')
           }).map(function (ele) {
             return {
               name: ele.name,
-              value: Utils.getPercentile(Patient.prediction.predict[ele.name], Patient.histogram.histogram[ele.name]),
+              value: Patient.percentile.percentile[ele.name],
+              // value: Utils.getPercentile(Patient.prediction.predict[ele.name], Patient.histogram.histogram[ele.name]),
               original_value: ele.value,
               show: false
             };
           });
+          $scope.open
         };
 
         // init svg
@@ -103,6 +105,7 @@ angular.module('calypsoClientApp')
             .domain([0, 100])
             .range([0, width]);
 
+          // x-axis parameters
           var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient('top')
@@ -111,7 +114,7 @@ angular.module('calypsoClientApp')
             .tickValues([0, 25, 50, 75, 100])
             .tickPadding(10)
             .tickFormat(function (d) {
-              return d + 'th';
+              return d;
             });
 
           var radiusScale = d3.scale.linear()
@@ -121,7 +124,9 @@ angular.module('calypsoClientApp')
           var group = svg.append('g').attr('transform', 'translate(' + ((groupPadding / 2) + sidePadding) + ',' + topPadding + ')');
 
           group.append('text')
+
             .attr('x', xScale(95))
+
             .attr('y', 0)
             .attr('font-size', '1em')
             .attr('class', 'unselectable')
@@ -130,7 +135,12 @@ angular.module('calypsoClientApp')
 
           group.append('g').attr('class', 'x axis')
             .attr('transform', 'translate(0, ' + graphMargin + ')')
-            .call(xAxis);
+            .call(xAxis)
+            .selectAll('.tick text')
+            .append('tspan')
+            .style('font-size', '9px')
+            .attr('dy', '-.6em')
+            .text('th');
 
           // center line
           group.append('g').attr('class', 'y axis')
@@ -236,6 +246,7 @@ angular.module('calypsoClientApp')
             })
             .attr('ng-mouseleave', function (d) {
                 return 'hoverOut(\'' + d.name + '\', false)';
+
             });
 
           // point circles
@@ -285,6 +296,7 @@ angular.module('calypsoClientApp')
             });
           };
 
+          
           // text labels
           group.append('g').attr('class', 'texts')
             .selectAll('text')
@@ -348,9 +360,15 @@ angular.module('calypsoClientApp')
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 20;
             })
             .text(function (d) {
-              return 'Absolute Risk: ' + Math.round(d.original_value * 1000) / 10 + '%';
+              if (d.original_value === 0) {
+                return 'Absolute Risk: Neglible';
+              } else {
+                return 'Absolute Risk: ' + Math.round(d.original_value * 1000) / 10 + '%';
+              }
             })
             .attr('font-size', '.8em')
+            .attr('font-weight', 'bold')
+
             .attr('ng-show', function (d) {
               return 'showTable.' + d.name;
             });
@@ -363,9 +381,20 @@ angular.module('calypsoClientApp')
               return (i * (barHeight + barPadding)) + graphMargin + barMargin + 45;
             })
             .text(function (d) {
-              return 'Relative Risk: ' + Math.round(d.value * 100) / 100 + '%';
+
+              if (Math.round(d.value, 0) <= 1) {
+                return 'Percentile Risk: 1st';
+              } else if (Math.round(d.value, 0) === 2) {
+                return 'Percentile Risk: 2nd';
+              } else if (Math.round(d.value, 0) === 3) {
+                return 'Percentile Risk: 3rd';
+              } else {
+                return 'Percentile Risk: ' + Math.round(d.value, 0) + 'th';
+              }
             })
             .attr('font-size', '.8em')
+            .attr('font-weight', 'bold')
+
             .attr('ng-show', function (d) {
               return 'showTable.' + d.name;
             });

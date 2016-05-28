@@ -2,7 +2,7 @@
 
 angular.module('calypsoClientApp')
   .constant('dataConstants', {
-    COMPLICATIONS: ['ssi', 'cardiac', 'dvt', 'pna', 'renal', 'uti', 'morbidity', 'mortality'],
+    COMPLICATIONS: ['wound_compilcations', 'cardiac_complications', 'respiratory_complications', 'thrombeombolic_complications', 'renal_complications', 'urinary_tract_infections', 'neurologic_complications', 'systemic_septic_complications', 'reoperations', 'morbidity', 'mortality'],
     AVERAGE_RISK: {
       ssi: 0.069740481215882,
       cardiac: 0.019877459851071779,
@@ -558,52 +558,52 @@ angular.module('calypsoClientApp')
     ORDERS: [
       null, {
         'order_type': 'order',
-        'order_text': 'Remove foley. [Recommended within 24 hours after operation].'
+        'order_text': 'Order to remove foley within 24 hours after operation, except when otherwise indicated'
       }, {
         'order_type': 'order',
-        'order_text': 'Post Wash Hands sign. [Reminder to wash hands before/ after dressing change.]'
+        'order_text': 'Order nursing alert: post reminder to wash hands before/after dressing change'
       }, {
         'order_type': 'order',
-        'order_text': 'Remove dressing 24-48 hours after operation. '
+        'order_text': 'Order to remove dressing 24-48 hours after operation'
       }, {
         'order_type': 'order',
-        'order_text': 'Educate patient and family on proper care for sterile dressing changes. [This can be a nursing/ PRM order.]'
+        'order_text': 'Order nursing alert: Educate patient and family on proper care for sterile dressing changes'
       }, {
         'order_type': 'order',
-        'order_text': 'Check BMP or POC glucose and assess for glucose < 200'
+        'order_text': 'Check POC glucose. Notify team for for glucose > 200 mg/dL'
       }, {
         'order_type': ' page physician. ',
-        'order_text': 'If temperature < or > 36C'
+        'order_text': 'Check body temperature, if <36C or >38.5C, notify the rounding team'
       }, {
         'order_type': 'order',
-        'order_text': 'Continue beta-blockers postoperatively.'
+        'order_text': 'Continue beta-blockers postoperatively for patients that were already taking beta blockers'
       }, {
         'order_type': 'order',
-        'order_text': 'Monitor strict I/Os [For renal or heart failure patients.]'
+        'order_text': 'Monitor strict I/Os for renal or heart failure patients'
       }, {
         'order_type': 'order',
-        'order_text': 'Monitor daily weights.'
+        'order_text': 'Monitor daily weights'
       }, {
         'order_type': 'order',
-        'order_text': 'Start unfractionated heparin within 2 hours of operation and every 8-12 hours afterwards OR low molecular weight heparin within 12 hours and then daily.'
+        'order_text': 'Start unfractionated heparin every 8-12 hours afterwards operation'
       }, {
         'order_type': 'order',
-        'order_text': 'Resume chronic anticoagulation therapy within 12-24 hours after surgery.'
+        'order_text': 'Resume chronic anticoagulation therapy within 12-24 hours after surgery'
       }, {
         'order_type': 'order',
-        'order_text': 'Continue DVT chemoprophylaxis with acquired hypercoagulable states (i.e. cancer). [Recommended for 2 weeks postoperatively.]'
+        'order_text': 'Continue DVT chemoprophylaxis with acquired hypercoagulable states 2 week after operation (i.e. cancer)'
       }, {
         'order_type': 'order',
         'order_text': 'Order incentive spirometer for deep breathing. '
       }, {
         'order_type': 'order',
-        'order_text': 'Order assisted ambulation around the room and on the floor as soon as possible. '
+        'order_text': 'Order nursing alert: assisted ambulation around the room and on the floor as soon as possible'
       }, {
         'order_type': 'order',
         'order_text': 'Check BMP for electrolytes and BUN/Cr. '
       }, {
         'order_type': ' re-start anticoagulation:',
-        'order_text': 'For patients on anti-coagulation prior to operation'
+        'order_text': 'For patients on anti-coagulation prior to operation, re-start anticoagulation'
       }, {
         'order_type': 'order',
         'order_text': 'Modify risk factors for stroke: Atrial fibrillation: Re-start any heart rate or rhythm medications for control. '
@@ -858,37 +858,37 @@ angular.module('calypsoClientApp')
         'order_text': ''
       }, {
         'order_type': 'consult',
-        'order_text': 'consult: geriatric service'
+        'order_text': 'Consult geriatric service'
       }, {
         'order_type': 'consult',
-        'order_text': 'consult: pharmacy to reconcile home meds '
+        'order_text': 'Order nursing alert: Optimize physical environment (sleep hygiene, minimize tethers, encourage family at bedside, vision/hearing aids, universal fall precautions)'
       }, {
         'order_type': 'consult',
         'order_text': 'consult: social work '
       }, {
         'order_type': 'consult',
-        'order_text': 'consult: PT/OT'
+        'order_text': 'Consult PT/OT for early mobilization'
       }, {
         'order_type': 'systemic narcotics',
-        'order_text': 'alert: Avoid benzo/anticholinergic'
+        'order_text': 'Order pharmacist to assess appropriate pain control regimen to prevent delirium'
       }, {
         'order_type': 'order',
-        'order_text': 'order: lovenox 40mg daily'
+        'order_text': 'Order weight-appropriate DVT prophylaxis'
       }, {
         'order_type': 'order',
-        'order_text': 'order: CPAP for suspected/diagnosed sleep apnea;'
+        'order_text': 'Order CPAP for suspected/diagnosed sleep apnea;'
       }, {
         'order_type': 'order',
-        'order_text': 'order: chest PT'
+        'order_text': 'Order chest physiotherapy'
       }, {
         'order_type': 'order',
-        'order_text': 'order: telemetry'
+        'order_text': 'Order monitored telemetry for at least 24 hours'
       }, {
         'order_type': 'order',
-        'order_text': 'order: weight appropriate DVT prophylaxis'
+        'order_text': 'Order weight appropriate DVT prophylaxis'
       }, {
         'order_type': 'order',
-        'order_text': 'order: multivitamin BID'
+        'order_text': 'Order multivitamin'
       }, {
         'order_type': 'order',
         'order_text': 'order: glucose check q6 or ACHS'
@@ -906,43 +906,43 @@ angular.module('calypsoClientApp')
         'order_text': 'alert: short-acting insulin can be given before meals together with their prandial insulin'
       }, {
         'order_type': 'consult',
-        'order_text': 'consult diabetes service'
+        'order_text': 'Consult endocrine/diabetes service'
       }, {
         'order_type': 'order',
-        'order_text': 'order: nicotine replacement therapy'
+        'order_text': 'Order nicotine replacement therapy'
       }, {
         'order_type': 'order',
-        'order_text': 'order: incentive spirometry'
+        'order_text': 'Order incentive spirometer'
       }, {
         'order_type': 'order',
-        'order_text': 'order: CIWA protocol'
+        'order_text': 'Order CIWA protocol'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: monitor for signs of alcohol withdrawal'
+        'order_text': 'Alert: monitor for signs of alcohol withdrawal'
       }, {
         'order_type': 'order',
-        'order_text': 'order: inhaled bronchodilators PRN or scheduled if part of patient’s home meds'
+        'order_text': 'Order inhaled bronchodilators PRN or scheduled if part of patient’s home meds'
       }, {
         'order_type': 'order',
-        'order_text': 'order: inhaled Bronchodilators'
+        'order_text': 'Order inhaled Bronchodilators'
       }, {
         'order_type': 'order',
-        'order_text': 'order: systemic steroids for those taking chronic steroids'
+        'order_text': 'Order systemic steroids for those taking chronic steroids'
       }, {
         'order_type': 'consult',
-        'order_text': 'consult: Pain management for pain control'
+        'order_text': 'Consult Pain management for pain control'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: reminder to continue appropriate antibiotics'
+        'order_text': 'Alert: reminder to continue appropriate antibiotics'
       }, {
         'order_type': 'order',
-        'order_text': 'order: daily BMP'
+        'order_text': 'Order: daily BMP'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: restrict sedatives: benzo/narcotics'
+        'order_text': 'Alert: restrict sedatives: benzo/narcotics'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: Any drugs with hepatic metabolism should be flagged'
+        'order_text': 'Alert: Any drugs with hepatic metabolism should be flagged'
       }, {
         'order_type': 'alert',
         'order_text': 'Alert: Continue beta blockers in patients who are on beta blockers chronically'
@@ -957,22 +957,22 @@ angular.module('calypsoClientApp')
         'order_text': 'BPA: Continuation of ACE inhibitors or ARBs is reasonable perioperatively'
       }, {
         'order_type': ' avoid nephrotoxic drugs',
-        'order_text': 'alert: renally dose medications'
+        'order_text': 'Alert: renally dose medications'
       }, {
         'order_type': 'consult',
-        'order_text': 'consult nephrology'
+        'order_text': 'Consult Nephrology'
       }, {
         'order_type': 'order',
-        'order_text': 'order: daily weights'
+        'order_text': 'Order: daily weights'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: Postoperative blood pressure goals SBP<140'
+        'order_text': 'Alert: Postoperative blood pressure goals SBP<140'
       }, {
         'order_type': 'order',
-        'order_text': 'order: 8am cortisol'
+        'order_text': 'Order: 8am cortisol'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: Resume home steroids'
+        'order_text': 'Alert: Resume home steroids'
       }, {
         'order_type': 'bpa',
         'order_text': 'BPA: start early enteral feed'
@@ -981,37 +981,37 @@ angular.module('calypsoClientApp')
         'order_text': 'consult: RD nutritionist'
       }, {
         'order_type': ' albumin level',
-        'order_text': 'order: prealbumin'
+        'order_text': 'Order: prealbumin'
       }, {
         'order_type': 'order',
-        'order_text': 'order: ensure'
+        'order_text': 'Order: nutritional supplements (ensure)'
       }, {
         'order_type': 'order',
-        'order_text': 'order: calorie count'
+        'order_text': 'Order: calorie count'
       }, {
         'order_type': 'order',
-        'order_text': 'order: daily CBC'
+        'order_text': 'Order: daily CBC'
       }, {
         'order_type': 'order',
-        'order_text': 'order: fetal monitoring'
+        'order_text': 'Order: fetal monitoring'
       }, {
         'order_type': 'consult',
-        'order_text': 'consult: obstetrics'
+        'order_text': 'Consult: obstetrics'
       }, {
         'order_type': 'order',
-        'order_text': 'order: increased level of care for disturbances to hemodynamic parameters'
+        'order_text': 'Order: increased level of care for disturbances to hemodynamic parameters'
       }, {
         'order_type': 'order',
-        'order_text': 'order:daily CMP'
+        'order_text': 'Order: daily CMP'
       }, {
         'order_type': 'order',
-        'order_text': 'order: FeNa'
+        'order_text': 'Order: FeNa'
       }, {
         'order_type': 'alert',
-        'order_text': 'alert: discuss goals of care'
+        'order_text': 'Alert: discuss goals of care'
       }, {
         'order_type': '',
-        'order_text': 'alert: q12hour microbiology review'
+        'order_text': 'Alert: q12hour microbiology review'
       }
     ],
     INTERVENTIONS: {

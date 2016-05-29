@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('calypsoClientApp')
-  .factory('Utils', function Utils(dataConstants) {
+  .factory('Utils', function Utils(dataConstants, $http, $q, $rootScope) {
     var transform = function (data) {
       var array = [];
 
@@ -379,14 +379,48 @@ angular.module('calypsoClientApp')
       return map[name];
     };
 
+    // var getName = function (name) {
+    //   var map = {
+    //     'ssi': 'Wound Complications',
+    //     'cardiac': 'Cardiac Complications',
+    //     'dvt': 'Thrombotic Complications',
+    //     'pna': 'Respiratory Complications',
+    //     'renal': 'Renal Complications',
+    //     'uti': 'Urinary Tract Infection',
+    //     'morbidity': 'Any Complication',
+    //     'mortality': '30 Day Mortality'
+    //   };
+
+    // var getOutcomeLink = function (name) {
+    //   var map = {
+    //     'urinary_tract_infections': 'OUTCOME_UTI',
+    //     'wound_compilcations': 'OUTCOME_SSI_ANY',
+    //     'cardiac_complications': 'OUTCOME_CARDIAC',
+    //     'thrombeombolic_complications': 'OUTCOME_DVTPE',
+    //     'respiratory_complications': 'OUTCOME_RESP',
+    //     'systemic_septic_complications': 'OUTCOME_SEPTIC',
+    //     'renal_complications': 'OUTCOME_RENAL_FAILURE',
+    //     'bleeding': 'OUTCOME_BLEEDING',
+    //     'neurologic_complications': 'OUTCOME_NEURO',
+    //     'reoperations': 'OUTCOME_REOPERATION',
+    //     'los': 'OUTCOME_LOS',
+    //     'morbidity': 'OUTCOME_MORBIDITY_ANY',
+    //     'mortality': 'OUTCOME_THIRTYDAY_MORTALITY'
+    //   };
+    //   return map[name];
+    // };
+
     var getName = function (name) {
       var map = {
-        'ssi': 'Wound Complications',
-        'cardiac': 'Cardiac Complications',
-        'dvt': 'Thrombotic Complications',
-        'pna': 'Respiratory Complications',
-        'renal': 'Renal Complications',
-        'uti': 'Urinary Tract Infection',
+        'wound_compilcations': 'Wound Complications',
+        'cardiac_complications': 'Cardiac Complications',
+        'respiratory_complications': 'Respiratory Complications',
+        'thrombeombolic_complications': 'Thrombotic Complications',
+        'renal_complications': 'Renal Complications',
+        'urinary_tract_infections': 'Urinary Tract Infection',
+        'neurologic_complications': 'Neurological Complications',
+        'systemic_septic_complications': 'Septic Complications',
+        'reoperations': 'Reoperations',
         'morbidity': 'Any Complication',
         'mortality': '30 Day Mortality'
       };
@@ -417,29 +451,28 @@ angular.module('calypsoClientApp')
       }
     };
 
-    var getInterventions = function (model, values) {
-      var listOutcomes = [];
-      var listPostop = [];
-      var interventions = dataConstants.INTERVENTIONS;
+    // var getInterventions = function (model, values) {
+    //   var listOutcomes = [];
+    //   var listPostop = [];
+    //   var interventions = get_interventions_server();
 
-      model = getOutcomeLink(model);
+    //   model = getOutcomeLink(model);
 
-      Object.keys(interventions).map(function (label) {
-        if (isTrigger(interventions[label].trigger, values[label])) {
-          listPostop.push(interventions[label]);
-        }
-        if (model === label) {
-          listOutcomes.push(interventions[label]);
-        }
-      });
-      return [listOutcomes, listPostop];
-    };
+    //   Object.keys(interventions).map(function (label) {
+    //     if (isTrigger(interventions[label].trigger, values[label])) {
+    //       listPostop.push(interventions[label]);
+    //     }
+    //     if (model === label) {
+    //       listOutcomes.push(interventions[label]);
+    //     }
+    //   });
+    //   return [listOutcomes, listPostop];
+    // };
 
     return {
       transform: transform,
       getPercentile: getPercentile,
       getName: getName,
       getOutcomeLink: getOutcomeLink,
-      getInterventions: getInterventions
     };
   });

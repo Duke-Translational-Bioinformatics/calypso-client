@@ -2,7 +2,7 @@
 
 angular.module('calypsoClientApp')
   .constant('dataConstants', {
-    COMPLICATIONS: ['ssi', 'cardiac', 'dvt', 'pna', 'renal', 'uti', 'morbidity', 'mortality'],
+    COMPLICATIONS: ['wound_compilcations', 'cardiac_complications', 'respiratory_complications', 'thrombeombolic_complications', 'renal_complications', 'urinary_tract_infections', 'neurologic_complications', 'systemic_septic_complications', 'reoperations', 'morbidity', 'mortality'],
     AVERAGE_RISK: {
       ssi: 0.069740481215882,
       cardiac: 0.019877459851071779,

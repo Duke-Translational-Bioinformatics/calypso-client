@@ -4,8 +4,8 @@ angular.module('calypsoClientApp')
   .service('Patient', function (ENV, $http, $q, Utils, $rootScope) {
     var patientService = {
       values: {
-        'age': null,
-        'alcohol': null,
+        'age': 32,
+        'alcohol': true,
         'asa': null,
         'bleeddis': null,
         'bmi': null,
@@ -66,8 +66,22 @@ angular.module('calypsoClientApp')
         'wtloss': null,
         'year': null,
       },
-      histogram: {},
-      prediction: {}
+      histogram: {
+        'wound_compilcations': null,
+        'cardiac_complications': null,
+        'respiratory_complications': null,
+        'thrombeombolic_complications': null,
+        'renal_complications': null,
+        'urinary_tract_infections': null,
+        'neurologic_complications': null,
+        'systemic_septic_complications': null,
+        'reoperations': null,
+        'morbidity': null,
+        'mortality': null
+      },
+      prediction: {},
+      percentile: {},
+      targets: {}
     };
 
     // init values
@@ -77,16 +91,24 @@ angular.module('calypsoClientApp')
 
     patientService.refresh = function (patient_values, no_histogram) {
       var promises = [];
-      promises.push(patientService.get_prediction(patient_values));
-      if (!no_histogram) promises.push(patientService.get_histogram(patient_values));
+      promises.push(patientService.get_prediction(patient_values.caseid));
+      promises.push(patientService.get_percentile(patient_values.caseid));
+      if (!no_histogram) {
+        Object.keys(patientService.histogram).forEach(function (complication) {
+          promises.push(patientService.get_histogram(complication, patient_values.caseid));
+        });
+      };
       return $q.all(promises).then(function (values_array) {
         patientService.prediction = values_array[0].data;
+        patientService.percentile = values_array[1].data;
         if (!no_histogram) {
-          Object.keys(values_array[1].data.histogram).forEach(function (ele) {
-            values_array[1].data.histogram[ele] = values_array[1].data.histogram[ele].sort();
+          var i = 2;
+          Object.keys(patientService.histogram).forEach(function (complication) {
+            patientService.histogram[complication] = values_array[i].data;
+            if (i<values_array.length) i++;
           });
-          patientService.histogram = values_array[1].data;
-        }
+        };
+        console.log(patientService.targets);
         patientService.values = patient_values;
         $rootScope.$broadcast('patient-update');
       });
@@ -94,37 +116,51 @@ angular.module('calypsoClientApp')
 
     patientService.find_patient = function (caseid) {
       var deferred = $q.defer();
-      $http.get(ENV.hosts.server + '/patient/' + caseid).success(function (patient_values) {
+      $http.get('http://54.186.43.170/api/patients/' + caseid).success(function (patient_values) {
         patientService.refresh(patient_values).then(function () {
-          deferred.resolve();
+          $http.get('http://54.186.43.170/api/targets/patient/1').then(function (targets){
+            patientService.targets = targets.data;
+          });
         });
+          deferred.resolve();
       }).error(function (err) {
         console.log(err);
       });
       return deferred.promise;
     };
 
-    patientService.get_histogram = function (patient_values) {
+    patientService.get_histogram = function (complication, caseid) {
       return $http({
-        url: ENV.hosts.server + '/histogram',
+        url: 'http://54.186.43.170/api/analysis/histogram/' + caseid,
         method: 'GET',
         params: {
-          ccs_category: patient_values.cpt_type,
-          cpt_type: patient_values.cpt_type
+          complication: complication,
+          bins: 20
         }
       });
     };
 
-    patientService.get_prediction = function (patient_values) {
+    patientService.get_prediction = function (caseid) {
       return $http({
-        url: ENV.hosts.server + '/predict',
-        method: 'GET',
-        params: {
-          preds: Utils.transform(patient_values)
-        }
+        url: 'http://54.186.43.170/api/analysis/predict/' + caseid,
+        method: 'GET'
       });
     };
 
+    patientService.get_percentile = function (caseid) {
+      return $http({
+        url: 'http://54.186.43.170/api/analysis/percentile/' + caseid, 
+        method: 'GET'
+      });
+    };
+
+    // patientService.get_interventions= function(caseid){
+    //   console.log(caseid);
+    //   return $http({
+    //     url: 'http://54.186.43.170/api/targets/patient/' + caseid,
+    //     method: 'GET'
+    //   });
+    // };
     patientService.download_patient = function (data) {
       var json = JSON.stringify(data, null, '\t');
       var blob = new Blob([json], {

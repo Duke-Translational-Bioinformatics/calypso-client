@@ -149,7 +149,6 @@ angular.module('calypsoClientApp')
             .attr('stroke-width', 3);
 
           // bars
-
           if (config.barOpacity > 0) {
             var bars = group.append('g').attr('class', 'bars')
               .selectAll('rect')

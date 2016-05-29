@@ -48,9 +48,7 @@ angular.module('calypsoClientApp')
         five.append('circle')
           .attr('r', radiusScale(Math.sqrt(0.05)))
           .attr('fill', '#e37d7a')
-          .attr('opacity', 1)
-          .attr('ng-click', function (d) {
-                return 'open($event, \'' + 'Wound Complications' + '\')'});
+          .attr('opacity', 1);
     
         five.append('circle')
           .attr('r', 5)

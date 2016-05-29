@@ -108,7 +108,6 @@ angular.module('calypsoClientApp')
             if (i<values_array.length) i++;
           });
         };
-        console.log(patientService.targets);
         patientService.values = patient_values;
         $rootScope.$broadcast('patient-update');
       });
@@ -154,13 +153,6 @@ angular.module('calypsoClientApp')
       });
     };
 
-    // patientService.get_interventions= function(caseid){
-    //   console.log(caseid);
-    //   return $http({
-    //     url: 'http://54.186.43.170/api/targets/patient/' + caseid,
-    //     method: 'GET'
-    //   });
-    // };
     patientService.download_patient = function (data) {
       var json = JSON.stringify(data, null, '\t');
       var blob = new Blob([json], {

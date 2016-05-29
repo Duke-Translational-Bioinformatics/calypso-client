@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('calypsoClientApp')
-  .directive('d3DualbarsLegend', function ($window, $compile) {
+  .directive('d3DualbarsLegend', function ($window, $compile, $mdDialog, $mdMedia) {
     return {
       restrict: 'EA',
       scope: {},
@@ -13,7 +13,18 @@ angular.module('calypsoClientApp')
           .attr('aria-label', 'dualbarsSvgLegend')
           .style('height', height + 'px')
           .style('width', width + 'px');
-
+        scope.open = function (event, name) {
+            var parentE1 = angular.element(document.body);
+            var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+            $mdDialog.show({
+              parent: parentE1,
+              targetEvent: event,
+              fullscreen: useFullScreen,
+              clickOutsideToClose: true,
+              template: '<enhanced-dialog name=' + name + '></enhanced-dialog>'
+            });
+          };
         var radiusScale = d3.scale.linear()
           .domain([0, 0.45])
           .range([3, 57 / 2]);
@@ -38,6 +49,7 @@ angular.module('calypsoClientApp')
           .attr('r', radiusScale(Math.sqrt(0.05)))
           .attr('fill', '#e37d7a')
           .attr('opacity', 1);
+    
         five.append('circle')
           .attr('r', 5)
           .attr('class', 'point negative');

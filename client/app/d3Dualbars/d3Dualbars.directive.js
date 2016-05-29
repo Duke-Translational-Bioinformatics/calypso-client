@@ -44,11 +44,12 @@ angular.module('calypsoClientApp')
           }).map(function (ele) {
             return {
               name: ele.name,
-              value: Utils.getPercentile(Patient.prediction.predict[ele.name], Patient.histogram.histogram[ele.name]),
+              value: Patient.percentile.percentile[ele.name],
               original_value: ele.value,
               show: false
             };
           });
+          $scope.open
         };
 
         // init svg
@@ -122,7 +123,7 @@ angular.module('calypsoClientApp')
           var group = svg.append('g').attr('transform', 'translate(' + ((groupPadding / 2) + sidePadding) + ',' + topPadding + ')');
 
           group.append('text')
-            .attr('x', xScale(45))
+            .attr('x', xScale(95))
             .attr('y', 0)
             .attr('font-size', '1em')
             .attr('class', 'unselectable')
@@ -148,7 +149,6 @@ angular.module('calypsoClientApp')
             .attr('stroke-width', 3);
 
           // bars
-
           if (config.barOpacity > 0) {
             var bars = group.append('g').attr('class', 'bars')
               .selectAll('rect')
@@ -236,6 +236,12 @@ angular.module('calypsoClientApp')
             })
             .attr('tooltip', function (d) {
               return 'Absolute: ' + d.original_value.toFixed(2) + ', Relative: ' + d.value.toFixed(2);
+            })
+            .attr('ng-mouseover', function (d) {
+                return 'hoverIn(\'' + d.name + '\', true)';
+            })
+            .attr('ng-mouseleave', function (d) {
+                return 'hoverOut(\'' + d.name + '\', false)';
             });
 
           // point circles
@@ -263,6 +269,12 @@ angular.module('calypsoClientApp')
             })
             .attr('tooltip', function (d) {
               return 'Absolute: ' + d.original_value.toFixed(2) + ', Percentile Risk: ' + d.value.toFixed(2);
+            })
+            .attr('ng-mouseover', function (d) {
+                return 'hoverIn(\'' + d.name + '\', true)';
+            })
+            .attr('ng-mouseleave', function (d) {
+                return 'hoverOut(\'' + d.name + '\', false)';
             });
 
           // onclick logic
@@ -279,6 +291,7 @@ angular.module('calypsoClientApp')
             });
           };
 
+          
           // text labels
           group.append('g').attr('class', 'texts')
             .selectAll('text')

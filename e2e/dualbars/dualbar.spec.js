@@ -22,8 +22,8 @@ describe('Dualbars directive', function () {
     expect(Dualbars.bar.isPresent()).toBe(true);
   });
 
-  it('dualbar should be clickable', function () {
-    expect(Dualbars.bar.isPresent()).toBe(true);
-    Dualbars.bar.click();
-  });
+  // it('dualbar should be clickable', function () {
+  //   expect(Dualbars.bar.isPresent()).toBe(true);
+  //   Dualbars.bar.click();
+  // });
 });

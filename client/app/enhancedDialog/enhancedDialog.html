@@ -22,8 +22,8 @@
         <md-divider></md-divider>
       </md-toolbar>
       <md-list class="orderlist" ng-cloak>
-        <md-list-item ng-repeat="obj in name[0] track by $index">
-          <p class="small unselectable"> {{ Utils.getName(name)}} </p>
+        <md-list-item ng-repeat="obj in outcomes track by $index">
+          <p class="small unselectable"> {{ obj.label }} </p>
           <md-checkbox class="md-secondary" ng-click="selectFactor(obj)" ng-model="valuesOutcome[$index]"></md-checkbox>
           <md-divider></md-divider>
         </md-list-item>

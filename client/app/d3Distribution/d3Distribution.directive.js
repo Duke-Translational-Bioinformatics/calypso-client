@@ -16,7 +16,6 @@ angular.module('calypsoClientApp')
           },
           bins: 20
         };
-
         scope.select = attrs.select;
 
         // histogram 
@@ -61,9 +60,19 @@ angular.module('calypsoClientApp')
           if (scope.config.customControl) width = trueWidth;
 
 
+          var freqArray = histogram_array.map(function(iObject) {
+            return parseInt(iObject.freq);
+          });
+          var xmax = histogram_array[14].upper;
+          var ymax = Math.max.apply(null, freqArray);
+          var totalfreq = 0;
+          freqArray.map(function(i) {
+            totalfreq += i;
+          });
+          console.log(totalfreq);
 
           var x = d3.scale.linear()
-            .domain([0, Math.max.apply(null, histogram_array)]).nice()
+            .domain([0, 1.25 * xmax]).nice()
             .range([0, width]);
 
           var binDensity = d3.scale.linear()
@@ -76,30 +85,9 @@ angular.module('calypsoClientApp')
             .range([5, 15])
             .clamp(true);
 
-          var histogram;
-          if (config.customControl) {
-            histogram = d3.layout.histogram()
-              .frequency(false)
-              .bins(config.bins);
-          } else {
-            histogram = d3.layout.histogram()
-              .frequency(false)
-              .bins(binDensity(width));
-          }
-          var histogram_data = histogram(histogram_array);
-
-          var y;
-          if (config.customControl && (config.yAxis.max > 0 || config.yAxis.min > 0)) {
-            y = d3.scale.linear()
-              .domain([config.yAxis.min, config.yAxis.max])
+          var y = d3.scale.linear()
+              .domain([0, 1.25 * ymax/totalfreq])
               .range([height, 0]);
-          } else {
-            y = d3.scale.linear()
-              .domain([0, d3.max(histogram_data, function (d) {
-                return d.y;
-              })]).nice()
-              .range([height, 0]);
-          }
           //x axis attributes
           var xAxis = d3.svg.axis()
             .scale(x)
@@ -146,16 +134,16 @@ angular.module('calypsoClientApp')
             .append('rect')
             .attr("class", 'bar')
             .attr('x', function (d) {
-              return d.lower * width;
+              return x(d.lower);
             })
             .attr('y', function (d) {
-              return height - d.freq;
+              return y(d.freq/totalfreq);
             })
             .attr('width', function (d) {
-              return (d.upper - d.lower) *width;
+              return x((d.upper - d.lower));
             })
             .attr('height', function (d){
-              return d.freq;
+              return height - y(d.freq/totalfreq);
             })
             .attr('fill-opacity', 0.8);
             
@@ -175,26 +163,26 @@ angular.module('calypsoClientApp')
 
           // labels for histogram
           patient.append('circle')
-            .attr('cx', -10)
+            .attr('cx', 50)
             .attr('cy', -5)
             .attr('r', 5)
             .attr('class', 'point');
 
           patient.append('text')
-            .attr('x', 0)
+            .attr('x', 60)
             .attr('y', 0)
             .attr('height', 30)
             .attr('width', 100)
             .text('Patient');
 
           median.append('circle')
-            .attr('cx', -10)
+            .attr('cx', 50)
             .attr('cy', 15)
             .attr('r', 5)
             .attr('class', 'point median');
 
           median.append('text')
-            .attr('x', 0)
+            .attr('x', 60)
             .attr('y', 20)
             .attr('height', 30)
             .attr('width', 100)
@@ -202,9 +190,9 @@ angular.module('calypsoClientApp')
 
             //patient circle
           group.append('line')
-            .attr('x1', metric.median * width)
+            .attr('x1', x(metric.median))
             .attr('y1', y(0) + 50)
-            .attr('x2', patient_prediction * width)
+            .attr('x2', x(patient_prediction))
             .attr('y2', y(0) + 50)
             .style('stroke-width', 3)
             .style('stroke', function () {
@@ -213,15 +201,15 @@ angular.module('calypsoClientApp')
             .style('fill', 'none');
 
           group.append('circle')
-            .attr('cx', patient_prediction * width)
+            .attr('cx', x(patient_prediction))
             .attr('cy', y(0) + 50)
             .attr('r', 5)
             .attr('class', 'point');
 
           group.append('line')
-            .attr('x1', patient_prediction * width)
+            .attr('x1', x(patient_prediction))
             .attr('y1', y(0) + 50)
-            .attr('x2', patient_prediction * width)
+            .attr('x2', x(patient_prediction))
             .attr('y2', y(0))
             .style('stroke-width', 1)
             .style('stroke-dasharray', ('3, 3'))
@@ -229,15 +217,15 @@ angular.module('calypsoClientApp')
             .style('fill', 'none');
 
           group.append('circle')
-            .attr('cx', metric.median * width)
+            .attr('cx', x(metric.median))
             .attr('cy', y(0) + 50)
             .attr('r', 5)
             .attr('class', 'point median');
 
           group.append('line')
-            .attr('x1', metric.median * width)
+            .attr('x1', x(metric.median))
             .attr('y1', y(0) + 50)
-            .attr('x2', metric.median * width)
+            .attr('x2', x(metric.median))
             .attr('y2', y(0))
             .style('stroke-width', 1)
             .style('stroke-dasharray', ('3, 3'))

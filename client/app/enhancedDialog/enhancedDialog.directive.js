@@ -14,8 +14,14 @@ angular.module('calypsoClientApp')
         $scope.Utils = Utils;
         $scope.dataConstants = dataConstants;
         $scope.postop = Patient.targets;
-
-
+        $scope.outcomes = [];
+        for (var i = 0; i < Object.keys(dataConstants.COMPLICATION_INTERVENTIONS).length; i++) {
+          var ikey = Object.keys(dataConstants.COMPLICATION_INTERVENTIONS)[i];
+          var iObject = dataConstants.COMPLICATION_INTERVENTIONS[ikey];
+          if (iObject.preop_variable == $scope.name){
+            $scope.outcomes.push(iObject);
+          }
+        };
         $scope.closeDialog = function () {
           $mdDialog.hide();
         };
@@ -57,12 +63,17 @@ angular.module('calypsoClientApp')
           $scope.orderObj.orders = [];
           orderID_set = [];
           $scope.checkedFactor.map(function (iObject) {
-            console.log(iObject.id)
+            if (dataConstants.COMPLICATIONS.indexOf(iObject.preop_variable) > -1){
+              iObject.order_ids.map(function(id) {
+                get_orders_byid(id);
+              });
+            }
+            else {
              get_orders_server(iObject.id);
+            }
           });
-          
         };
-
+        
         $scope.selectIntervention = function(order){
           var index1 = $scope.checkedOrder.indexOf(order);
           if (index1 < 0){
@@ -123,6 +134,14 @@ angular.module('calypsoClientApp')
 
         }, true);
 
+        var get_orders_byid = function(id){
+          return $http({
+            url: 'http://54.186.43.170/api/orders/' + id,
+            method: 'GET'
+          }).then(function (response){
+            makeSet([response.data]);
+          });
+        }
         var get_orders_server = function(id){
           return $http({
             url: 'http://54.186.43.170/api/orders/target/' + id,

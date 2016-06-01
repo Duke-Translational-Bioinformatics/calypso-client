@@ -1014,6 +1014,157 @@ angular.module('calypsoClientApp')
         'order_text': 'Alert: q12hour microbiology review'
       }
     ],
+    COMPLICATION_INTERVENTIONS: {
+      'urinary_tract_infections': {
+        'preop_variable': 'urinary_tract_infections',
+        'label': 'Urinary Tract Infections',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          10
+        ]
+        },
+      'wound_compilcations':{
+        'preop_variable': 'wound_compilcations',
+        'label': 'Wound Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      'cardiac_complications': {
+        'preop_variable': 'cardiac_complications',
+        'label': 'Cardiac Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          30,
+          31,
+          32,
+          604,
+          605
+          ]
+        },
+      'thrombeombolic_complications': {
+        'preop_variable': 'thrombeombolic_complications',
+        'label': 'Thromboembolic Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          40,
+          41,
+          42
+          ]
+        },
+      'respiratory_complications': {
+        'preop_variable': 'respiratory_complications',
+        'label': 'Respiratory Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          50,
+          203
+          ]
+        },
+      'systemic_septic_complications': {
+        'preop_variable': 'systemic_septic_complications',
+        'label': 'Systemic Septic Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          10,
+          20,
+          21,
+          22,
+          23,
+          24
+          ]
+        },
+      'renal_complications': {
+        'preop_variable': 'renal_complications',
+        'label': 'Renal Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          800,
+          801,
+          802
+          ]
+        },
+      'neurologic_complications': {
+        'preop_variable': 'neurologic_complications',
+        'label': 'Neurologic Complications',
+        'active': '1',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+          80,
+          81,
+          82,
+          83
+          ]
+        },
+      'reoperations': {
+        'preop_variable': 'reoperations',
+        'label': 'Reoperations',
+        'active': '0',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+        ],
+      },
+      'postoperative_hospital_stay': {
+        'preop_variable': 'postoperative_hospital_stay',
+        'label': 'Postoperative Hospital Stay',
+        'active': '0',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+        ],
+      },
+      'morbidity': {
+        'preop_variable': 'morbidity',
+        'label': 'Overall Complications',
+        'active': '0',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+        ],
+      },
+      'mortality': {
+        'preop_variable': 'mortality',
+        'label': '30-Day Mortality',
+        'active': '0',
+        'trigger': '',
+        'context': 'outcome',
+        'description': '',
+        'order_ids': [
+        ],
+      }
+    },
     INTERVENTIONS: {
       'OUTCOMES_UTI': {
         'preop_variable': 'OUTCOMES_UTI',

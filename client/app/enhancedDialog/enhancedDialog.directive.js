@@ -9,7 +9,7 @@ angular.module('calypsoClientApp')
       scope: {
         name: '@'
       },
-      controller: function ($scope, $mdDialog, Patient, $rootScope, Utils, dataConstants, $state, $http, $q) {
+      controller: function ($scope, $mdDialog, Patient, $rootScope, Utils, dataConstants, $state, $http, $q, ENV) {
         $scope.Patient = Patient;
         $scope.Utils = Utils;
         $scope.dataConstants = dataConstants;
@@ -33,8 +33,8 @@ angular.module('calypsoClientApp')
         }
 
         $scope.resample = function () {
-          Patient.refresh(Patient.values).then(function () {
-            $rootScope.$broadcast('patient-update');
+          Patient.get_histogram($scope.name, Patient.values.caseid).then(function () {
+            $rootScope.$broadcast('patient-update-histo');
           });
         };
 
@@ -136,7 +136,7 @@ angular.module('calypsoClientApp')
 
         var get_orders_byid = function(id){
           return $http({
-            url: 'http://54.186.43.170/api/orders/' + id,
+            url: ENV.hosts.server + '/api/orders/' + id,
             method: 'GET'
           }).then(function (response){
             makeSet([response.data]);
@@ -144,7 +144,7 @@ angular.module('calypsoClientApp')
         }
         var get_orders_server = function(id){
           return $http({
-            url: 'http://54.186.43.170/api/orders/target/' + id,
+            url: ENV.hosts.server + '/api/orders/target/' + id,
             method: 'GET'
           }).then(function (response){
             makeSet(response.data);

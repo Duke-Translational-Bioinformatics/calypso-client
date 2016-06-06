@@ -37,7 +37,7 @@ angular.module('calypsoClientApp')
           .attr('height', trueHeight)
           .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-        scope.$on('patient-update', function () {
+        scope.$on('patient-update-histo', function () {
           var histogram = angular.copy(Patient.histogram[scope.select].histogram);
           var prediction = angular.copy(Patient.prediction.predict[scope.select]);
           var metric = angular.copy(Patient.histogram[scope.select].stats);
@@ -69,7 +69,6 @@ angular.module('calypsoClientApp')
           freqArray.map(function(i) {
             totalfreq += i;
           });
-          console.log(totalfreq);
 
           var x = d3.scale.linear()
             .domain([0, 1.25 * xmax]).nice()

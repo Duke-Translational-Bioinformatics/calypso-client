@@ -31,13 +31,10 @@ angular.module('calypsoClientApp')
             });
           }
           var makeFactors = function (orders, label){
-            console.log(orders);
             orders.map(function (order){
-              console.log(order);
               if (orderIds.indexOf(order.id) > -1){
                 $scope.factors[label].push(order.description);
               }
-              console.log($scope.factors);
               
             });
             //delete factors with no orders

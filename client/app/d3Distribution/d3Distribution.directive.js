@@ -37,7 +37,7 @@ angular.module('calypsoClientApp')
           .attr('height', trueHeight)
           .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-        scope.$on('patient-update', function () {
+        scope.$on('patient-update-histo', function () {
           var histogram = angular.copy(Patient.histogram[scope.select].histogram);
           var prediction = angular.copy(Patient.prediction.predict[scope.select]);
           var metric = angular.copy(Patient.histogram[scope.select].stats);
@@ -69,7 +69,6 @@ angular.module('calypsoClientApp')
           freqArray.map(function(i) {
             totalfreq += i;
           });
-          console.log(totalfreq);
 
           var x = d3.scale.linear()
             .domain([0, 1.25 * xmax]).nice()
@@ -163,27 +162,27 @@ angular.module('calypsoClientApp')
 
           // labels for histogram
           patient.append('circle')
-            .attr('cx', 50)
-            .attr('cy', -5)
+            .attr('cx', width-70)
+            .attr('cy', 15)
             .attr('r', 5)
             .attr('class', 'point');
 
           patient.append('text')
-            .attr('x', 60)
-            .attr('y', 0)
+            .attr('x', width-60)
+            .attr('y', 20)
             .attr('height', 30)
             .attr('width', 100)
             .text('Patient');
 
           median.append('circle')
-            .attr('cx', 50)
-            .attr('cy', 15)
+            .attr('cx', width-70)
+            .attr('cy', 35)
             .attr('r', 5)
             .attr('class', 'point median');
 
           median.append('text')
-            .attr('x', 60)
-            .attr('y', 20)
+            .attr('x', width-60)
+            .attr('y', 40)
             .attr('height', 30)
             .attr('width', 100)
             .text('Median');

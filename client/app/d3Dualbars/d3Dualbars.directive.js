@@ -77,7 +77,9 @@ angular.module('calypsoClientApp')
         }, true);
 
         scope.$on('patient-update', function () {
-          if (scope.data) scope.render(preprocess(scope.data), scope.config);
+          if (scope.data) {
+            scope.render(preprocess(scope.data), scope.config);
+          }
         });
 
         var dragmove = function () {
@@ -92,7 +94,6 @@ angular.module('calypsoClientApp')
         // render svg
         scope.render = function (data, config) {
           svg.selectAll('*').remove();
-
           // sizing logic
           if (config.autoBarHeight) barHeight = $(window).height() / (data.length + 1) - barPadding - 40;
           if (barHeight < 57) barHeight = 57;

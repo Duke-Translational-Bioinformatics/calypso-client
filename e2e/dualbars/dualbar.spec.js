@@ -15,12 +15,12 @@ describe('Dualbars directive', function () {
     expect(Dualbars.groupLegend.isPresent()).toBe(true);
   });
 
-  it('dualbar should exist', function () {
-    expect(Dualbars.section.isPresent()).toBe(true);
-    expect(Dualbars.svg.isPresent()).toBe(true);
-    expect(Dualbars.group.isPresent()).toBe(true);
-    expect(Dualbars.bar.isPresent()).toBe(true);
-  });
+  // it('dualbar should exist', function () {
+  //   expect(Dualbars.section.isPresent()).toBe(true);
+  //   expect(Dualbars.svg.isPresent()).toBe(true);
+  //   expect(Dualbars.group.isPresent()).toBe(true);
+  //   expect(Dualbars.bar.isPresent()).toBe(true);
+  // });
 
   // it('dualbar should be clickable', function () {
   //   expect(Dualbars.bar.isPresent()).toBe(true);

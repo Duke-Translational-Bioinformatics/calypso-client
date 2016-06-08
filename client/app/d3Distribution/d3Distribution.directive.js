@@ -63,7 +63,7 @@ angular.module('calypsoClientApp')
           var freqArray = histogram_array.map(function(iObject) {
             return parseInt(iObject.freq);
           });
-          var xmax = histogram_array[14].upper;
+          var xmax = histogram_array[histogram_array.length-1].upper;
           var ymax = Math.max.apply(null, freqArray);
           var totalfreq = 0;
           freqArray.map(function(i) {

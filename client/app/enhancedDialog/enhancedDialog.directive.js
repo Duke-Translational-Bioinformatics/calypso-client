@@ -33,7 +33,7 @@ angular.module('calypsoClientApp')
         }
 
         $scope.resample = function () {
-          Patient.get_histogram($scope.name, Patient.values.caseid).then(function () {
+          Patient.get_histogram_byvalue($scope.name, Patient.values).then(function () {
             $rootScope.$broadcast('patient-update-histo');
           });
         };

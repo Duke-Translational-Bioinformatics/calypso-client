@@ -89,13 +89,27 @@ angular.module('calypsoClientApp')
       patientService.find_patient(1);
     };
 
-    patientService.refresh = function (patient_values, no_histogram) {
+    patientService.refresh = function (patient_values) {
       var promises = [];
       promises.push(patientService.get_prediction(patient_values.caseid));
       promises.push(patientService.get_percentile(patient_values.caseid));
       return $q.all(promises).then(function (values_array) {
         patientService.prediction = values_array[0].data;
         patientService.percentile = values_array[1].data;
+        patientService.values = patient_values;
+        $rootScope.$broadcast('patient-update');
+      });
+    };
+
+    patientService.refresh_byvalue = function (patient_values) {
+      var promises = [];
+      promises.push(patientService.get_prediction_byvalue(patient_values));
+      promises.push(patientService.get_percentile_byvalue(patient_values));
+      promises.push(patientService.get_targets_byvalue(patient_values));
+      return $q.all(promises).then(function (values_array) {
+        patientService.prediction = values_array[0].data;
+        patientService.percentile = values_array[1].data;
+        patientService.targets = values_array[1].data;
         patientService.values = patient_values;
         $rootScope.$broadcast('patient-update');
       });
@@ -129,6 +143,21 @@ angular.module('calypsoClientApp')
       });
     };
 
+    patientService.get_histogram_byvalue = function (complication, patient_values) {
+      return $http({
+        url: ENV.hosts.server + '/api/analysis/histogram/0',
+        method: 'GET',
+        params: {
+          values : patient_values,
+          complication: complication,
+          bins: 20
+        }
+      }).then(function (response){
+        patientService.histogram[complication] = response.data;
+      });
+    };
+
+
     patientService.get_prediction = function (caseid) {
       return $http({
         url: ENV.hosts.server + '/api/analysis/predict/' + caseid,
@@ -136,10 +165,40 @@ angular.module('calypsoClientApp')
       });
     };
 
+    patientService.get_prediction_byvalue = function (patient_values) {
+      return $http({
+        url: ENV.hosts.server + '/api/analysis/predict/0',
+        method: 'GET',
+        params: {
+          values: patient_values
+        }
+      });
+    };
+
     patientService.get_percentile = function (caseid) {
       return $http({
         url: ENV.hosts.server + '/api/analysis/percentile/' + caseid, 
         method: 'GET'
+      });
+    };
+
+    patientService.get_percentile_byvalue = function (patient_values) {
+      return $http({
+        url: ENV.hosts.server + '/api/analysis/percentile/0', 
+        method: 'GET',
+        params: {
+          values: patient_values
+        }
+      });
+    };
+
+    patientService.get_targets_byvalue = function (patient_values) {
+      return $http({
+        url: ENV.hosts.server + '/api/targets/patient/0',
+        method: 'GET',
+        params: {
+          values: patient_values
+        }
       });
     };
 
@@ -157,16 +216,12 @@ angular.module('calypsoClientApp')
       a.click();
     };
 
-    patientService.upload_patient = function(patient_values){
-      return $http
-    }
-
     patientService.load_patient = function ($file) {
       var deferred = $q.defer();
       var reader = new FileReader();
       reader.onloadend = function () {
         var patient_values = JSON.parse(reader.result);
-        patientService.refresh(patient_values).then(function () {
+        patientService.refresh_byvalue(patient_values).then(function () {
           deferred.resolve(patient_values);
         });
       };

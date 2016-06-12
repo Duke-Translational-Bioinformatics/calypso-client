@@ -109,8 +109,9 @@ angular.module('calypsoClientApp')
       return $q.all(promises).then(function (values_array) {
         patientService.prediction = values_array[0].data;
         patientService.percentile = values_array[1].data;
-        patientService.targets = values_array[1].data;
+        patientService.targets = values_array[2].data;
         patientService.values = patient_values;
+        console.log(patientService.targets);
         $rootScope.$broadcast('patient-update');
       });
     };

@@ -1,4 +1,6 @@
 <section layout-fill layout="row">
+  <md-sidenav aria-label="sidebarSection" flex sidenav-push-in class="md-sidenav-right md-whiteframe-z1" md-component-id="right">
+  </md-sidenav>
   <md-sidenav aria-label="sidebarSection" flex sidenav-push-in class="md-sidenav-left md-whiteframe-z1" md-component-id="left">
     <div layout="column" class="unselectable main-body">
       <md-toolbar class="md-accent unselectable" flex="initial">
@@ -15,8 +17,6 @@
       <md-button aria-label="loadButton" ngf-select ngf-change="Patient.load_patient($files)"> Load Patient</md-button>
       <md-divider></md-divider>
       <md-button aria-label="downloadButton" ng-click="Patient.download_patient(Patient.values)">Download Patient</md-button>
-      <md-divider></md-divider>
-
       <md-content flex="auto" style="overflow-y: auto;" layout-padding>
         <md-list ng-cloak>
           <md-subheader class="unselectable md-no-sticky">Patient Information</md-subheader>
@@ -135,6 +135,7 @@
          -->
           <b>Patient Overview</b>
         </div>
+        <md-button aria-label="basketButton" ng-click="open($event)" class = "intervention-button">Interventions <md-icon md-svg-src="../../assets/images/shopping-cart.svg" aria-label="android "></md-icon></md-button>
         <div aria-label="dualbarsLegend" d3-dualbars-legend></div>
       </md-toolbar>
       <div class="md-whiteframe-5dp " aria-label="dualbarsSection" d3-dualbars data="Patient.prediction.predict"></div>

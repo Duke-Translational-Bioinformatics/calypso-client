@@ -86,7 +86,7 @@ angular.module('calypsoClientApp')
 
     // init values
     patientService.init = function () {
-      patientService.find_patient(1);
+      patientService.find_patient(972273);
     };
 
     patientService.refresh = function (patient_values) {

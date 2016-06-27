@@ -15,6 +15,7 @@ angular.module('calypsoClientApp')
         $scope.dataConstants = dataConstants;
         $scope.postop = Patient.targets;
         $scope.outcomes = [];
+        var basketCount = 0;
         for (var i = 0; i < Object.keys(dataConstants.COMPLICATION_INTERVENTIONS).length; i++) {
           var ikey = Object.keys(dataConstants.COMPLICATION_INTERVENTIONS)[i];
           var iObject = dataConstants.COMPLICATION_INTERVENTIONS[ikey];
@@ -26,11 +27,18 @@ angular.module('calypsoClientApp')
           $mdDialog.hide();
         };
 
-        $scope.print = function(){
-          $mdDialog.hide();
-          $state.go('print',{factors: $scope.checkedFactor, orders: $scope.checkedOrder});
-
-        }
+        function showAlert(basketLength) {
+          alert = $mdDialog.alert({
+            title: basketLength + ' interventions added',
+            clickOutsideToClose: true,
+            ok: 'Close'
+          });
+          $mdDialog
+            .show( alert )
+            .finally(function() {
+              alert = undefined;
+          });
+        };
 
         $scope.resample = function () {
           Patient.get_histogram_byvalue($scope.name, Patient.values).then(function () {
@@ -59,17 +67,18 @@ angular.module('calypsoClientApp')
           if (index > -1){
             $scope.checkedFactor.splice(index, 1);
           }
+          Utils.updateFactor(obj);
           //clear and remake orders list on each checkbox
           $scope.orderObj.orders = [];
           orderID_set = [];
           $scope.checkedFactor.map(function (iObject) {
             if (dataConstants.COMPLICATIONS.indexOf(iObject.preop_variable) > -1){
               iObject.order_ids.map(function(id) {
-                get_orders_byid(id);
+                get_orders_byid(iObject, id);
               });
             }
             else {
-             get_orders_server(iObject.id);
+             get_orders_server(iObject);
             }
           });
         };
@@ -82,6 +91,7 @@ angular.module('calypsoClientApp')
           if (index1 > -1){
             $scope.checkedOrder.splice(index1, 1);
           }
+          Utils.checkOrder(order);
         };
 
         $scope.$watch('valuesOutcome', function (newValues) {
@@ -134,19 +144,21 @@ angular.module('calypsoClientApp')
 
         }, true);
 
-        var get_orders_byid = function(id){
+        var get_orders_byid = function(factor, id){
           return $http({
             url: ENV.hosts.server + '/api/orders/' + id,
             method: 'GET'
           }).then(function (response){
+            Utils.updateOrder(factor, [response.data])
             makeSet([response.data]);
           });
         }
-        var get_orders_server = function(id){
+        var get_orders_server = function(factor){
           return $http({
-            url: ENV.hosts.server + '/api/orders/target/' + id,
+            url: ENV.hosts.server + '/api/orders/target/' + factor.id,
             method: 'GET'
           }).then(function (response){
+            Utils.updateOrder(factor, response.data)
             makeSet(response.data);
           });
         }

@@ -420,10 +420,58 @@ angular.module('calypsoClientApp')
       }
     };
 
+    var orderBasket = {
+      // factor1 : [
+      //   {order: order,
+      //    selected: false},
+      // ],
+      // factor2: []
+    };
+     function updateFactor(factor) {
+         orderBasket[factor.label] = [];
+     }
+     function updateOrder(factor, orders) {
+       orders.map(function (iOrder) {
+         orderBasket[factor.label].push({order: iOrder, selected: false});
+       });
+     }
+
+     function checkOrder(checkedOrder) {
+       Object.keys(orderBasket).map(function(factor) {
+         var orderList = orderBasket[factor];
+         orderList.map(function(orderObj) {
+            if(orderObj.order == checkedOrder){
+              orderObj.selected = !orderObj.selected;
+            }
+         });
+       });
+     }
+
+      function getBasket() {
+        var orderBasketDisplay = {};
+        Object.keys(orderBasket).map(function(factor) {
+          var orderList = orderBasket[factor];
+          orderBasketDisplay[factor] = [];
+          orderList.map(function(order) {
+            if(order.selected){
+              orderBasketDisplay[factor].push(order);
+            }
+          });
+          if(orderBasketDisplay[factor].length == 0){
+            delete orderBasketDisplay[factor];
+          };
+        });
+        return orderBasketDisplay;
+      }
+
     return {
       transform: transform,
       getPercentile: getPercentile,
       getName: getName,
       getOutcomeLink: getOutcomeLink,
+      updateFactor: updateFactor,
+      updateOrder: updateOrder,
+      checkOrder: checkOrder,
+      getBasket: getBasket
     };
   });

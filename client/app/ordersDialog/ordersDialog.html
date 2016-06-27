@@ -1,0 +1,24 @@
+    <md-card flex="200" layout-margin>
+      <md-toolbar class="unselectable md-no-sticky">
+        <h1 class="md-toolbar-tools md-short">Selected Orders</h1>
+        <md-divider></md-divider>
+      </md-toolbar>
+
+      <md-list class="orderlist" ng-repeat = "factor in factors" ng-cloak>
+        <h1 class="md-toolbar-tools md-short factor-label">{{ factor }}</h1>
+        <md-divider></md-divider>
+        <md-list class="orderlist" ng-cloak>
+          <md-list-item ng-repeat="orderObj in basket[factor] track by $index">
+            <p class="small unselectable"> {{ orderObj.order.description }} </p>
+<!--             <md-checkbox class="md-secondary" ng-click="selectIntervention(orderObj)" ng-model="valuesOutcome[$index]"></md-checkbox> -->
+            <md-divider></md-divider>
+          </md-list-item>
+        </md-list>
+      </md-list>
+      <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="print()" class="md-raised md-primary layout-align">Print</md-button>
+      </md-card-actions>
+<!--       <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="clear()" class="md-raised md-primary layout-align">Clear Selected</md-button>
+      </md-card-actions> -->
+    </md-card>

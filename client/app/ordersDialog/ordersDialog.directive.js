@@ -19,15 +19,18 @@ angular.module('calypsoClientApp')
         $state.go('print',{'basket': $scope.basket});
         };
 
-        $scope.selectIntervention = function(order){
-          var index1 = $scope.select.indexOf(order);
-          if (index1 < 0){
-            $scope.select.push(order);
-          }
-          if (index1 > -1){
-            $scope.select.splice(index1, 1);
-          }
-        };
+        $scope.selectedOrders = {};
+
+        var getOrders = function(){
+          Object.keys($scope.basket).map(function(factor) {
+            var orderList = $scope.basket[factor];
+            orderList.map(function(orderObj) {
+              $scope.selectedOrders[orderObj.order.description] = false;
+            });
+          });
+        }
+
+        getOrders();
 
         // $scope.clear = function(){
         //   $scope.select.map(function (iOrder) {

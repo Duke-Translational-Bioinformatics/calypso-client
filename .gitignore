@@ -3,5 +3,4 @@ node_modules
 .sass-cache
 .idea
 dist
-client/components/config.js
 .DS_Store

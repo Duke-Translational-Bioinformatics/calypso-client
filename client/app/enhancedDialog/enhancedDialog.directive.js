@@ -48,7 +48,7 @@ angular.module('calypsoClientApp')
 
         $scope.valuesOutcome = [];
         $scope.valuesPostop = [];
-
+        $scope.orderChecklist = {};
         $scope.orderObj = {
           selected_orders: [],
           orders: []
@@ -70,6 +70,7 @@ angular.module('calypsoClientApp')
           Utils.updateFactor(obj);
           //clear and remake orders list on each checkbox
           $scope.orderObj.orders = [];
+          $scope.orderChecklist = {};
           orderID_set = [];
           $scope.checkedFactor.map(function (iObject) {
             if (dataConstants.COMPLICATIONS.indexOf(iObject.preop_variable) > -1){
@@ -94,6 +95,13 @@ angular.module('calypsoClientApp')
           Utils.checkOrder(order);
         };
 
+        var getOrdersCheckbox = function(basket, factor){
+          var orderList = basket[factor.label];
+          orderList.map(function(orderObj) {
+            $scope.orderChecklist[orderObj.order.description] = orderObj.selected;
+          });
+        }
+
         $scope.$watch('valuesOutcome', function (newValues) {
           var orders = newValues.map(function (ele, index) {
             if (ele) return index;
@@ -117,8 +125,6 @@ angular.module('calypsoClientApp')
 
           $scope.orderObj.orders = orders;
         }, true);
-
-
 
         $scope.$watch('valuesPostop', function (newValues) {
           var orders = newValues.map(function (ele, index) {
@@ -149,7 +155,8 @@ angular.module('calypsoClientApp')
             url: ENV.hosts.server + '/api/orders/' + id,
             method: 'GET'
           }).then(function (response){
-            Utils.updateOrder(factor, [response.data])
+            Utils.updateOrder(factor, [response.data]);
+            getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet([response.data]);
           });
         }
@@ -158,7 +165,8 @@ angular.module('calypsoClientApp')
             url: ENV.hosts.server + '/api/orders/target/' + factor.id,
             method: 'GET'
           }).then(function (response){
-            Utils.updateOrder(factor, response.data)
+            Utils.updateOrder(factor, response.data);
+            getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet(response.data);
           });
         }

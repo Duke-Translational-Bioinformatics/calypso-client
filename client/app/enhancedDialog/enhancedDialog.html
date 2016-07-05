@@ -49,7 +49,7 @@
         <md-list class="target-container" ng-cloak>
           <md-list-item ng-repeat="order in orderObj.orders track by $index">
             <p class="small unselectable"> {{ order.description }} </p>
-            <md-checkbox class="md-secondary" ng-click="selectIntervention(order)" ng-model="orderObj.selected_orders[$index]"></md-checkbox>
+            <md-checkbox class="md-secondary" ng-click="selectIntervention(order)" ng-model="orderChecklist[order.description]"></md-checkbox>
             <md-divider></md-divider>
           </md-list-item>
         </md-list>

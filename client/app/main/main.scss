@@ -18,8 +18,15 @@
 .title-style {
   height: 64px !important
 }
-.print-margin{
-	padding-left: 1em;
+.title {
+  margin-left: 1em;
+}
+.patient-info{
+  margin-left: 1.5em;
+  font-style: italic;
+}
+.factor {
+  margin-left: 1.5em;
 }
 .print-lists{
 	margin: .5em;

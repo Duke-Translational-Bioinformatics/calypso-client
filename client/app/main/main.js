@@ -13,9 +13,10 @@ angular.module('calypsoClientApp')
         params: {
           basket: null
         },
-        controller: function($scope, $stateParams, $rootScope, $state, $http, $q){
+        controller: function($scope, $stateParams, $rootScope, $state, $http, $q, Patient){
           $scope.listVentions = $stateParams.basket;
           $scope.factors = Object.keys($scope.listVentions);
+          $scope.patient = Patient.values;
         }
       });
   });

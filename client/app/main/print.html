@@ -1,8 +1,9 @@
-<h2 class = "print-margin">Selected Interventions</h2>
+<h2 class = "title">Selected Interventions</h2>
 <!-- <script src = "print.js"></script> -->
 <!-- <h3 ng-repeat = "factor in factors track by $index" class = "print-margin">{{ factor }}</h3> -->
+<p class = "patient-info"> Patient Case ID: {{ patient.caseid }} </p>
 <div ng-repeat = "factor in factors">
-	<h3 class = "print-margin"> {{ factor }} </h3>
+	<h3 class = "factor"> {{ factor }} </h3>
 	<ul class = "print-lists">
 		<li class = "print-lists" ng-repeat="orderObj in listVentions[factor] track by $index">{{ orderObj.order.description }}</li>
 	</ul>

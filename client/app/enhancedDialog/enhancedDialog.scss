@@ -25,3 +25,16 @@
   text-align: right;
   margin:.5em;
 }
+
+// IE10 and IE11
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  md-dialog-container {
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+  }
+
+  md-dialog {
+    min-height: 80%;
+    min-width: 80%;
+  }
+}

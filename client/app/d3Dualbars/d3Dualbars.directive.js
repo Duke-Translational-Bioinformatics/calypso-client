@@ -357,7 +357,7 @@ angular.module('calypsoClientApp')
             })
             .text(function (d) {
               if (d.original_value === 0) {
-                return 'Absolute Risk: Neglible';
+                return 'Absolute Risk: Negligible';
               } else {
                 return 'Absolute Risk: ' + Math.round(d.original_value * 1000) / 10 + '%';
               }

@@ -28,6 +28,14 @@
 
 // IE10 and IE11
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  [layout-fill] {
+    height: auto;
+  }
+
+  md-card {
+    min-height: 100%;
+  }
+
   md-dialog-container {
     display: -ms-flexbox;
     -ms-flex-pack: center;
@@ -36,5 +44,10 @@
   md-dialog {
     min-height: 80%;
     min-width: 80%;
+
+    .orderlist {
+      overflow-y: visible;
+      max-height: none;
+    }
   }
 }

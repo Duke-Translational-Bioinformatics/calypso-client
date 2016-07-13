@@ -83,7 +83,7 @@ angular.module('calypsoClientApp')
             }
           });
         };
-        
+
         $scope.selectIntervention = function(order){
           var index1 = $scope.checkedOrder.indexOf(order);
           if (index1 < 0){
@@ -100,7 +100,7 @@ angular.module('calypsoClientApp')
           orderList.map(function(orderObj) {
             $scope.orderChecklist[orderObj.order.description] = orderObj.selected;
           });
-        }
+        };
 
         $scope.$watch('valuesOutcome', function (newValues) {
           var orders = newValues.map(function (ele, index) {
@@ -121,6 +121,11 @@ angular.module('calypsoClientApp')
 
           orders = orders.map(function (ele) {
             return dataConstants.ORDERS[ele];
+          });
+
+          // removes order if no id
+          orders = _.reject(orders, function(order) {
+            if (!order.id) return order;
           });
 
           $scope.orderObj.orders = orders;

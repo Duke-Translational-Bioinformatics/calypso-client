@@ -124,9 +124,7 @@ angular.module('calypsoClientApp')
           });
 
           // removes order if no id
-          orders = _.reject(orders, function(order) {
-            if (!order.id) return order;
-          });
+          orders = _.reject(orders, function(order) { return !order.id; });
 
           $scope.orderObj.orders = orders;
         }, true);
@@ -164,7 +162,7 @@ angular.module('calypsoClientApp')
             getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet([response.data]);
           });
-        }
+        };
         var get_orders_server = function(factor){
           return $http({
             url: ENV.hosts.server + '/api/orders/target/' + factor.id,
@@ -174,7 +172,7 @@ angular.module('calypsoClientApp')
             getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet(response.data);
           });
-        }
+        };
 
         var makeSet = function(orderArray){
           var mySet = $scope.orderObj.orders;
@@ -185,7 +183,7 @@ angular.module('calypsoClientApp')
             }
           });
           $scope.orderObj.orders = mySet;
-        }
+        };
         //run
         $scope.resample();
 

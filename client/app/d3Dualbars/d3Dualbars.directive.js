@@ -364,9 +364,6 @@ angular.module('calypsoClientApp')
             })
             .attr('font-size', '.8em')
             .attr('font-weight', 'bold');
-            // .attr('ng-show', function (d) {
-            //   return 'showTable.' + d.name;
-            // });
 
           riskLabelGroup.append('text')
             .attr('x', function (d) {
@@ -388,9 +385,6 @@ angular.module('calypsoClientApp')
             })
             .attr('font-size', '.8em')
             .attr('font-weight', 'bold');
-            // .attr('ng-show', function (d) {
-            //   return 'showTable.' + d.name;
-            // });
 
           element.removeAttr('d3-Dualbars');
           $compile(element)(scope);

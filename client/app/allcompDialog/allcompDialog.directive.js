@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('calypsoClientApp')
-  .directive('enhancedDialog', function () {
+  .directive('allcompDialog', function () {
     return {
-      templateUrl: 'app/enhancedDialog/enhancedDialog.html',
+      templateUrl: 'app/allcompDialog/allcompDialog.html',
       restrict: 'EA',
       replace: true,
       scope: {
         name: '@'
       },
       controller: function ($scope, $mdDialog, Patient, $rootScope, Utils, dataConstants, $state, $http, $q, ENV) {
-        $scope.Patient = Patient;
+		$scope.Patient = Patient;
         $scope.Utils = Utils;
         $scope.dataConstants = dataConstants;
         $scope.postop = Patient.targets;
@@ -19,10 +19,14 @@ angular.module('calypsoClientApp')
         for (var i = 0; i < Object.keys(dataConstants.COMPLICATION_INTERVENTIONS).length; i++) {
           var ikey = Object.keys(dataConstants.COMPLICATION_INTERVENTIONS)[i];
           var iObject = dataConstants.COMPLICATION_INTERVENTIONS[ikey];
-          if (iObject.preop_variable == $scope.name){
-            $scope.outcomes.push(iObject);
-          }
+          $scope.outcomes.push(iObject);
         };
+        console.log($scope.allComp)
+        $scope.complications = {
+        	// 'uti': [order1,order2],
+        	// 'cardiac': [order2, order4]
+        };
+
         $scope.closeDialog = function () {
           $mdDialog.hide();
         };
@@ -37,12 +41,6 @@ angular.module('calypsoClientApp')
             .show( alert )
             .finally(function() {
               alert = undefined;
-          });
-        };
-
-        $scope.resample = function () {
-          Patient.get_histogram_byvalue($scope.name, Patient.values).then(function () {
-            $rootScope.$broadcast('patient-update-histo');
           });
         };
 
@@ -68,7 +66,7 @@ angular.module('calypsoClientApp')
             $scope.checkedFactor.splice(index, 1);
           }
           Utils.updateFactor(obj);
-          //clear and remake orders list on each check
+          //clear and remake orders list on each checkbox
           $scope.orderObj.orders = [];
           $scope.orderChecklist = {};
           orderID_set = [];
@@ -78,7 +76,6 @@ angular.module('calypsoClientApp')
                 get_orders_byid(iObject, id);
               });
             }
-
             else {
              get_orders_server(iObject);
             }
@@ -182,9 +179,6 @@ angular.module('calypsoClientApp')
           });
           $scope.orderObj.orders = mySet;
         }
-        //run
-        $scope.resample();
-
       }
     };
   });

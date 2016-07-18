@@ -54,6 +54,7 @@ body > div {
 }
 // Component styles are injected through grunt
 // injector
+@import 'allcompDialog/allcompDialog.scss';
 @import 'd3Distribution/d3Distribution.scss';
 @import 'enhancedDialog/enhancedDialog.scss';
 @import 'main/main.scss';

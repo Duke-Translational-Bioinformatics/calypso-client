@@ -438,13 +438,21 @@ angular.module('calypsoClientApp')
                         orderBasket[factor.label].push({order: iOrder, selected: false});
                   });
             }
+            console.log(orderBasket)
       }
-
+      function updateCompOrder(factor, order) {
+            if (orderBasket[factor.label].length < factor.order_ids.length){
+                  orderBasket[factor.label].push({order: order, selected: false});
+            }
+      }
       function checkOrder(checkedOrder) {
+            console.log(orderBasket)
            Object.keys(orderBasket).map(function(factor) {
                var orderList = orderBasket[factor];
                orderList.map(function(orderObj) {
-                  if(orderObj.order == checkedOrder){
+                  console.log(orderObj.order)
+                  console.log(checkedOrder)
+                  if(orderObj.order.id == checkedOrder.id){
                       orderObj.selected = !orderObj.selected;
                 }
           });
@@ -476,6 +484,7 @@ angular.module('calypsoClientApp')
       orderBasket: orderBasket,
       updateFactor: updateFactor,
       updateOrder: updateOrder,
+      updateCompOrder: updateCompOrder,
       checkOrder: checkOrder,
       getBasket: getBasket
     };

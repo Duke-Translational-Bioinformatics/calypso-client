@@ -1,0 +1,27 @@
+.small {
+  font-size: .8em;
+  max-width: 85%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.fullscreen-dialog {
+  height: 100%;
+  width: 100vw;
+  max-height: 100%;
+  max-width: 100%;
+}
+.orderlist {
+  overflow-y: auto;
+  max-height: 500px;
+}
+.target-container {
+  height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.intervention-text{
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  margin:.5em;
+}

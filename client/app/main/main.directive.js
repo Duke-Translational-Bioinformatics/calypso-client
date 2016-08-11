@@ -46,7 +46,20 @@ angular.module('calypsoClientApp')
           labs: dataConstants.LABS.split(','),
         };
 
-        $scope.open = function (event) {
+        $scope.openComplications = function (event) {
+          var parentE1 = angular.element(document.body);
+          var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+          var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+          $mdDialog.show({
+            parent: parentE1,
+            targetEvent: event,
+            fullscreen: useFullScreen,
+            clickOutsideToClose: true,
+            template: '<allcomp-dialog></allcomp-dialog>'
+          });  
+        };
+
+        $scope.openInterventions = function (event) {
             var parentE1 = angular.element(document.body);
             var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;

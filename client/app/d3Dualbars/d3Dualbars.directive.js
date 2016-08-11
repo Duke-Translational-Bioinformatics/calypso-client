@@ -6,7 +6,7 @@ angular.module('calypsoClientApp')
       restrict: 'EA',
       scope: {
         data: '=',
-        config: '='
+        config: '=?bind'
       },
       link: function (scope, element, attrs) {
         var barHeight = parseInt(attrs.barHeight) || 40;
@@ -23,7 +23,7 @@ angular.module('calypsoClientApp')
           autoBarHeight: true
         };
 
-        //show risk values on hover 
+        //show risk values on hover
         scope.showTable = {};
         scope.hoverIn = function (name) {
           scope.showTable[name] = true;
@@ -292,7 +292,7 @@ angular.module('calypsoClientApp')
             });
           };
 
-          
+
           // text labels
           group.append('g').attr('class', 'texts')
             .selectAll('text')

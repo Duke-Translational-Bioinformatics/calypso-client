@@ -111,7 +111,6 @@ angular.module('calypsoClientApp')
         patientService.percentile = values_array[1].data;
         patientService.targets = values_array[2].data;
         patientService.values = patient_values;
-        console.log(patientService.targets);
         $rootScope.$broadcast('patient-update');
       });
     };

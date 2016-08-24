@@ -1,64 +1,38 @@
 'use strict';
 
 angular.module('calypsoClientApp')
-  .directive('enhancedDialog', function () {
+  .directive('caremapDialog', function () {
     return {
-      templateUrl: 'app/enhancedDialog/enhancedDialog.html',
+      templateUrl: 'app/caremapDialog/caremapDialog.html',
       restrict: 'EA',
       replace: true,
       scope: {
         name: '@'
       },
       controller: function ($scope, $mdDialog, Patient, $rootScope, Utils, dataConstants, $state, $http, $q, ENV) {
-        $scope.Patient = Patient;
+		$scope.Patient = Patient;
         $scope.Utils = Utils;
         $scope.dataConstants = dataConstants;
         $scope.postop = [];
-        $scope.outcomes = [];
-        $scope.caremap = [];
-
-        for(var i=0; i<Patient.targets.length; i++){
-          if(Patient.targets[i].preop_variable == "cpt"){
-            $scope.caremap.push(Patient.targets[i]);
-          }
-          else{
-            $scope.postop.push(Patient.targets[i]);
-          };
-        };
         var basketCount = 0;
-        for (var i = 0; i < Object.keys(dataConstants.COMPLICATION_INTERVENTIONS).length; i++) {
-          var ikey = Object.keys(dataConstants.COMPLICATION_INTERVENTIONS)[i];
-          var iObject = dataConstants.COMPLICATION_INTERVENTIONS[ikey];
-          if (iObject.preop_variable == $scope.name){
-            $scope.outcomes.push(iObject);
+
+        Patient.targets.map(function(iTarget) {
+          if(iTarget.preop_variable == "cpt"){
+            $scope.postop.push(iTarget);
           }
+        });
+
+        $scope.complications = {
+        	// 'uti': [order1,order2],
+        	// 'cardiac': [order2, order4]
         };
+
         $scope.closeDialog = function () {
           $mdDialog.hide();
         };
 
-        function showAlert(basketLength) {
-          alert = $mdDialog.alert({
-            title: basketLength + ' interventions added',
-            clickOutsideToClose: true,
-            ok: 'Close'
-          });
-          $mdDialog
-            .show( alert )
-            .finally(function() {
-              alert = undefined;
-          });
-        };
-
-        $scope.resample = function () {
-          Patient.get_histogram_byvalue($scope.name, Patient.values).then(function () {
-            $rootScope.$broadcast('patient-update-histo');
-          });
-        };
-
         $scope.valuesOutcome = [];
         $scope.valuesPostop = [];
-        $scope.valuesCaremap = [];
         $scope.orderChecklist = {};
         $scope.orderObj = {
           selected_orders: [],
@@ -79,20 +53,12 @@ angular.module('calypsoClientApp')
             $scope.checkedFactor.splice(index, 1);
           }
           Utils.updateFactor(obj);
-          //clear and remake orders list on each check
+          //clear and remake orders list on each checkbox
           $scope.orderObj.orders = [];
           $scope.orderChecklist = {};
           orderID_set = [];
           $scope.checkedFactor.map(function (iObject) {
-            if (dataConstants.COMPLICATIONS.indexOf(iObject.preop_variable) > -1){
-              iObject.order_ids.map(function(id) {
-                get_orders_byid(iObject, id);
-              });
-            }
-
-            else {
              get_orders_server(iObject);
-            }
           });
         };
         
@@ -113,30 +79,6 @@ angular.module('calypsoClientApp')
             $scope.orderChecklist[orderObj.order.description] = orderObj.selected;
           });
         }
-
-        $scope.$watch('valuesOutcome', function (newValues) {
-          var orders = newValues.map(function (ele, index) {
-            if (ele) return index;
-          }).filter(function (ele) {
-            if (ele !== undefined) {
-              return true;
-            }
-          }).map(function (ele) {
-            return $scope.outcomes[ele];
-          });
-
-          orders = _.uniq(_.flatten(orders.map(function (ele) {
-            return ele.order_ids;
-          }))).filter(function (ele) {
-            if (ele) return true;
-          });
-
-          orders = orders.map(function (ele) {
-            return dataConstants.ORDERS[ele];
-          });
-
-          $scope.orderObj.orders = orders;
-        }, true);
 
         $scope.$watch('valuesPostop', function (newValues) {
           var orders = newValues.map(function (ele, index) {
@@ -162,16 +104,6 @@ angular.module('calypsoClientApp')
 
         }, true);
 
-        var get_orders_byid = function(factor, id){
-          return $http({
-            url: ENV.hosts.server + '/api/orders/' + id,
-            method: 'GET'
-          }).then(function (response){
-            Utils.updateCompOrder(factor, response.data);
-            getOrdersCheckbox(Utils.orderBasket, factor);
-            makeSet([response.data]);
-          });
-        }
         var get_orders_server = function(factor){
           return $http({
             url: ENV.hosts.server + '/api/orders/target/' + factor.id,
@@ -193,9 +125,6 @@ angular.module('calypsoClientApp')
           });
           $scope.orderObj.orders = mySet;
         }
-        //run
-        $scope.resample();
-
       }
     };
   });

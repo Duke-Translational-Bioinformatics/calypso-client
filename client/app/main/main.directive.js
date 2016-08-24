@@ -18,20 +18,6 @@ angular.module('calypsoClientApp')
         };
 
         var timeout;
-        // $scope.$watch('Patient.values', function (newValues, oldValues) {
-        //   if (newValues.caseid) {
-        //     if (timeout) $timeout.cancel(timeout);
-        //     if (newValues.caseid !== oldValues.caseid) {
-        //       timeout = $timeout(function () {
-        //         Patient.find_patient(newValues.caseid);
-        //       }, 500);
-        //     } else {
-        //       timeout = $timeout(function () {
-        //         Patient.refresh(newValues, true);
-        //       }, 500);
-        //     }
-        //   }
-        // }, true);
 
         // html data
         $scope.labels = dataConstants.LABELS;

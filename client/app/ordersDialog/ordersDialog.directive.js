@@ -28,7 +28,7 @@ angular.module('calypsoClientApp')
               $scope.selectedOrders[orderObj.order.description] = false;
             });
           });
-        }
+        };
 
         getOrders();
 

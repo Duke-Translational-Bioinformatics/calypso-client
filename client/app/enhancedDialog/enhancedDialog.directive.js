@@ -95,7 +95,7 @@ angular.module('calypsoClientApp')
             }
           });
         };
-        
+
         $scope.selectIntervention = function(order){
           var index1 = $scope.checkedOrder.indexOf(order);
           if (index1 < 0){
@@ -112,7 +112,7 @@ angular.module('calypsoClientApp')
           orderList.map(function(orderObj) {
             $scope.orderChecklist[orderObj.order.description] = orderObj.selected;
           });
-        }
+        };
 
         $scope.$watch('valuesOutcome', function (newValues) {
           var orders = newValues.map(function (ele, index) {
@@ -134,6 +134,9 @@ angular.module('calypsoClientApp')
           orders = orders.map(function (ele) {
             return dataConstants.ORDERS[ele];
           });
+
+          // removes order if no id
+          orders = _.reject(orders, function(order) { return !order.id; });
 
           $scope.orderObj.orders = orders;
         }, true);
@@ -171,7 +174,7 @@ angular.module('calypsoClientApp')
             getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet([response.data]);
           });
-        }
+        };
         var get_orders_server = function(factor){
           return $http({
             url: ENV.hosts.server + '/api/orders/target/' + factor.id,
@@ -181,7 +184,7 @@ angular.module('calypsoClientApp')
             getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet(response.data);
           });
-        }
+        };
 
         var makeSet = function(orderArray){
           var mySet = $scope.orderObj.orders;
@@ -192,7 +195,7 @@ angular.module('calypsoClientApp')
             }
           });
           $scope.orderObj.orders = mySet;
-        }
+        };
         //run
         $scope.resample();
 

@@ -1,0 +1,53 @@
+.small {
+  font-size: .8em;
+  max-width: 85%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.fullscreen-dialog {
+  height: 100%;
+  width: 100vw;
+  max-height: 100%;
+  max-width: 100%;
+}
+.orderlist {
+  overflow-y: auto;
+  max-height: 500px;
+}
+.target-container {
+  height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.intervention-text{
+  font-size: 14px;
+  font-style: italic;
+  text-align: right;
+  margin:.5em;
+}
+
+// IE10 and IE11
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  [layout-fill] {
+    height: auto;
+  }
+
+  md-card {
+    min-height: 100%;
+  }
+
+  md-dialog-container {
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+  }
+
+  md-dialog {
+    min-height: 80%;
+    min-width: 80%;
+
+    .orderlist {
+      overflow-y: visible;
+      max-height: none;
+    }
+  }
+}

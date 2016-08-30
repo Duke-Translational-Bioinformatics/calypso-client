@@ -135,8 +135,9 @@
          -->
           <b>Patient Overview</b>
         </div>
-        <md-button aria-label="basketButton" ng-click="openComplications($event)" class = "comp-button">All Complications <md-icon md-svg-src="../../assets/images/list.svg" aria-label="android "></md-icon></md-button>
-        <md-button aria-label="basketButton" ng-click="openInterventions($event)" class = "intervention-button">Interventions <md-icon md-svg-src="../../assets/images/shopping-cart.svg" aria-label="android "></md-icon></md-button>
+        <md-button aria-label="basketButton" ng-click="openCaremap($event)" class = "comp-button caremap-button">Caremap <md-icon md-svg-src="../../assets/images/gps.svg" class = "icon-button" aria-label="android "></md-icon></md-button>
+        <md-button aria-label="basketButton" ng-click="openComplications($event)" class = "comp-button">All Complications <md-icon md-svg-src="../../assets/images/list.svg" class = "icon-button" aria-label="android "></md-icon></md-button>
+        <md-button aria-label="basketButton" ng-click="openInterventions($event)" class = "intervention-button comp-button">Interventions <md-icon md-svg-src="../../assets/images/shopping-cart.svg" class = "icon-button" aria-label="android "></md-icon></md-button>
         <div aria-label="dualbarsLegend" d3-dualbars-legend></div>
       </md-toolbar>
       <div class="md-whiteframe-5dp " aria-label="dualbarsSection" d3-dualbars data="Patient.prediction.predict"></div>

@@ -41,6 +41,17 @@
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
+      <md-toolbar class="unselectable md-no-sticky">
+        <h1 class="md-toolbar-tools">Caremap</h1>
+        <md-divider></md-divider>
+      </md-toolbar>
+      <md-list class="orderlist" ng-cloak>
+        <md-list-item ng-repeat="obj in caremap track by $index">
+          <p class="small unselectable"> {{ obj.label }} </p>
+          <md-checkbox class="md-secondary" ng-click="selectFactor(obj)" ng-model="valuesCaremap[$index]"></md-checkbox>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
     </md-card>
     <md-card flex="25">
       <md-toolbar class="unselectable md-no-sticky">

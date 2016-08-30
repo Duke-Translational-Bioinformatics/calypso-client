@@ -18,20 +18,6 @@ angular.module('calypsoClientApp')
         };
 
         var timeout;
-        // $scope.$watch('Patient.values', function (newValues, oldValues) {
-        //   if (newValues.caseid) {
-        //     if (timeout) $timeout.cancel(timeout);
-        //     if (newValues.caseid !== oldValues.caseid) {
-        //       timeout = $timeout(function () {
-        //         Patient.find_patient(newValues.caseid);
-        //       }, 500);
-        //     } else {
-        //       timeout = $timeout(function () {
-        //         Patient.refresh(newValues, true);
-        //       }, 500);
-        //     }
-        //   }
-        // }, true);
 
         // html data
         $scope.labels = dataConstants.LABELS;
@@ -44,6 +30,19 @@ angular.module('calypsoClientApp')
           surgical_info: dataConstants.SURGICAL_INFO.split(','),
           surgical_info_boolean: dataConstants.SURGICAL_INFO_BOOLEAN.split(','),
           labs: dataConstants.LABS.split(','),
+        };
+
+        $scope.openCaremap = function (event) {
+          var parentE1 = angular.element(document.body);
+          var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+          var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+          $mdDialog.show({
+            parent: parentE1,
+            targetEvent: event,
+            fullscreen: useFullScreen,
+            clickOutsideToClose: true,
+            template: '<caremap-dialog></caremap-dialog>'
+          });  
         };
 
         $scope.openComplications = function (event) {

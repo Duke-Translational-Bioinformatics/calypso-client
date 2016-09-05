@@ -438,7 +438,7 @@ angular.module('calypsoClientApp')
                         orderBasket[factor.label].push({order: iOrder, selected: false});
                   });
             }
-            console.log(orderBasket)
+            
       }
       function updateCompOrder(factor, order) {
             if (orderBasket[factor.label].length < factor.order_ids.length){

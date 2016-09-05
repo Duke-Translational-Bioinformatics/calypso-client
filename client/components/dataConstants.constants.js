@@ -1016,6 +1016,7 @@ angular.module('calypsoClientApp')
     ],
     COMPLICATION_INTERVENTIONS: {
       'urinary_tract_infections': {
+        'id': 1,
         'preop_variable': 'urinary_tract_infections',
         'label': 'Urinary Tract Infections',
         'active': '1',
@@ -1027,6 +1028,7 @@ angular.module('calypsoClientApp')
         ]
         },
       'wound_compilcations':{
+        'id': 2,
         'preop_variable': 'wound_compilcations',
         'label': 'Wound Complications',
         'active': '1',
@@ -1034,7 +1036,6 @@ angular.module('calypsoClientApp')
         'context': 'outcome',
         'description': '',
         'order_ids': [
-          20,
           21,
           22,
           23,
@@ -1042,6 +1043,7 @@ angular.module('calypsoClientApp')
         ]
       },
       'cardiac_complications': {
+        'id': 3,
         'preop_variable': 'cardiac_complications',
         'label': 'Cardiac Complications',
         'active': '1',
@@ -1057,6 +1059,7 @@ angular.module('calypsoClientApp')
           ]
         },
       'thrombeombolic_complications': {
+        'id': 4,
         'preop_variable': 'thrombeombolic_complications',
         'label': 'Thromboembolic Complications',
         'active': '1',
@@ -1070,6 +1073,7 @@ angular.module('calypsoClientApp')
           ]
         },
       'respiratory_complications': {
+        'id': 5,
         'preop_variable': 'respiratory_complications',
         'label': 'Respiratory Complications',
         'active': '1',
@@ -1082,6 +1086,7 @@ angular.module('calypsoClientApp')
           ]
         },
       'systemic_septic_complications': {
+        'id': 6,
         'preop_variable': 'systemic_septic_complications',
         'label': 'Systemic Septic Complications',
         'active': '1',
@@ -1098,6 +1103,7 @@ angular.module('calypsoClientApp')
           ]
         },
       'renal_complications': {
+        'id': 7,
         'preop_variable': 'renal_complications',
         'label': 'Renal Complications',
         'active': '1',
@@ -1111,6 +1117,7 @@ angular.module('calypsoClientApp')
           ]
         },
       'neurologic_complications': {
+        'id': 9,
         'preop_variable': 'neurologic_complications',
         'label': 'Neurologic Complications',
         'active': '1',
@@ -1125,6 +1132,7 @@ angular.module('calypsoClientApp')
           ]
         },
       'reoperations': {
+        'id': 10,
         'preop_variable': 'reoperations',
         'label': 'Reoperations',
         'active': '0',
@@ -1135,6 +1143,7 @@ angular.module('calypsoClientApp')
         ],
       },
       'postoperative_hospital_stay': {
+        'id': 11,
         'preop_variable': 'postoperative_hospital_stay',
         'label': 'Postoperative Hospital Stay',
         'active': '0',
@@ -1145,6 +1154,7 @@ angular.module('calypsoClientApp')
         ],
       },
       'morbidity': {
+        'id': 12,
         'preop_variable': 'morbidity',
         'label': 'Overall Complications',
         'active': '0',
@@ -1155,6 +1165,7 @@ angular.module('calypsoClientApp')
         ],
       },
       'mortality': {
+        'id': 13,
         'preop_variable': 'mortality',
         'label': '30-Day Mortality',
         'active': '0',

@@ -84,15 +84,7 @@ angular.module('calypsoClientApp')
           $scope.orderChecklist = {};
           orderID_set = [];
           $scope.checkedFactor.map(function (iObject) {
-            if (dataConstants.COMPLICATIONS.indexOf(iObject.preop_variable) > -1){
-              iObject.order_ids.map(function(id) {
-                get_orders_byid(iObject, id);
-              });
-            }
-
-            else {
              get_orders_server(iObject);
-            }
           });
         };
 
@@ -164,17 +156,6 @@ angular.module('calypsoClientApp')
           $scope.orderObj.orders = orders;
 
         }, true);
-
-        var get_orders_byid = function(factor, id){
-          return $http({
-            url: ENV.hosts.server + '/api/orders/' + id,
-            method: 'GET'
-          }).then(function (response){
-            Utils.updateCompOrder(factor, response.data);
-            getOrdersCheckbox(Utils.orderBasket, factor);
-            makeSet([response.data]);
-          });
-        };
         var get_orders_server = function(factor){
           return $http({
             url: ENV.hosts.server + '/api/orders/target/' + factor.id,
@@ -195,6 +176,17 @@ angular.module('calypsoClientApp')
             }
           });
           $scope.orderObj.orders = mySet;
+        };
+        //unused
+        var get_orders_byid = function(factor, id){
+          return $http({
+            url: ENV.hosts.server + '/api/orders/' + id,
+            method: 'GET'
+          }).then(function (response){
+            Utils.updateCompOrder(factor, response.data);
+            getOrdersCheckbox(Utils.orderBasket, factor);
+            makeSet([response.data]);
+          });
         };
         //run
         $scope.resample();

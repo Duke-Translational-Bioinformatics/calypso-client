@@ -20,8 +20,7 @@ angular.module('calypsoClientApp')
           var ikey = Object.keys(dataConstants.COMPLICATION_INTERVENTIONS)[i];
           var iObject = dataConstants.COMPLICATION_INTERVENTIONS[ikey];
           $scope.outcomes.push(iObject);
-        };
-        console.log($scope.allComp)
+        }
         $scope.complications = {
         	// 'uti': [order1,order2],
         	// 'cardiac': [order2, order4]
@@ -71,14 +70,7 @@ angular.module('calypsoClientApp')
           $scope.orderChecklist = {};
           orderID_set = [];
           $scope.checkedFactor.map(function (iObject) {
-            if (dataConstants.COMPLICATIONS.indexOf(iObject.preop_variable) > -1){
-              iObject.order_ids.map(function(id) {
-                get_orders_byid(iObject, id);
-              });
-            }
-            else {
              get_orders_server(iObject);
-            }
           });
         };
         
@@ -98,7 +90,7 @@ angular.module('calypsoClientApp')
           orderList.map(function(orderObj) {
             $scope.orderChecklist[orderObj.order.description] = orderObj.selected;
           });
-        }
+        };
 
         $scope.$watch('valuesOutcome', function (newValues) {
           var orders = newValues.map(function (ele, index) {
@@ -147,17 +139,6 @@ angular.module('calypsoClientApp')
           $scope.orderObj.orders = orders;
 
         }, true);
-
-        var get_orders_byid = function(factor, id){
-          return $http({
-            url: ENV.hosts.server + '/api/orders/' + id,
-            method: 'GET'
-          }).then(function (response){
-            Utils.updateCompOrder(factor, response.data);
-            getOrdersCheckbox(Utils.orderBasket, factor);
-            makeSet([response.data]);
-          });
-        }
         var get_orders_server = function(factor){
           return $http({
             url: ENV.hosts.server + '/api/orders/target/' + factor.id,
@@ -167,7 +148,7 @@ angular.module('calypsoClientApp')
             getOrdersCheckbox(Utils.orderBasket, factor);
             makeSet(response.data);
           });
-        }
+        };
 
         var makeSet = function(orderArray){
           var mySet = $scope.orderObj.orders;
@@ -178,6 +159,18 @@ angular.module('calypsoClientApp')
             }
           });
           $scope.orderObj.orders = mySet;
+        //unused
+        var get_orders_byid = function(factor, id){
+          return $http({
+            url: ENV.hosts.server + '/api/orders/' + id,
+            method: 'GET'
+          }).then(function (response){
+            Utils.updateCompOrder(factor, response.data);
+            getOrdersCheckbox(Utils.orderBasket, factor);
+            makeSet([response.data]);
+          });
+        };
+
         }
       }
     };

@@ -27,7 +27,7 @@ angular.module('calypsoClientApp')
           top: 30,
           right: 20,
           bottom: 20,
-          left: 70
+          left: 30
         }; //margin from top bar
 
         // init svg

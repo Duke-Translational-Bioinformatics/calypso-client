@@ -12,6 +12,8 @@ module.exports = function (grunt) {
     ngconstant: 'grunt-ng-constant'
   });
 
+  var compass = require('compass-importer')
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 

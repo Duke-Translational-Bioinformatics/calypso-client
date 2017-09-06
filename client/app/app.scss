@@ -1,9 +1,7 @@
 // FarmShots orange: #ef6c00
-@import "compass";
 
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 img.cover {
-  @include filter(brightness(60%));
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +15,7 @@ img.cover {
   padding: 0.2em 0;
 }
 .unselectable {
-  @include user-select(none);
+
 }
 .transparent-background {
   background-color: rgba(0, 0, 0, 0);
